@@ -1,23 +1,41 @@
 import psycopg2
+from psycopg2.sql import NULL
 
-conn = psycopg2.connect(
+conn = NULL
+
+try :
+    conn = psycopg2.connect(
                                   dbname = "mydatabase",
                                   user = "postgres",
                                   password = "12345678",
                                   host = "localhost"
-                                  )
+                           )
+except Exception as e:
+    raise NotImplementedError(e)
+
+if(conn == NULL) :
+    raise NotImplementedError()
 
 cur = conn.cursor()
+name = "Test User"
+
+def add_user() :
+    # TODO: Automate this with GUI
+    cur.execute(f"INSERT INTO users_table (name) VALUES ('{name}')")
+
+def remove_user():
+    cur.execute(f"DELETE FROM users_table WHERE name = '{name}'")
 
 
-# cur.execute("INSERT INTO users_table (id, name) VALUES (001, 'Cody Christensen')") 
 
-cur.execute("""
-        CREATE TABLE IF NOT EXISTS goals (
-        id INTEGER PRIMARY KEY,
-        goal TEXT   
-        )
-            """) 
+# cur.execute() 
+
+# cur.execute("""
+#         CREATE TABLE IF NOT EXISTS goals (
+#         id INTEGER PRIMARY KEY,
+#         goal TEXT   
+#         )
+#             """) 
 
 # activities TEXT,
 # stressors TEXT,
