@@ -9,20 +9,30 @@ conn = psycopg2.connect(
 
 cur = conn.cursor()
 
-cur.execute(
-    """
-    CREATE TABLE mytable2 (
-    id SERIAL PRIMARY KEY,
-    name VARCHAR(255)
-    
-    )
 
-    """
-    ) 
+# cur.execute("INSERT INTO users_table (id, name) VALUES (001, 'Cody Christensen')") 
+
+cur.execute("""
+        CREATE TABLE IF NOT EXISTS goals (
+        id INTEGER PRIMARY KEY,
+        goal TEXT   
+        )
+            """) 
+
+# activities TEXT,
+# stressors TEXT,
+# coping_strategies TEXT,
+# self_care_activities TEXT,
+# social_interaction TEXT,
+# accomplishments TEXT,
+# gratitude TEXT,
+# reflections TEXT,
+# goals TEXT,
+# cur.execute("INSERT INTO users_table (id, name) VALUES (001, 'Cody Christensen')") 
 
 conn.commit()
 
 cur.close()
 conn.close()
 
-print()
+# print()
