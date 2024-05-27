@@ -1,14 +1,25 @@
 import psycopg2
 from psycopg2.sql import NULL
+from dotenv import load_dotenv
+import os
+
+# Load environmental variables from .env file
+load_dotenv()
+
+# Access environmental variables
+DB_NAME = os.getenv("DB_NAME")
+db_user = os.getenv("USER_NAME")
+db_password = os.getenv("DB_PASSWORD")
+db_host = os.getenv("HOST_NAME")
 
 conn = NULL
 
 try :
     conn = psycopg2.connect(
-                                  dbname = "mydatabase",
-                                  user = "postgres",
-                                  password = "12345678",
-                                  host = "localhost"
+                                  dbname = DB_NAME,
+                                  user = db_user,
+                                  password = db_password,
+                                  host = db_host
                            )
 except Exception as e:
     raise NotImplementedError(e)
