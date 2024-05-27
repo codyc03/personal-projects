@@ -40,9 +40,12 @@ def remove_user() :
 def add_entry() :
     cur.execute(f"INSERT INTO user_entries (id, mood, energy_level, sleep_duration, sleep_quality, physical_symptoms, social_interaction, physical_activity) VALUES (1, 2, 3, '4 hours', 5, 6, '7 hours', '8 hours')")
         
+def add_accomplishment() :
+    cur.execute(f"INSERT INTO accomplishments (id, accomplishment) VALUES (1, 'Started loving myself')")
 
-
-
+def remove_accomplishment() :
+    cur.execute(f"DELETE FROM accomplishments WHERE accomplishment = 'Started loving myself'")
+    
 # cur.execute() 
 
 # cur.execute("""
