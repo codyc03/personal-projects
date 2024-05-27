@@ -81,6 +81,9 @@ def add_stressor() :
 def remove_stressor() :
     cur.execute(f"DELETE FROM stressors WHERE stressor = 'Love'")
 
+def test() : 
+    print("hello")
+    
 conn.commit()
 
 cur.close()
