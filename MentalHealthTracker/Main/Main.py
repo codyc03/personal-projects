@@ -1,4 +1,3 @@
-from audioop import add
 import psycopg2
 from psycopg2.sql import NULL
 from dotenv import load_dotenv
@@ -46,6 +45,13 @@ def add_accomplishment() :
 def remove_accomplishment() :
     cur.execute(f"DELETE FROM accomplishments WHERE accomplishment = 'Started loving myself'")
     
+def add_coping_strategy() :
+    cur.execute(f"INSERT INTO coping_strategies (id, coping_strategy) VALUES (1, 'Movies')")
+
+def remove_coping_strategy() :
+    cur.execute(f"DELETE FROM coping_strategies WHERE coping_strategy = 'Movies'")
+    
+
 # cur.execute() 
 
 # cur.execute("""
