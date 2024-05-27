@@ -7,7 +7,7 @@ import os
 load_dotenv()
 
 # Access environmental variables
-DB_NAME = os.getenv("DB_NAME")
+db_name = os.getenv("DB_NAME")
 db_user = os.getenv("USER_NAME")
 db_password = os.getenv("DB_PASSWORD")
 db_host = os.getenv("HOST_NAME")
@@ -16,7 +16,7 @@ conn = NULL
 
 try :
     conn = psycopg2.connect(
-                                  dbname = DB_NAME,
+                                  dbname = db_name,
                                   user = db_user,
                                   password = db_password,
                                   host = db_host
@@ -81,29 +81,7 @@ def add_stressor() :
 def remove_stressor() :
     cur.execute(f"DELETE FROM stressors WHERE stressor = 'Love'")
 
-# cur.execute() 
-
-# cur.execute("""
-#         CREATE TABLE IF NOT EXISTS goals (
-#         id INTEGER PRIMARY KEY,
-#         goal TEXT   
-#         )
-#             """) 
-
-# activities TEXT,
-# stressors TEXT,
-# coping_strategies TEXT,
-# self_care_activities TEXT,
-# social_interaction TEXT,
-# accomplishments TEXT,
-# gratitude TEXT,
-# reflections TEXT,
-# goals TEXT,
-# cur.execute("INSERT INTO users_table (id, name) VALUES (001, 'Cody Christensen')") 
-
 conn.commit()
 
 cur.close()
 conn.close()
-
-# print()
