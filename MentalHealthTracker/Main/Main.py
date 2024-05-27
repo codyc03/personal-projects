@@ -1,3 +1,4 @@
+from audioop import add
 import psycopg2
 from psycopg2.sql import NULL
 from dotenv import load_dotenv
@@ -31,11 +32,14 @@ cur = conn.cursor()
 name = "Test User"
 
 def add_user() :
-    # TODO: Automate this with GUI
     cur.execute(f"INSERT INTO users_table (name) VALUES ('{name}')")
 
-def remove_user():
+def remove_user() :
     cur.execute(f"DELETE FROM users_table WHERE name = '{name}'")
+
+def add_entry() :
+    cur.execute(f"INSERT INTO user_entries (id, mood, energy_level, sleep_duration, sleep_quality, physical_symptoms, social_interaction, physical_activity) VALUES (1, 2, 3, '4 hours', 5, 6, '7 hours', '8 hours')")
+        
 
 
 
