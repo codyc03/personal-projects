@@ -51,6 +51,35 @@ def add_coping_strategy() :
 def remove_coping_strategy() :
     cur.execute(f"DELETE FROM coping_strategies WHERE coping_strategy = 'Movies'")
     
+def add_goal() :
+    cur.execute(f"INSERT INTO goals (id, goal) VALUES (1, 'learn to code')")
+
+def remove_goal() :
+    cur.execute(f"DELETE FROM goals WHERE goal = 'learn to code'")
+
+def add_gratitude() :
+    cur.execute(f"INSERT INTO gratitudes (id, gratitude) VALUES (1, 'Relationships')")
+
+def remove_gratitude() :
+    cur.execute(f"DELETE FROM gratitudes WHERE gratitude = 'Relationships'")
+
+def add_reflection() :
+    cur.execute(f"INSERT INTO reflections (id, reflection) VALUES (1, 'Love')")
+
+def remove_reflection() :
+    cur.execute(f"DELETE FROM reflections WHERE reflection = 'Love'")
+
+def add_self_care_activity() :
+    cur.execute(f"INSERT INTO self_care_activities (id, self_care_activity) VALUES (1, 'Love')")
+
+def remove_self_care_activity() :
+    cur.execute(f"DELETE FROM self_care_activities WHERE self_care_activity = 'Love'")
+
+def add_stressor() :
+    cur.execute(f"INSERT INTO stressors (id, stressor) VALUES (1, 'Love')")
+
+def remove_stressor() :
+    cur.execute(f"DELETE FROM stressors WHERE stressor = 'Love'")
 
 # cur.execute() 
 
