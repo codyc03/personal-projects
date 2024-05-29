@@ -1,40 +1,49 @@
+from tkinter import N
 import psycopg2
 from psycopg2.sql import NULL
 from dotenv import load_dotenv
 import os
 
-# Load environmental variables from .env file
-load_dotenv()
-
-# Access environmental variables
-db_name = os.getenv("DB_NAME")
-db_user = os.getenv("USER_NAME")
-db_password = os.getenv("DB_PASSWORD")
-db_host = os.getenv("HOST_NAME")
-
 conn = NULL
+cur = NULL
 
-try :
-    conn = psycopg2.connect(
-                                  dbname = db_name,
-                                  user = db_user,
-                                  password = db_password,
-                                  host = db_host
-                           )
-except Exception as e:
-    raise NotImplementedError(e)
+def startup() :
+    # Load environmental variables from .env file
+    load_dotenv(r"C:\Users\codyc\source\repos\personal-projects\MentalHealthTracker\Main\Test.env")
 
-if(conn == NULL) :
-    raise NotImplementedError()
+    # Access environmental variables
+    db_name = os.getenv("DB_NAME")
+    db_user = os.getenv("USER_NAME")
+    db_password = os.getenv("DB_PASSWORD")
+    db_host = os.getenv("HOST_NAME")
 
-cur = conn.cursor()
-name = "Test User"
+
+    try :
+        conn = psycopg2.connect(
+                                      dbname = db_name,
+                                      user = db_user,
+                                      password = db_password,
+                                      host = db_host
+                               )
+    except Exception as e:
+        raise NotImplementedError(e)
+
+    if(conn == NULL) :
+        raise NotImplementedError()
+
+    cur = conn.cursor()
+
+    # conn.commit()
+
+    # cur.close()
+    # conn.close()
+
 
 def add_user() :
-    cur.execute(f"INSERT INTO users_table (name) VALUES ('{name}')")
+    cur.execute(f"INSERT INTO users_table (name) VALUES ('Test User')")
 
 def remove_user() :
-    cur.execute(f"DELETE FROM users_table WHERE name = '{name}'")
+    cur.execute(f"DELETE FROM users_table WHERE name = 'Test User'")
 
 def add_entry() :
     cur.execute(f"INSERT INTO user_entries (id, mood, energy_level, sleep_duration, sleep_quality, physical_symptoms, social_interaction, physical_activity) VALUES (1, 2, 3, '4 hours', 5, 6, '7 hours', '8 hours')")
@@ -84,7 +93,4 @@ def remove_stressor() :
 def test() : 
     print("hello")
     
-conn.commit()
 
-cur.close()
-conn.close()
