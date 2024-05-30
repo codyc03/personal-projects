@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import ANCHOR, NSEW, ttk
-import Main
+import Main as db
 
 def on_resize(event):
     # Update the size of the root window when resized
@@ -20,6 +20,9 @@ def on_resize(event):
 def exit_program(event=None):
     root.destroy()
 
+def clicked() :
+    goals_output_1.config(text= f"{db.get_goals()}")
+
 root = tk.Tk()
 root.title("Main Window")
 
@@ -35,7 +38,7 @@ root.bind("<Escape>", exit_program)
 greeting = ttk.Label(root, text="Hello, welcome to MyHealth!", font=("Arial", 20, "bold"),anchor="center")
 greeting.grid(row=0, column=1, sticky='nsew')
 
-button = ttk.Button(root, text="Add Entry", padding=(80,20), command = Main.test )
+button = ttk.Button(root, text="Add Entry", padding=(80,20), command = clicked)
 button.grid(row=2, column=1, sticky = "s")
 
 goals_header = ttk.Label(root, text = "Goals", anchor= "center")
