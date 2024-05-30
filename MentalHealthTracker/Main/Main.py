@@ -8,7 +8,7 @@ cur = NULL
 
 
 # Load environmental variables from .env file
-load_dotenv(r"C:\Users\codyc\source\repos\personal-projects\MentalHealthTracker\Main\Test.env")
+load_dotenv()
 
 # Access environmental variables
 db_name = os.getenv("DB_NAME")
@@ -32,11 +32,16 @@ if(conn == NULL) :
 
 cur = conn.cursor()
 
-def get_goals() : 
-    cur.execute("SELECT goal FROM goals_new WHERE username = 'codyc'")
+def get_reminders(attribute,table) : 
+    cur.execute(f"SELECT {attribute} FROM {table} WHERE username = 'codyc'")
     rows = cur.fetchall()
-    result_string = '\n'.join([row[0] for row in rows])
-    return result_string
+
+    result_strings = []
+    for row in rows:
+        result_strings.append(row[0])
+
+    return result_strings
+
 
 def add_user() :
     cur.execute(f"INSERT INTO users_table (name) VALUES ('Test User')")
