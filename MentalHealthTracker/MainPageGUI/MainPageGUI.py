@@ -68,7 +68,7 @@ greeting = ttk.Label(root, text="Hello, welcome to MyHealth!", font=("Arial", 20
 greeting.grid(row=0, column=1, sticky='nsew')
 
 button = ttk.Button(root, text="Add Entry", command = clicked)
-button.grid(row=5, column=1, sticky = "s")
+button.grid(row=5, column=1, sticky = 'ns')
 
 goals_header = ttk.Label(root, text = "Goals", anchor= "center")
 goals_header.grid(row=1, column=0, sticky= NSEW)
@@ -171,6 +171,20 @@ user_entry_frame.grid_rowconfigure(0, weight=1)
 
 # Create a label inside the frame
 test_label = ttk.Label(user_entry_frame, text="hello", background="blue", foreground="white")
+
+# Configure grid weights for the label
+test_label.grid(row=0, column=0, sticky="nsew")
+
+# Create a frame
+results_frame = ttk.Frame(root)
+results_frame.grid(row=6, column=1, rowspan=2, sticky="nsew")
+
+# Configure grid weights for the frame
+results_frame.grid_columnconfigure(0, weight=1)
+results_frame.grid_rowconfigure(0, weight=1)
+
+# Create a label inside the frame
+test_label = ttk.Label(results_frame, text="hello", background="green", foreground="white")
 
 # Configure grid weights for the label
 test_label.grid(row=0, column=0, sticky="nsew")
