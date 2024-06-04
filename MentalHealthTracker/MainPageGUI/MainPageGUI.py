@@ -21,7 +21,7 @@ def on_resize(event):
 def exit_program(event=None):
     root.destroy()
 
-def clicked() :
+def startup() :
     all_goals = db.get_reminders("goal","goals_new")
     goals_output_1.config(text= f"{all_goals[0]}")
     goals_output_2.config(text= f"{all_goals[1]}")
@@ -51,6 +51,16 @@ def clicked() :
     self_care_activities_output_1.config(text = f"{all_self_care_activities[0]}")
     self_care_activities_output_2.config(text = f"{all_self_care_activities[1]}")
     self_care_activities_output_3.config(text = f"{all_self_care_activities[2]}")
+
+def clicked() :
+    mood = user_entry_mood.get()
+    energy_level = user_entry_energy.get()
+    sleep_duration = user_entry_sleep.get()
+    sleep_quality = user_entry_sleep_quality.get()
+    physical_symptoms = user_entry_physical_symptoms.get()
+    social_interaction = user_entry_social_interaction.get()
+    physical_activity = user_entry_physical_activity.get()
+    db.add_entry(mood,energy_level,sleep_duration,sleep_quality,physical_symptoms,social_interaction,physical_activity)
  
 root = tk.Tk()
 root.title("Main Window")
@@ -67,7 +77,7 @@ root.bind("<Escape>", exit_program)
 greeting = ttk.Label(root, text="Hello, welcome to MyHealth!", font=("Arial", 20, "bold"),anchor="center")
 greeting.grid(row=0, column=1, sticky='nsew')
 
-button = ttk.Button(root, text="Add Entry", command = clicked)
+button = ttk.Button(root, text="Add Daily Entry", command = clicked)
 button.grid(row=5, column=1, sticky = 'ns')
 
 goals_header = ttk.Label(root, text = "Goals", anchor= "center")
@@ -176,24 +186,42 @@ user_entry_frame.grid_rowconfigure(3, weight=1)
 user_entry_frame.grid_rowconfigure(4, weight=1)
 user_entry_frame.grid_rowconfigure(5, weight=1)
 user_entry_frame.grid_rowconfigure(6, weight=1)
+user_entry_frame.grid_rowconfigure(7, weight=1)
+
 
 # Create a label inside the frame
-test_label1 = ttk.Label(user_entry_frame, text="hello", anchor="center", background="blue", foreground="white")
-test_label2 = ttk.Label(user_entry_frame, text="hello", anchor="center", background="yellow", foreground="white")
-test_label3 = ttk.Label(user_entry_frame, text="hello", anchor="center", background="green", foreground="white")
-test_label4 = ttk.Label(user_entry_frame, text="hello", anchor="center", background="red", foreground="white")
-test_label5 = ttk.Label(user_entry_frame, text="hello", anchor="center", background="black", foreground="white")
-test_label6 = ttk.Label(user_entry_frame, text="hello", anchor="center", background="yellow", foreground="white")
-test_label7 = ttk.Label(user_entry_frame, text="hello", anchor="center", background="blue", foreground="white")
+user_entry_label1 = ttk.Label(user_entry_frame, text="On a scale of 1-10, how was your mood today?", anchor="center", background="blue", foreground="white")
+user_entry_label2 = ttk.Label(user_entry_frame, text="On a scale of 1-10, how was your energy level today?", anchor="center", background="yellow", foreground="white")
+user_entry_label3 = ttk.Label(user_entry_frame, text="How long did you sleep for?", anchor="center", background="green", foreground="white")
+user_entry_label4 = ttk.Label(user_entry_frame, text="On a scale of 1-10, how was your sleep quality?", anchor="center", background="red", foreground="white")
+user_entry_label5 = ttk.Label(user_entry_frame, text="On a scale of 1-10, how would you rate your physical symptoms today?", anchor="center", background="black", foreground="white")
+user_entry_label6 = ttk.Label(user_entry_frame, text="How many hours of social interaction did you have today?", anchor="center", background="yellow", foreground="white")
+user_entry_label7 = ttk.Label(user_entry_frame, text="How many hours of physical activity did you have today?", anchor="center", background="blue", foreground="white")
+
+user_entry_mood = ttk.Entry(user_entry_frame, background="blue")
+user_entry_energy = ttk.Entry(user_entry_frame, background="blue")
+user_entry_sleep = ttk.Entry(user_entry_frame, background="blue")
+user_entry_sleep_quality = ttk.Entry(user_entry_frame, background="blue")
+user_entry_physical_symptoms = ttk.Entry(user_entry_frame, background="blue")
+user_entry_social_interaction = ttk.Entry(user_entry_frame, background="blue")
+user_entry_physical_activity = ttk.Entry(user_entry_frame, background="yellow")
 
 # Configure grid weights for the label
-test_label1.grid(row=0, column=0, sticky='nsew')
-test_label2.grid(row=1,column=0, sticky='nsew')
-test_label3.grid(row=2, column=0, sticky='nsew')
-test_label4.grid(row=3,column=0, sticky='nsew')
-test_label5.grid(row=4, column=0, sticky='nsew')
-test_label6.grid(row=5,column=0, sticky='nsew')
-test_label7.grid(row=6, column=0, sticky='nsew')
+user_entry_label1.grid(row=0, column=0, sticky='nsew')
+user_entry_label2.grid(row=1,column=0, sticky='nsew')
+user_entry_label3.grid(row=2, column=0, sticky='nsew')
+user_entry_label4.grid(row=3,column=0, sticky='nsew')
+user_entry_label5.grid(row=4, column=0, sticky='nsew')
+user_entry_label6.grid(row=5,column=0, sticky='nsew')
+user_entry_label7.grid(row=6, column=0, sticky='nsew')
+
+user_entry_mood.grid(row=0, column=1, sticky='nsew')
+user_entry_energy.grid(row=1,column=1, sticky='nsew')
+user_entry_sleep.grid(row=2, column=1, sticky='nsew')
+user_entry_sleep_quality.grid(row=3,column=1, sticky='nsew')
+user_entry_physical_symptoms.grid(row=4, column=1, sticky='nsew')
+user_entry_social_interaction.grid(row=5,column=1, sticky='nsew')
+user_entry_physical_activity.grid(row=6, column=1, sticky='nsew')
 
 # Create a frame
 results_frame = ttk.Frame(root)
@@ -208,5 +236,7 @@ test_label = ttk.Label(results_frame, text="hello", background="green", foregrou
 
 # Configure grid weights for the label
 test_label.grid(row=0, column=0, sticky="nsew")
+
+startup()
 
 root.mainloop()

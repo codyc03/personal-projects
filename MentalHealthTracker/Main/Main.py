@@ -8,7 +8,7 @@ cur = NULL
 
 
 # Load environmental variables from .env file
-load_dotenv(r"C:\Users\codyc\source\repos\personal-projects\MentalHealthTracker\Main\Test.env")
+load_dotenv()
 
 # Access environmental variables
 db_name = os.getenv("DB_NAME")
@@ -49,9 +49,10 @@ def add_user() :
 def remove_user() :
     cur.execute(f"DELETE FROM users_table WHERE name = 'Test User'")
 
-def add_entry() :
-    cur.execute(f"INSERT INTO user_entries (id, mood, energy_level, sleep_duration, sleep_quality, physical_symptoms, social_interaction, physical_activity) VALUES (1, 2, 3, '4 hours', 5, 6, '7 hours', '8 hours')")
-        
+def add_entry(mood,energy_level,sleep_duration,sleep_quality, physical_symptoms, social_interaction,physical_activity) :
+    cur.execute(f"INSERT INTO user_entries (mood, energy_level, sleep_duration, sleep_quality, physical_symptoms, social_interaction, physical_activity, username) VALUES ({mood}, {energy_level}, '{sleep_duration} hours', {sleep_quality}, {physical_symptoms}, '{social_interaction} hours', '{physical_activity} hours', 'codyc')")
+    conn.commit()
+    
 def add_accomplishment() :
     cur.execute(f"INSERT INTO accomplishments (id, accomplishment) VALUES (1, 'Started loving myself')")
 
