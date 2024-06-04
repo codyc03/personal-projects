@@ -52,6 +52,10 @@ def startup() :
     self_care_activities_output_2.config(text = f"{all_self_care_activities[1]}")
     self_care_activities_output_3.config(text = f"{all_self_care_activities[2]}")
 
+    # TODO
+    all_user_entries = db.get_reminders("mood,energy_level","user_entries")
+    print(all_user_entries)
+
 def clicked() :
     mood = user_entry_mood.get()
     energy_level = user_entry_energy.get()

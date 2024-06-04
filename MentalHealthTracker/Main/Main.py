@@ -6,7 +6,6 @@ import os
 conn = NULL
 cur = NULL
 
-
 # Load environmental variables from .env file
 load_dotenv()
 
