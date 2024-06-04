@@ -167,13 +167,33 @@ user_entry_frame.grid(row=2, column=1, rowspan=3, sticky="nsew")
 
 # Configure grid weights for the frame
 user_entry_frame.grid_columnconfigure(0, weight=1)
+user_entry_frame.grid_columnconfigure(1, weight=1)
+
 user_entry_frame.grid_rowconfigure(0, weight=1)
+user_entry_frame.grid_rowconfigure(1, weight=1)
+user_entry_frame.grid_rowconfigure(2, weight=1)
+user_entry_frame.grid_rowconfigure(3, weight=1)
+user_entry_frame.grid_rowconfigure(4, weight=1)
+user_entry_frame.grid_rowconfigure(5, weight=1)
+user_entry_frame.grid_rowconfigure(6, weight=1)
 
 # Create a label inside the frame
-test_label = ttk.Label(user_entry_frame, text="hello", background="blue", foreground="white")
+test_label1 = ttk.Label(user_entry_frame, text="hello", anchor="center", background="blue", foreground="white")
+test_label2 = ttk.Label(user_entry_frame, text="hello", anchor="center", background="yellow", foreground="white")
+test_label3 = ttk.Label(user_entry_frame, text="hello", anchor="center", background="green", foreground="white")
+test_label4 = ttk.Label(user_entry_frame, text="hello", anchor="center", background="red", foreground="white")
+test_label5 = ttk.Label(user_entry_frame, text="hello", anchor="center", background="black", foreground="white")
+test_label6 = ttk.Label(user_entry_frame, text="hello", anchor="center", background="yellow", foreground="white")
+test_label7 = ttk.Label(user_entry_frame, text="hello", anchor="center", background="blue", foreground="white")
 
 # Configure grid weights for the label
-test_label.grid(row=0, column=0, sticky="nsew")
+test_label1.grid(row=0, column=0, sticky='nsew')
+test_label2.grid(row=1,column=0, sticky='nsew')
+test_label3.grid(row=2, column=0, sticky='nsew')
+test_label4.grid(row=3,column=0, sticky='nsew')
+test_label5.grid(row=4, column=0, sticky='nsew')
+test_label6.grid(row=5,column=0, sticky='nsew')
+test_label7.grid(row=6, column=0, sticky='nsew')
 
 # Create a frame
 results_frame = ttk.Frame(root)

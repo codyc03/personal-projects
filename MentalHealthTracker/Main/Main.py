@@ -8,7 +8,7 @@ cur = NULL
 
 
 # Load environmental variables from .env file
-load_dotenv()
+load_dotenv(r"C:\Users\codyc\source\repos\personal-projects\MentalHealthTracker\Main\Test.env")
 
 # Access environmental variables
 db_name = os.getenv("DB_NAME")
