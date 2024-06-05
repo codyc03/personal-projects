@@ -21,6 +21,62 @@ def on_resize(event):
 def exit_program(event=None):
     root.destroy()
 
+def get_all_in_category(category) :
+    all_in_category = db.get_reminders(f"{category}", "user_entries")
+    all_category_string = "\n".join(str(category) for date in all_in_category)
+    return all_category_string
+
+def update_previous_entries() :
+    date_label = ttk.Label(results_frame,text="DATE", anchor="center")
+    date_label.grid(row=0,column=0, sticky='nsew')
+    
+    mood_label = ttk.Label(results_frame,text="MOOD", anchor="center")
+    mood_label.grid(row=0,column=1, sticky='nsew')
+    
+    energy_level_label = ttk.Label(results_frame,text="ENERGY LEVEL", anchor="center")
+    energy_level_label.grid(row=0,column=2, sticky='nsew')
+    
+    sleep_duration_label = ttk.Label(results_frame,text="SLEEP DURATION", anchor="center")
+    sleep_duration_label.grid(row=0,column=3, sticky='nsew')
+    
+    sleep_quality_label = ttk.Label(results_frame,text="SLEEP QUALITY", anchor="center")
+    sleep_quality_label.grid(row=0,column=4, sticky='nsew')
+
+    physical_symptoms_label = ttk.Label(results_frame,text="PHYSICAL SYMPTOMS", anchor="center")
+    physical_symptoms_label.grid(row=0,column=5, sticky='nsew')
+    
+    social_interaction_label = ttk.Label(results_frame,text="SOCIAL INTERACTION", anchor="center")
+    social_interaction_label.grid(row=0,column=6, sticky='nsew')
+
+    physical_activity_label = ttk.Label(results_frame,text="PHYSICAL ACTIVITY", anchor="center")
+    physical_activity_label.grid(row=0,column=7, sticky='nsew')
+    
+    last_10_entries_dates = ttk.Label(results_frame, text = get_all_in_category("entry_date"), anchor='center')
+    last_10_entries_dates.grid(row=1,column=0, sticky = 'n')
+    
+    last_10_entries_moods = ttk.Label(results_frame, text = get_all_in_category("mood"), anchor='center')
+    last_10_entries_moods.grid(row=1,column=1, sticky = 'n')
+    
+    last_10_entries_energy_levels = ttk.Label(results_frame, text = get_all_in_category("energy_level"), anchor='center')
+    last_10_entries_energy_levels.grid(row=1,column=2, sticky = 'n')
+
+    last_10_entries_sleep_durations = ttk.Label(results_frame, text = get_all_in_category("sleep_duration"), anchor='center')
+    last_10_entries_sleep_durations.grid(row=1,column=3, sticky = 'n')
+    
+    last_10_entries_sleep_qualities = ttk.Label(results_frame, text = get_all_in_category("sleep_quality"), anchor='center')
+    last_10_entries_sleep_qualities.grid(row=1,column=4, sticky = 'n')
+    
+    last_10_entries_physical_symptoms = ttk.Label(results_frame, text = get_all_in_category("physical_symptoms"), anchor='center')
+    last_10_entries_physical_symptoms.grid(row=1,column=5, sticky = 'n')
+    
+    last_10_entries_social_interactions = ttk.Label(results_frame, text = get_all_in_category("social_interaction"), anchor='center')
+    last_10_entries_moods.grid(row=1,column=6, sticky = 'n')
+    
+    last_10_entries_physical_activities = ttk.Label(results_frame, text = get_all_in_category("physical_activity"), anchor='center')
+    last_10_entries_physical_activities.grid(row=1,column=7, sticky = 'n')
+    
+    
+
 def startup() :
     all_goals = db.get_reminders("goal","goals_new")
     goals_output_1.config(text= f"{all_goals[0]}")
@@ -52,9 +108,7 @@ def startup() :
     self_care_activities_output_2.config(text = f"{all_self_care_activities[1]}")
     self_care_activities_output_3.config(text = f"{all_self_care_activities[2]}")
 
-    # TODO
-    all_user_entries = db.get_reminders("mood,energy_level","user_entries")
-    print(all_user_entries)
+    update_previous_entries()
 
 def clicked() :
     mood = user_entry_mood.get()
@@ -233,13 +287,23 @@ results_frame.grid(row=6, column=1, rowspan=2, sticky="nsew")
 
 # Configure grid weights for the frame
 results_frame.grid_columnconfigure(0, weight=1)
+results_frame.grid_columnconfigure(1, weight=1)
+results_frame.grid_columnconfigure(2, weight=1)
+results_frame.grid_columnconfigure(3, weight=1)
+results_frame.grid_columnconfigure(4, weight=1)
+results_frame.grid_columnconfigure(5, weight=1)
+results_frame.grid_columnconfigure(6, weight=1)
+results_frame.grid_columnconfigure(7, weight=1)
+
 results_frame.grid_rowconfigure(0, weight=1)
+results_frame.grid_rowconfigure(1, weight=3)
 
-# Create a label inside the frame
-test_label = ttk.Label(results_frame, text="hello", background="green", foreground="white")
 
-# Configure grid weights for the label
-test_label.grid(row=0, column=0, sticky="nsew")
+# # Create a label inside the frame
+# test_label = ttk.Label(results_frame, text="hello", background="green", foreground="white")
+
+# # Configure grid weights for the label
+# test_label.grid(row=0, column=0, sticky="nsew")
 
 startup()
 
