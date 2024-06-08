@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import ANCHOR, NSEW, ttk
+from tkinter import ANCHOR, CENTER, NSEW, ttk
 from turtle import bgcolor
 import Main as db
 
@@ -22,9 +22,10 @@ def exit_program(event=None):
     root.destroy()
 
 def get_all_in_category(category) :
-    all_in_category = db.get_reminders(f"{category}", "user_entries")
-    all_category_string = "\n".join(str(category) for date in all_in_category)
+    all_in_category = db.get_reminders(category, "user_entries")
+    all_category_string = "\n".join(str(entry) for entry in all_in_category)
     return all_category_string
+
 
 def update_previous_entries() :
     date_label = ttk.Label(results_frame,text="DATE", anchor="center")
@@ -51,6 +52,8 @@ def update_previous_entries() :
     physical_activity_label = ttk.Label(results_frame,text="PHYSICAL ACTIVITY", anchor="center")
     physical_activity_label.grid(row=0,column=7, sticky='nsew')
     
+    test = get_all_in_category("entry_date")
+
     last_10_entries_dates = ttk.Label(results_frame, text = get_all_in_category("entry_date"), anchor='center')
     last_10_entries_dates.grid(row=1,column=0, sticky = 'n')
     
@@ -69,8 +72,10 @@ def update_previous_entries() :
     last_10_entries_physical_symptoms = ttk.Label(results_frame, text = get_all_in_category("physical_symptoms"), anchor='center')
     last_10_entries_physical_symptoms.grid(row=1,column=5, sticky = 'n')
     
+    # test  = get_all_in_category("social_interaction")
+
     last_10_entries_social_interactions = ttk.Label(results_frame, text = get_all_in_category("social_interaction"), anchor='center')
-    last_10_entries_moods.grid(row=1,column=6, sticky = 'n')
+    last_10_entries_social_interactions.grid(row=1,column=6, sticky = 'n')
     
     last_10_entries_physical_activities = ttk.Label(results_frame, text = get_all_in_category("physical_activity"), anchor='center')
     last_10_entries_physical_activities.grid(row=1,column=7, sticky = 'n')
@@ -79,34 +84,34 @@ def update_previous_entries() :
 
 def startup() :
     all_goals = db.get_reminders("goal","goals_new")
-    goals_output_1.config(text= f"{all_goals[0]}")
-    goals_output_2.config(text= f"{all_goals[1]}")
-    goals_output_3.config(text= f"{all_goals[2]}")
+    goals_output_1.config(text= f"1. {all_goals[0]}", font=("Arial", 12))
+    goals_output_2.config(text= f"2. {all_goals[1]}", font=("Arial", 12))
+    goals_output_3.config(text= f"3. {all_goals[2]}", font=("Arial", 12))
 
     all_accomplishments = db.get_reminders("accomplishment", "accomplishments_new")
-    accomplishments_output_1.config(text = f"{all_accomplishments[0]}")
-    accomplishments_output_2.config(text = f"{all_accomplishments[1]}")
-    accomplishments_output_3.config(text = f"{all_accomplishments[2]}")
+    accomplishments_output_1.config(text = f"1. {all_accomplishments[0]}", font=("Arial", 12))
+    accomplishments_output_2.config(text = f"2. {all_accomplishments[1]}", font=("Arial", 12))
+    accomplishments_output_3.config(text = f"3. {all_accomplishments[2]}", font=("Arial", 12))
 
     all_coping_strategies = db.get_reminders("coping_strategy", "coping_strategies_new")
-    coping_strategies_output_1.config(text = f"{all_coping_strategies[0]}")
-    coping_strategies_output_2.config(text = f"{all_coping_strategies[1]}")
-    coping_strategies_output_3.config(text = f"{all_coping_strategies[2]}")
+    coping_strategies_output_1.config(text = f"1. {all_coping_strategies[0]}", font=("Arial", 12))
+    coping_strategies_output_2.config(text = f"2. {all_coping_strategies[1]}", font=("Arial", 12))
+    coping_strategies_output_3.config(text = f"3. {all_coping_strategies[2]}", font=("Arial", 12))
     
     all_gratitudes = db.get_reminders("gratitude", "gratitudes_new")
-    gratitudes_output_1.config(text = f"{all_gratitudes[0]}")
-    gratitudes_output_2.config(text = f"{all_gratitudes[1]}")
-    gratitudes_output_3.config(text = f"{all_gratitudes[2]}")
+    gratitudes_output_1.config(text = f"1. {all_gratitudes[0]}", font=("Arial", 12))
+    gratitudes_output_2.config(text = f"2. {all_gratitudes[1]}", font=("Arial", 12))
+    gratitudes_output_3.config(text = f"3. {all_gratitudes[2]}", font=("Arial", 12))
 
     all_reflections = db.get_reminders("reflection", "reflections_new")
-    reflections_output_1.config(text = f"{all_reflections[0]}")
-    reflections_output_2.config(text = f"{all_reflections[1]}")
-    reflections_output_3.config(text = f"{all_reflections[2]}")
+    reflections_output_1.config(text = f"1. {all_reflections[0]}", font=("Arial", 12))
+    reflections_output_2.config(text = f"2. {all_reflections[1]}", font=("Arial", 12))
+    reflections_output_3.config(text = f"3. {all_reflections[2]}", font=("Arial", 12))
 
     all_self_care_activities = db.get_reminders("self_care_activity", "self_care_activities_new")
-    self_care_activities_output_1.config(text = f"{all_self_care_activities[0]}")
-    self_care_activities_output_2.config(text = f"{all_self_care_activities[1]}")
-    self_care_activities_output_3.config(text = f"{all_self_care_activities[2]}")
+    self_care_activities_output_1.config(text = f"1. {all_self_care_activities[0]}", font=("Arial", 12))
+    self_care_activities_output_2.config(text = f"2. {all_self_care_activities[1]}", font=("Arial", 12))
+    self_care_activities_output_3.config(text = f"3. {all_self_care_activities[2]}", font=("Arial", 12))
 
     update_previous_entries()
 
@@ -119,6 +124,8 @@ def clicked() :
     social_interaction = user_entry_social_interaction.get()
     physical_activity = user_entry_physical_activity.get()
     db.add_entry(mood,energy_level,sleep_duration,sleep_quality,physical_symptoms,social_interaction,physical_activity)
+
+    update_previous_entries()
  
 root = tk.Tk()
 root.title("Main Window")
@@ -138,95 +145,124 @@ greeting.grid(row=0, column=1, sticky='nsew')
 button = ttk.Button(root, text="Add Daily Entry", command = clicked)
 button.grid(row=5, column=1, sticky = 'ns')
 
-goals_header = ttk.Label(root, text = "Goals", anchor= "center")
+goals_header = ttk.Label(root, text = "Goals", anchor= "center", font=("Arial", 14, "bold"))
 goals_header.grid(row=1, column=0, sticky= NSEW)
 
 goals_label = ttk.Labelframe(root)
 goals_label.grid(row=2, column=0, sticky='nsew')
 
-goals_output_1 = ttk.Label(goals_label, text="First goal")
-goals_output_1.grid(row=0, column=0)
+goals_label.grid_columnconfigure(0,weight=1)
+goals_label.grid_rowconfigure(0,weight=1)
+goals_label.grid_rowconfigure(1,weight=1)
+goals_label.grid_rowconfigure(2,weight=1)
 
-goals_output_2 = ttk.Label(goals_label, text="Second goal")
-goals_output_2.grid(row=1, column=0)
+goals_output_1 = ttk.Label(goals_label, text="First goal", anchor=CENTER)
+goals_output_1.grid(row=0, column=0, sticky = 'nsew')
 
-goals_output_3 = ttk.Label(goals_label, text="Third goal")
-goals_output_3.grid(row=2, column=0)
+goals_output_2 = ttk.Label(goals_label, text="Second goal", anchor=CENTER)
+goals_output_2.grid(row=1, column=0,sticky='nsew')
 
-accomplishments_header = ttk.Label(root, text = "Accomplishments", anchor= "center")
+goals_output_3 = ttk.Label(goals_label, text="Third goal", anchor=CENTER)
+goals_output_3.grid(row=2, column=0, sticky='nsew')
+
+accomplishments_header = ttk.Label(root, text = "Accomplishments", anchor= "center", font=("Arial", 14, "bold"))
 accomplishments_header.grid(row=3, column=0, sticky= NSEW)
 
 accomplishments_label = ttk.Labelframe(root)
 accomplishments_label.grid(row=4, column=0, sticky='nsew')
 
-accomplishments_output_1 = ttk.Label(accomplishments_label, text="First accomplishment")
+accomplishments_label.grid_columnconfigure(0,weight=1)
+accomplishments_label.grid_rowconfigure(0,weight=1)
+accomplishments_label.grid_rowconfigure(1,weight=1)
+accomplishments_label.grid_rowconfigure(2,weight=1)
+
+accomplishments_output_1 = ttk.Label(accomplishments_label, text="First accomplishment", anchor=CENTER)
 accomplishments_output_1.grid(row=0, column=0)
 
-accomplishments_output_2 = ttk.Label(accomplishments_label, text="Second accomplishment")
+accomplishments_output_2 = ttk.Label(accomplishments_label, text="Second accomplishment", anchor=CENTER)
 accomplishments_output_2.grid(row=1, column=0)
 
-accomplishments_output_3 = ttk.Label(accomplishments_label, text="Third accomplishment")
+accomplishments_output_3 = ttk.Label(accomplishments_label, text="Third accomplishment", anchor=CENTER)
 accomplishments_output_3.grid(row=2, column=0)
 
-coping_strategies_header = ttk.Label(root, text = "Coping Strategies", anchor= "center")
+coping_strategies_header = ttk.Label(root, text = "Coping Strategies", anchor= "center", font=("Arial", 14, "bold"))
 coping_strategies_header.grid(row=5, column=0, sticky= NSEW)
 
 coping_strategies_label = ttk.Labelframe(root)
 coping_strategies_label.grid(row=6, column=0, sticky='nsew')
 
-coping_strategies_output_1 = ttk.Label(coping_strategies_label, text="First coping strategy")
+coping_strategies_label.grid_columnconfigure(0,weight=1)
+coping_strategies_label.grid_rowconfigure(0,weight=1)
+coping_strategies_label.grid_rowconfigure(1,weight=1)
+coping_strategies_label.grid_rowconfigure(2,weight=1)
+
+coping_strategies_output_1 = ttk.Label(coping_strategies_label, text="First coping strategy", anchor=CENTER)
 coping_strategies_output_1.grid(row=0, column=0)
 
-coping_strategies_output_2 = ttk.Label(coping_strategies_label, text="Second coping strategy")
+coping_strategies_output_2 = ttk.Label(coping_strategies_label, text="Second coping strategy", anchor=CENTER)
 coping_strategies_output_2.grid(row=1, column=0)
 
-coping_strategies_output_3 = ttk.Label(coping_strategies_label, text="Third coping strategy")
+coping_strategies_output_3 = ttk.Label(coping_strategies_label, text="Third coping strategy", anchor=CENTER)
 coping_strategies_output_3.grid(row=2, column=0)
 
-gratitudes_header = ttk.Label(root, text = "Gratitudes", anchor= "center")
+gratitudes_header = ttk.Label(root, text = "Gratitudes", anchor= "center", font=("Arial", 14, "bold"))
 gratitudes_header.grid(row=1, column=2, sticky= NSEW)
 
 gratitudes_label = ttk.Labelframe(root)
 gratitudes_label.grid(row=2, column=2, sticky='nsew')
 
-gratitudes_output_1 = ttk.Label(gratitudes_label, text="First gratitude")
+gratitudes_label.grid_columnconfigure(0,weight=1)
+gratitudes_label.grid_rowconfigure(0,weight=1)
+gratitudes_label.grid_rowconfigure(1,weight=1)
+gratitudes_label.grid_rowconfigure(2,weight=1)
+
+gratitudes_output_1 = ttk.Label(gratitudes_label, text="First gratitude", anchor=CENTER)
 gratitudes_output_1.grid(row=0, column=0)
 
-gratitudes_output_2 = ttk.Label(gratitudes_label, text="Second gratitude")
+gratitudes_output_2 = ttk.Label(gratitudes_label, text="Second gratitude", anchor=CENTER)
 gratitudes_output_2.grid(row=1, column=0)
 
-gratitudes_output_3 = ttk.Label(gratitudes_label, text="Third gratitude")
+gratitudes_output_3 = ttk.Label(gratitudes_label, text="Third gratitude", anchor=CENTER)
 gratitudes_output_3.grid(row=2, column=0)
 
-reflections_header = ttk.Label(root, text = "Reflections", anchor= "center")
+reflections_header = ttk.Label(root, text = "Reflections", anchor= "center", font=("Arial", 14, "bold"))
 reflections_header.grid(row=3, column=2)
 
 reflections_label = ttk.Labelframe(root)
 reflections_label.grid(row=4, column=2, sticky='nsew')
 
-reflections_output_1 = ttk.Label(reflections_label, text="First reflection")
+reflections_label.grid_columnconfigure(0,weight=1)
+reflections_label.grid_rowconfigure(0,weight=1)
+reflections_label.grid_rowconfigure(1,weight=1)
+reflections_label.grid_rowconfigure(2,weight=1)
+
+reflections_output_1 = ttk.Label(reflections_label, text="First reflection", anchor=CENTER)
 reflections_output_1.grid(row=0, column=0)
 
-reflections_output_2 = ttk.Label(reflections_label, text="Second reflection")
+reflections_output_2 = ttk.Label(reflections_label, text="Second reflection", anchor=CENTER)
 reflections_output_2.grid(row=1, column=0)
 
-reflections_output_3 = ttk.Label(reflections_label, text="Third reflection")
+reflections_output_3 = ttk.Label(reflections_label, text="Third reflection", anchor=CENTER)
 reflections_output_3.grid(row=2, column=0)
 
-
-self_care_activities_header = ttk.Label(root, text = "Self Care Activities", anchor= "center")
+self_care_activities_header = ttk.Label(root, text = "Self Care Activities", anchor= "center", font=("Arial", 14, "bold"))
 self_care_activities_header.grid(row=5, column=2, sticky= NSEW)
 
 self_care_activities_label = ttk.Labelframe(root)
 self_care_activities_label.grid(row=6, column=2, sticky='nsew')
 
-self_care_activities_output_1 = ttk.Label(self_care_activities_label, text="First self-care activity")
+self_care_activities_label.grid_columnconfigure(0,weight=1)
+self_care_activities_label.grid_rowconfigure(0,weight=1)
+self_care_activities_label.grid_rowconfigure(1,weight=1)
+self_care_activities_label.grid_rowconfigure(2,weight=1)
+
+self_care_activities_output_1 = ttk.Label(self_care_activities_label, text="First self-care activity", anchor=CENTER)
 self_care_activities_output_1.grid(row=0, column=0)
 
-self_care_activities_output_2 = ttk.Label(self_care_activities_label, text="Second self-care activity")
+self_care_activities_output_2 = ttk.Label(self_care_activities_label, text="Second self-care activity", anchor=CENTER)
 self_care_activities_output_2.grid(row=1, column=0)
 
-self_care_activities_output_3 = ttk.Label(self_care_activities_label, text="Third self-care activity")
+self_care_activities_output_3 = ttk.Label(self_care_activities_label, text="Third self-care activity", anchor=CENTER)
 self_care_activities_output_3.grid(row=2, column=0)
 
 # Create a frame
