@@ -1,3 +1,4 @@
+from email.policy import default
 import tkinter as tk
 from tkinter import ANCHOR, CENTER, NSEW, ttk
 from turtle import bgcolor
@@ -81,12 +82,73 @@ def update_previous_entries() :
     last_10_entries_physical_activities.grid(row=1,column=7, sticky = 'n')
     
     
+def update_goals_output(output_widgets, all_outputs, default_output):
+    num_outputs = len(all_outputs)
+    progress = 0
+    
+    for i in range(min(num_outputs, 3)) :
+         progress = i + 1
+         output_text = f"{i+1}. {all_outputs[i]}"
+        
+         if i == 0:
+             output_widgets[i].config(text=output_text, font=("Arial", 12))
+         elif i == 1:
+             output_widgets[i].config(text=output_text, font=("Arial", 12))
+         elif i == 2:
+             output_widgets[i].config(text=output_text, font=("Arial", 12))
+       
+    for i in range(progress,3) :
+         if i == 0:
+             output_widgets[i].config(text=default_output, font=("Arial", 12))
+         elif i == 1:
+             output_widgets[i].config(text=default_output, font=("Arial", 12))
+         elif i == 2:
+             output_widgets[i].config(text=default_output, font=("Arial", 12))
+    
+    # for i in range(min(num_goals, 3)):
+    #     progress = i
+    #     goal_text = f"{i+1}. {goals[i]}"
+    #     output_widgets[i].config(text=goal_text, font=("Arial", 12))
+
+    # for i in range(progress, 3):
+    #     output_widgets[i].config(text=default_goal, font=("Arial", 12))
 
 def startup() :
     all_goals = db.get_reminders("goal","goals_new")
-    goals_output_1.config(text= f"1. {all_goals[0]}", font=("Arial", 12))
-    goals_output_2.config(text= f"2. {all_goals[1]}", font=("Arial", 12))
-    goals_output_3.config(text= f"3. {all_goals[2]}", font=("Arial", 12))
+    default_goal = "Please Add Goal"
+    goals_output_widgets = [goals_output_1, goals_output_2, goals_output_3]
+    update_goals_output(goals_output_widgets, all_goals, default_goal)
+
+    # if(len(all_goals) >= 3) :
+    #     goals_output_1.config(text= f"1. {all_goals[0]}", font=("Arial", 12))
+    #     goals_output_2.config(text= f"2. {all_goals[1]}", font=("Arial", 12))
+    #     goals_output_3.config(text= f"3. {all_goals[2]}", font=("Arial", 12))
+    # else :
+    # Get the number of items in all_goals
+    # progress = 0
+    # Example usage
+    
+
+    
+    # for i in range(min(num_goals, 3)) :
+    #     progress = i + 1
+    #     goal_text = f"{i+1}. {all_goals[i]}"
+        
+    #     if i == 0:
+    #         goals_output_1.config(text=goal_text, font=("Arial", 12))
+    #     elif i == 1:
+    #         goals_output_2.config(text=goal_text, font=("Arial", 12))
+    #     elif i == 2:
+    #         goals_output_3.config(text=goal_text, font=("Arial", 12))
+        
+    # for i in range(progress,3) :
+    #     if i == 0:
+    #         goals_output_1.config(text=default_goal, font=("Arial", 12))
+    #     elif i == 1:
+    #         goals_output_2.config(text=default_goal, font=("Arial", 12))
+    #     elif i == 2:
+    #         goals_output_3.config(text=default_goal, font=("Arial", 12))
+            
 
     all_accomplishments = db.get_reminders("accomplishment", "accomplishments_new")
     accomplishments_output_1.config(text = f"1. {all_accomplishments[0]}", font=("Arial", 12))
