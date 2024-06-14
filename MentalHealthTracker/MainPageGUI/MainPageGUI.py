@@ -11,8 +11,11 @@ def on_resize(event):
     root.grid_rowconfigure(2, weight=12)
     root.grid_rowconfigure(3, weight=1)
     root.grid_rowconfigure(4, weight=12)
-    root.grid_rowconfigure(5, weight=1)
-    root.grid_rowconfigure(6, weight=12)
+    root.grid_rowconfigure(5, weight=12)
+    root.grid_rowconfigure(6, weight=1)
+    root.grid_rowconfigure(7, weight=12)
+    root.grid_rowconfigure(8, weight=12)
+    root.grid_rowconfigure(9, weight=1)
 
     root.grid_columnconfigure(0, weight=1)
     root.grid_columnconfigure(1, weight=3)
@@ -164,13 +167,27 @@ greeting = ttk.Label(root, text="Hello, welcome to MyHealth!", font=("Arial", 20
 greeting.grid(row=0, column=1, sticky='nsew')
 
 button = ttk.Button(root, text="Add Daily Entry", command = clicked)
-button.grid(row=5, column=1, sticky = 'ns')
+button.grid(row=7, column=1, sticky = 'ns')
 
 goals_header = ttk.Label(root, text = "Goals", anchor= "center", font=("Arial", 14, "bold"))
 goals_header.grid(row=1, column=0, sticky= NSEW)
 
 goals_label = ttk.Labelframe(root)
 goals_label.grid(row=2, column=0, sticky='nsew')
+
+goals_buttons = ttk.Frame(root)
+goals_buttons.grid(row=3, column = 0, sticky='nsew')
+
+goals_buttons.grid_columnconfigure(0, weight=1)
+goals_buttons.grid_columnconfigure(1, weight=1)
+
+goals_buttons.grid_rowconfigure(0,weight=1)
+
+add_goal_button = ttk.Button(goals_buttons, text = "Add Goal")
+add_goal_button.grid(row=0, column = 0, sticky='nsew', padx=5, pady=5)
+
+remove_goal_button = ttk.Button(goals_buttons, text = "Remove Goal")
+remove_goal_button.grid(row=0, column = 1, sticky='nsew', padx=5, pady=5)
 
 goals_label.grid_columnconfigure(0,weight=1)
 goals_label.grid_rowconfigure(0,weight=1)
@@ -187,15 +204,29 @@ goals_output_3 = ttk.Label(goals_label, text="Third goal", anchor=CENTER)
 goals_output_3.grid(row=2, column=0, sticky='nsew')
 
 accomplishments_header = ttk.Label(root, text = "Accomplishments", anchor= "center", font=("Arial", 14, "bold"))
-accomplishments_header.grid(row=3, column=0, sticky= NSEW)
+accomplishments_header.grid(row=4, column=0, sticky= NSEW)
 
 accomplishments_label = ttk.Labelframe(root)
-accomplishments_label.grid(row=4, column=0, sticky='nsew')
+accomplishments_label.grid(row=5, column=0, sticky='nsew')
 
 accomplishments_label.grid_columnconfigure(0,weight=1)
 accomplishments_label.grid_rowconfigure(0,weight=1)
 accomplishments_label.grid_rowconfigure(1,weight=1)
 accomplishments_label.grid_rowconfigure(2,weight=1)
+
+accomplishments_buttons = ttk.Frame(root)
+accomplishments_buttons.grid(row=6, column = 0, sticky='nsew')
+
+accomplishments_buttons.grid_columnconfigure(0, weight=1)
+accomplishments_buttons.grid_columnconfigure(1, weight=1)
+
+accomplishments_buttons.grid_rowconfigure(0,weight=1)
+
+add_accomplishment_button = ttk.Button(accomplishments_buttons, text = "Add Accomplishment")
+add_accomplishment_button.grid(row=0, column = 0, sticky='nsew', padx=5, pady=5)
+
+remove_accomplishment_button = ttk.Button(accomplishments_buttons, text = "Remove Accomplishment")
+remove_accomplishment_button.grid(row=0, column = 1, sticky='nsew', padx=5, pady=5)
 
 accomplishments_output_1 = ttk.Label(accomplishments_label, text="First accomplishment", anchor=CENTER)
 accomplishments_output_1.grid(row=0, column=0)
@@ -207,10 +238,25 @@ accomplishments_output_3 = ttk.Label(accomplishments_label, text="Third accompli
 accomplishments_output_3.grid(row=2, column=0)
 
 coping_strategies_header = ttk.Label(root, text = "Coping Strategies", anchor= "center", font=("Arial", 14, "bold"))
-coping_strategies_header.grid(row=5, column=0, sticky= NSEW)
+coping_strategies_header.grid(row=7, column=0, sticky= NSEW)
 
 coping_strategies_label = ttk.Labelframe(root)
-coping_strategies_label.grid(row=6, column=0, sticky='nsew')
+coping_strategies_label.grid(row=8, column=0, sticky='nsew')
+
+
+coping_strategys_buttons = ttk.Frame(root)
+coping_strategys_buttons.grid(row=9, column = 0, sticky='nsew')
+
+coping_strategys_buttons.grid_columnconfigure(0, weight=1)
+coping_strategys_buttons.grid_columnconfigure(1, weight=1)
+
+coping_strategys_buttons.grid_rowconfigure(0,weight=1)
+
+add_coping_strategy_button = ttk.Button(coping_strategys_buttons, text = "Add Coping Strategy")
+add_coping_strategy_button.grid(row=0, column = 0, sticky='nsew', padx=5, pady=5)
+
+remove_coping_strategy_button = ttk.Button(coping_strategys_buttons, text = "Remove Coping Strategy")
+remove_coping_strategy_button.grid(row=0, column = 1, sticky='nsew', padx=5, pady=5)
 
 coping_strategies_label.grid_columnconfigure(0,weight=1)
 coping_strategies_label.grid_rowconfigure(0,weight=1)
@@ -232,6 +278,21 @@ gratitudes_header.grid(row=1, column=2, sticky= NSEW)
 gratitudes_label = ttk.Labelframe(root)
 gratitudes_label.grid(row=2, column=2, sticky='nsew')
 
+
+gratitudes_buttons = ttk.Frame(root)
+gratitudes_buttons.grid(row=3, column = 2, sticky='nsew')
+
+gratitudes_buttons.grid_columnconfigure(0, weight=1)
+gratitudes_buttons.grid_columnconfigure(1, weight=1)
+
+gratitudes_buttons.grid_rowconfigure(0,weight=1)
+
+add_gratitude_button = ttk.Button(gratitudes_buttons, text = "Add Gratitude")
+add_gratitude_button.grid(row=0, column = 0, sticky='nsew', padx=5, pady=5)
+
+remove_gratitude_button = ttk.Button(gratitudes_buttons, text = "Remove Gratitude")
+remove_gratitude_button.grid(row=0, column = 1, sticky='nsew', padx=5, pady=5)
+
 gratitudes_label.grid_columnconfigure(0,weight=1)
 gratitudes_label.grid_rowconfigure(0,weight=1)
 gratitudes_label.grid_rowconfigure(1,weight=1)
@@ -247,10 +308,25 @@ gratitudes_output_3 = ttk.Label(gratitudes_label, text="Third gratitude", anchor
 gratitudes_output_3.grid(row=2, column=0)
 
 reflections_header = ttk.Label(root, text = "Reflections", anchor= "center", font=("Arial", 14, "bold"))
-reflections_header.grid(row=3, column=2)
+reflections_header.grid(row=4, column=2)
 
 reflections_label = ttk.Labelframe(root)
-reflections_label.grid(row=4, column=2, sticky='nsew')
+reflections_label.grid(row=5, column=2, sticky='nsew')
+
+
+reflections_buttons = ttk.Frame(root)
+reflections_buttons.grid(row=6, column = 2, sticky='nsew')
+
+reflections_buttons.grid_columnconfigure(0, weight=1)
+reflections_buttons.grid_columnconfigure(1, weight=1)
+
+reflections_buttons.grid_rowconfigure(0,weight=1)
+
+add_reflection_button = ttk.Button(reflections_buttons, text = "Add Reflection")
+add_reflection_button.grid(row=0, column = 0, sticky='nsew', padx=5, pady=5)
+
+remove_reflection_button = ttk.Button(reflections_buttons, text = "Remove Reflection")
+remove_reflection_button.grid(row=0, column = 1, sticky='nsew', padx=5, pady=5)
 
 reflections_label.grid_columnconfigure(0,weight=1)
 reflections_label.grid_rowconfigure(0,weight=1)
@@ -267,10 +343,25 @@ reflections_output_3 = ttk.Label(reflections_label, text="Third reflection", anc
 reflections_output_3.grid(row=2, column=0)
 
 self_care_activities_header = ttk.Label(root, text = "Self Care Activities", anchor= "center", font=("Arial", 14, "bold"))
-self_care_activities_header.grid(row=5, column=2, sticky= NSEW)
+self_care_activities_header.grid(row=7, column=2, sticky= NSEW)
 
 self_care_activities_label = ttk.Labelframe(root)
-self_care_activities_label.grid(row=6, column=2, sticky='nsew')
+self_care_activities_label.grid(row=8, column=2, sticky='nsew')
+
+
+self_care_activitys_buttons = ttk.Frame(root)
+self_care_activitys_buttons.grid(row=9, column = 2, sticky='nsew')
+
+self_care_activitys_buttons.grid_columnconfigure(0, weight=1)
+self_care_activitys_buttons.grid_columnconfigure(1, weight=1)
+
+self_care_activitys_buttons.grid_rowconfigure(0,weight=1)
+
+add_self_care_activity_button = ttk.Button(self_care_activitys_buttons, text = "Add Self Care Activity")
+add_self_care_activity_button.grid(row=0, column = 0, sticky='nsew', padx=5, pady=5)
+
+remove_self_care_activity_button = ttk.Button(self_care_activitys_buttons, text = "Remove Self Care Activity")
+remove_self_care_activity_button.grid(row=0, column = 1, sticky='nsew', padx=5, pady=5)
 
 self_care_activities_label.grid_columnconfigure(0,weight=1)
 self_care_activities_label.grid_rowconfigure(0,weight=1)
@@ -288,7 +379,7 @@ self_care_activities_output_3.grid(row=2, column=0)
 
 # Create a frame
 user_entry_frame = ttk.Frame(root)
-user_entry_frame.grid(row=2, column=1, rowspan=3, sticky="nsew")
+user_entry_frame.grid(row=2, column=1, rowspan=5, sticky="nsew")
 
 # Configure grid weights for the frame
 user_entry_frame.grid_columnconfigure(0, weight=1)
@@ -340,7 +431,7 @@ user_entry_physical_activity.grid(row=6, column=1, sticky='nsew')
 
 # Create a frame
 results_frame = ttk.Frame(root)
-results_frame.grid(row=6, column=1, rowspan=2, sticky="nsew")
+results_frame.grid(row=8, column=1, rowspan=3, sticky="nsew")
 
 # Configure grid weights for the frame
 results_frame.grid_columnconfigure(0, weight=1)
