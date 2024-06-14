@@ -1,6 +1,6 @@
 from email.policy import default
 import tkinter as tk
-from tkinter import ANCHOR, CENTER, NSEW, ttk
+from tkinter import ANCHOR, BOTH, CENTER, NSEW, ttk
 from turtle import bgcolor
 import Main as db
 
@@ -24,7 +24,7 @@ def exit_program(event=None):
 
 def get_all_in_category(category) :
     all_in_category = db.get_reminders(category, "user_entries")
-    all_category_string = "\n".join(str(entry) for entry in all_in_category)
+    all_category_string = "\n".join(str(entry) for entry in reversed(all_in_category[-10:]))
     return all_category_string
 
 
@@ -353,7 +353,7 @@ results_frame.grid_columnconfigure(6, weight=1)
 results_frame.grid_columnconfigure(7, weight=1)
 
 results_frame.grid_rowconfigure(0, weight=1)
-results_frame.grid_rowconfigure(1, weight=3)
+results_frame.grid_rowconfigure(1, weight=1)
 
 
 # # Create a label inside the frame
