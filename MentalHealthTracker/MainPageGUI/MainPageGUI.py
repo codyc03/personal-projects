@@ -73,8 +73,6 @@ def update_previous_entries() :
     last_10_entries_physical_symptoms = ttk.Label(results_frame, text = get_all_in_category("physical_symptoms"), anchor='center')
     last_10_entries_physical_symptoms.grid(row=1,column=5, sticky = 'n')
     
-    # test  = get_all_in_category("social_interaction")
-
     last_10_entries_social_interactions = ttk.Label(results_frame, text = get_all_in_category("social_interaction"), anchor='center')
     last_10_entries_social_interactions.grid(row=1,column=6, sticky = 'n')
     
@@ -82,7 +80,7 @@ def update_previous_entries() :
     last_10_entries_physical_activities.grid(row=1,column=7, sticky = 'n')
     
     
-def update_goals_output(output_widgets, all_outputs, default_output):
+def update_output(output_widgets, all_outputs, default_output):
     num_outputs = len(all_outputs)
     progress = 0
     
@@ -104,76 +102,37 @@ def update_goals_output(output_widgets, all_outputs, default_output):
              output_widgets[i].config(text=default_output, font=("Arial", 12))
          elif i == 2:
              output_widgets[i].config(text=default_output, font=("Arial", 12))
-    
-    # for i in range(min(num_goals, 3)):
-    #     progress = i
-    #     goal_text = f"{i+1}. {goals[i]}"
-    #     output_widgets[i].config(text=goal_text, font=("Arial", 12))
-
-    # for i in range(progress, 3):
-    #     output_widgets[i].config(text=default_goal, font=("Arial", 12))
 
 def startup() :
     all_goals = db.get_reminders("goal","goals_new")
     default_goal = "Please Add Goal"
     goals_output_widgets = [goals_output_1, goals_output_2, goals_output_3]
-    update_goals_output(goals_output_widgets, all_goals, default_goal)
-
-    # if(len(all_goals) >= 3) :
-    #     goals_output_1.config(text= f"1. {all_goals[0]}", font=("Arial", 12))
-    #     goals_output_2.config(text= f"2. {all_goals[1]}", font=("Arial", 12))
-    #     goals_output_3.config(text= f"3. {all_goals[2]}", font=("Arial", 12))
-    # else :
-    # Get the number of items in all_goals
-    # progress = 0
-    # Example usage
-    
-
-    
-    # for i in range(min(num_goals, 3)) :
-    #     progress = i + 1
-    #     goal_text = f"{i+1}. {all_goals[i]}"
-        
-    #     if i == 0:
-    #         goals_output_1.config(text=goal_text, font=("Arial", 12))
-    #     elif i == 1:
-    #         goals_output_2.config(text=goal_text, font=("Arial", 12))
-    #     elif i == 2:
-    #         goals_output_3.config(text=goal_text, font=("Arial", 12))
-        
-    # for i in range(progress,3) :
-    #     if i == 0:
-    #         goals_output_1.config(text=default_goal, font=("Arial", 12))
-    #     elif i == 1:
-    #         goals_output_2.config(text=default_goal, font=("Arial", 12))
-    #     elif i == 2:
-    #         goals_output_3.config(text=default_goal, font=("Arial", 12))
-            
+    update_output(goals_output_widgets, all_goals, default_goal)
 
     all_accomplishments = db.get_reminders("accomplishment", "accomplishments_new")
-    accomplishments_output_1.config(text = f"1. {all_accomplishments[0]}", font=("Arial", 12))
-    accomplishments_output_2.config(text = f"2. {all_accomplishments[1]}", font=("Arial", 12))
-    accomplishments_output_3.config(text = f"3. {all_accomplishments[2]}", font=("Arial", 12))
+    default_accomplishment = "Please Add Accomplishment"
+    accomplishments_output_widgets = [accomplishments_output_1, accomplishments_output_2, accomplishments_output_3]
+    update_output(accomplishments_output_widgets, all_accomplishments, default_accomplishment)
 
     all_coping_strategies = db.get_reminders("coping_strategy", "coping_strategies_new")
-    coping_strategies_output_1.config(text = f"1. {all_coping_strategies[0]}", font=("Arial", 12))
-    coping_strategies_output_2.config(text = f"2. {all_coping_strategies[1]}", font=("Arial", 12))
-    coping_strategies_output_3.config(text = f"3. {all_coping_strategies[2]}", font=("Arial", 12))
+    default_coping_strategy = "Please Add Coping Strategy"
+    coping_strategys_output_widgets = [coping_strategies_output_1, coping_strategies_output_2, coping_strategies_output_3]
+    update_output(coping_strategys_output_widgets, all_coping_strategies, default_coping_strategy)
     
     all_gratitudes = db.get_reminders("gratitude", "gratitudes_new")
-    gratitudes_output_1.config(text = f"1. {all_gratitudes[0]}", font=("Arial", 12))
-    gratitudes_output_2.config(text = f"2. {all_gratitudes[1]}", font=("Arial", 12))
-    gratitudes_output_3.config(text = f"3. {all_gratitudes[2]}", font=("Arial", 12))
+    default_gratitude = "Please Add Gratitude"
+    gratitudes_output_widgets = [gratitudes_output_1, gratitudes_output_2, gratitudes_output_3]
+    update_output(gratitudes_output_widgets, all_gratitudes, default_gratitude)
 
     all_reflections = db.get_reminders("reflection", "reflections_new")
-    reflections_output_1.config(text = f"1. {all_reflections[0]}", font=("Arial", 12))
-    reflections_output_2.config(text = f"2. {all_reflections[1]}", font=("Arial", 12))
-    reflections_output_3.config(text = f"3. {all_reflections[2]}", font=("Arial", 12))
+    default_reflection = "Please Add reflection"
+    reflections_output_widgets = [reflections_output_1, reflections_output_2, reflections_output_3]
+    update_output(reflections_output_widgets, all_reflections, default_reflection)
 
     all_self_care_activities = db.get_reminders("self_care_activity", "self_care_activities_new")
-    self_care_activities_output_1.config(text = f"1. {all_self_care_activities[0]}", font=("Arial", 12))
-    self_care_activities_output_2.config(text = f"2. {all_self_care_activities[1]}", font=("Arial", 12))
-    self_care_activities_output_3.config(text = f"3. {all_self_care_activities[2]}", font=("Arial", 12))
+    default_self_care_activity = "Please Add Self Care Activity"
+    self_care_activitys_output_widgets = [self_care_activities_output_1, self_care_activities_output_2, self_care_activities_output_3]
+    update_output(self_care_activitys_output_widgets, all_self_care_activities, default_self_care_activity)
 
     update_previous_entries()
 
