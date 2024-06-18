@@ -224,10 +224,10 @@ accomplishments_buttons.grid_columnconfigure(1, weight=1)
 
 accomplishments_buttons.grid_rowconfigure(0,weight=1)
 
-add_accomplishment_button = ttk.Button(accomplishments_buttons, text = "Add Accomplishment")
+add_accomplishment_button = ttk.Button(accomplishments_buttons, text = "Add Accomplishment", command=lambda: (db.add_accomplishment("Test"), refresh()))
 add_accomplishment_button.grid(row=0, column = 0, sticky='nsew', padx=5, pady=5)
 
-remove_accomplishment_button = ttk.Button(accomplishments_buttons, text = "Remove Accomplishment")
+remove_accomplishment_button = ttk.Button(accomplishments_buttons, text = "Remove Accomplishment",  command=lambda: (db.remove_accomplishment("Test"), refresh()))
 remove_accomplishment_button.grid(row=0, column = 1, sticky='nsew', padx=5, pady=5)
 
 accomplishments_output_1 = ttk.Label(accomplishments_label, text="First accomplishment", anchor=CENTER)
@@ -254,10 +254,10 @@ coping_strategys_buttons.grid_columnconfigure(1, weight=1)
 
 coping_strategys_buttons.grid_rowconfigure(0,weight=1)
 
-add_coping_strategy_button = ttk.Button(coping_strategys_buttons, text = "Add Coping Strategy")
+add_coping_strategy_button = ttk.Button(coping_strategys_buttons, text = "Add Coping Strategy",  command=lambda: (db.add_coping_strategy("Test"), refresh()))
 add_coping_strategy_button.grid(row=0, column = 0, sticky='nsew', padx=5, pady=5)
 
-remove_coping_strategy_button = ttk.Button(coping_strategys_buttons, text = "Remove Coping Strategy")
+remove_coping_strategy_button = ttk.Button(coping_strategys_buttons, text = "Remove Coping Strategy",  command=lambda: (db.remove_coping_strategy("Test"), refresh()))
 remove_coping_strategy_button.grid(row=0, column = 1, sticky='nsew', padx=5, pady=5)
 
 coping_strategies_label.grid_columnconfigure(0,weight=1)
@@ -289,10 +289,10 @@ gratitudes_buttons.grid_columnconfigure(1, weight=1)
 
 gratitudes_buttons.grid_rowconfigure(0,weight=1)
 
-add_gratitude_button = ttk.Button(gratitudes_buttons, text = "Add Gratitude")
+add_gratitude_button = ttk.Button(gratitudes_buttons, text = "Add Gratitude", command=lambda: (db.add_gratitude("Test"), refresh()))
 add_gratitude_button.grid(row=0, column = 0, sticky='nsew', padx=5, pady=5)
 
-remove_gratitude_button = ttk.Button(gratitudes_buttons, text = "Remove Gratitude")
+remove_gratitude_button = ttk.Button(gratitudes_buttons, text = "Remove Gratitude",  command=lambda: (db.remove_gratitude("Test"), refresh()))
 remove_gratitude_button.grid(row=0, column = 1, sticky='nsew', padx=5, pady=5)
 
 gratitudes_label.grid_columnconfigure(0,weight=1)
@@ -324,10 +324,10 @@ reflections_buttons.grid_columnconfigure(1, weight=1)
 
 reflections_buttons.grid_rowconfigure(0,weight=1)
 
-add_reflection_button = ttk.Button(reflections_buttons, text = "Add Reflection")
+add_reflection_button = ttk.Button(reflections_buttons, text = "Add Reflection", command=lambda: (db.add_reflection("Test"), refresh()))
 add_reflection_button.grid(row=0, column = 0, sticky='nsew', padx=5, pady=5)
 
-remove_reflection_button = ttk.Button(reflections_buttons, text = "Remove Reflection")
+remove_reflection_button = ttk.Button(reflections_buttons, text = "Remove Reflection", command=lambda: (db.remove_reflection("Test"), refresh()))
 remove_reflection_button.grid(row=0, column = 1, sticky='nsew', padx=5, pady=5)
 
 reflections_label.grid_columnconfigure(0,weight=1)
@@ -359,10 +359,10 @@ self_care_activitys_buttons.grid_columnconfigure(1, weight=1)
 
 self_care_activitys_buttons.grid_rowconfigure(0,weight=1)
 
-add_self_care_activity_button = ttk.Button(self_care_activitys_buttons, text = "Add Self Care Activity")
+add_self_care_activity_button = ttk.Button(self_care_activitys_buttons, text = "Add Self Care Activity", command=lambda: (db.add_self_care_activity("Test"), refresh()))
 add_self_care_activity_button.grid(row=0, column = 0, sticky='nsew', padx=5, pady=5)
 
-remove_self_care_activity_button = ttk.Button(self_care_activitys_buttons, text = "Remove Self Care Activity")
+remove_self_care_activity_button = ttk.Button(self_care_activitys_buttons, text = "Remove Self Care Activity", command=lambda: (db.remove_self_care_activity("Test"), refresh()))
 remove_self_care_activity_button.grid(row=0, column = 1, sticky='nsew', padx=5, pady=5)
 
 self_care_activities_label.grid_columnconfigure(0,weight=1)

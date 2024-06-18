@@ -53,17 +53,17 @@ def add_entry(mood,energy_level,sleep_duration,sleep_quality, physical_symptoms,
     cur.execute(f"INSERT INTO user_entries (mood, energy_level, sleep_duration, sleep_quality, physical_symptoms, social_interaction, physical_activity, username) VALUES ({mood}, {energy_level}, '{sleep_duration} hours', {sleep_quality}, {physical_symptoms}, '{social_interaction} hours', '{physical_activity} hours', 'codyc')")
     conn.commit()
     
-def add_accomplishment() :
-    cur.execute(f"INSERT INTO accomplishments (id, accomplishment) VALUES (1, 'Started loving myself')")
+def add_accomplishment(accomplishment) :
+    cur.execute(f"INSERT INTO accomplishments_new (accomplishment,username) VALUES ('{accomplishment}', 'codyc')")
 
-def remove_accomplishment() :
-    cur.execute(f"DELETE FROM accomplishments WHERE accomplishment = 'Started loving myself'")
+def remove_accomplishment(accomplishment) :
+    cur.execute(f"DELETE FROM accomplishments_new WHERE accomplishment = '{accomplishment}' AND username = 'codyc'")
     
-def add_coping_strategy() :
-    cur.execute(f"INSERT INTO coping_strategies (id, coping_strategy) VALUES (1, 'Movies')")
+def add_coping_strategy(coping_strategy) :
+    cur.execute(f"INSERT INTO coping_strategies_new (coping_strategy, username) VALUES ('{coping_strategy}', 'codyc')")
 
-def remove_coping_strategy() :
-    cur.execute(f"DELETE FROM coping_strategies WHERE coping_strategy = 'Movies'")
+def remove_coping_strategy(coping_strategy) :
+    cur.execute(f"DELETE FROM coping_strategies_new WHERE coping_strategy = '{coping_strategy}' AND username = 'codyc'")
     
 def add_goal(goal) :
     cur.execute(f"INSERT INTO goals_new (goal, username) VALUES ('{goal}','codyc')")
@@ -71,23 +71,23 @@ def add_goal(goal) :
 def remove_goal(goal) :
     cur.execute(f"DELETE FROM goals_new WHERE goal = '{goal}' AND username = 'codyc'")
 
-def add_gratitude() :
-    cur.execute(f"INSERT INTO gratitudes (id, gratitude) VALUES (1, 'Relationships')")
+def add_gratitude(gratitude) :
+    cur.execute(f"INSERT INTO gratitudes_new (gratitude,username) VALUES ('{gratitude}', 'codyc')")
 
-def remove_gratitude() :
-    cur.execute(f"DELETE FROM gratitudes WHERE gratitude = 'Relationships'")
+def remove_gratitude(gratitude) :
+    cur.execute(f"DELETE FROM gratitudes_new WHERE gratitude = '{gratitude}' AND username = 'codyc'")
 
-def add_reflection() :
-    cur.execute(f"INSERT INTO reflections (id, reflection) VALUES (1, 'Love')")
+def add_reflection(reflection) :
+    cur.execute(f"INSERT INTO reflections_new (reflection,username) VALUES ('{reflection}', 'codyc')")
 
-def remove_reflection() :
-    cur.execute(f"DELETE FROM reflections WHERE reflection = 'Love'")
+def remove_reflection(reflection) :
+    cur.execute(f"DELETE FROM reflections_new WHERE reflection = '{reflection}' AND username = 'codyc'")
 
-def add_self_care_activity() :
-    cur.execute(f"INSERT INTO self_care_activities (id, self_care_activity) VALUES (1, 'Love')")
+def add_self_care_activity(self_care_activity) :
+    cur.execute(f"INSERT INTO self_care_activities_new (self_care_activity, username) VALUES ('{self_care_activity}','codyc')")
 
-def remove_self_care_activity() :
-    cur.execute(f"DELETE FROM self_care_activities WHERE self_care_activity = 'Love'")
+def remove_self_care_activity(self_care_activity) :
+    cur.execute(f"DELETE FROM self_care_activities_new WHERE self_care_activity = '{self_care_activity}' AND username = 'codyc'")
 
 def add_stressor() :
     cur.execute(f"INSERT INTO stressors (id, stressor) VALUES (1, 'Love')")
