@@ -1,4 +1,5 @@
 from email.policy import default
+from pydoc import cli
 import tkinter as tk
 from tkinter import ANCHOR, BOTH, CENTER, NSEW, ttk
 from turtle import bgcolor
@@ -105,8 +106,9 @@ def update_output(output_widgets, all_outputs, default_output):
              output_widgets[i].config(text=default_output, font=("Arial", 12))
          elif i == 2:
              output_widgets[i].config(text=default_output, font=("Arial", 12))
+    
 
-def startup() :
+def refresh() :
     all_goals = db.get_reminders("goal","goals_new")
     default_goal = "Please Add Goal"
     goals_output_widgets = [goals_output_1, goals_output_2, goals_output_3]
@@ -183,10 +185,10 @@ goals_buttons.grid_columnconfigure(1, weight=1)
 
 goals_buttons.grid_rowconfigure(0,weight=1)
 
-add_goal_button = ttk.Button(goals_buttons, text = "Add Goal")
+add_goal_button = ttk.Button(goals_buttons, text="Add Goal", command=lambda: (db.add_goal("Test"), refresh()))
 add_goal_button.grid(row=0, column = 0, sticky='nsew', padx=5, pady=5)
 
-remove_goal_button = ttk.Button(goals_buttons, text = "Remove Goal")
+remove_goal_button = ttk.Button(goals_buttons, text = "Remove Goal", command=lambda: (db.remove_goal("Test"), refresh()))
 remove_goal_button.grid(row=0, column = 1, sticky='nsew', padx=5, pady=5)
 
 goals_label.grid_columnconfigure(0,weight=1)
@@ -453,6 +455,6 @@ results_frame.grid_rowconfigure(1, weight=1)
 # # Configure grid weights for the label
 # test_label.grid(row=0, column=0, sticky="nsew")
 
-startup()
+refresh()
 
 root.mainloop()

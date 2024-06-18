@@ -23,6 +23,7 @@ try :
                                     password = db_password,
                                     host = db_host
                             )
+    conn.autocommit = True
 except Exception as e:
     raise NotImplementedError(e)
 
@@ -64,11 +65,11 @@ def add_coping_strategy() :
 def remove_coping_strategy() :
     cur.execute(f"DELETE FROM coping_strategies WHERE coping_strategy = 'Movies'")
     
-def add_goal() :
-    cur.execute(f"INSERT INTO goals (id, goal) VALUES (1, 'learn to code')")
+def add_goal(goal) :
+    cur.execute(f"INSERT INTO goals_new (goal, username) VALUES ('{goal}','codyc')")
 
-def remove_goal() :
-    cur.execute(f"DELETE FROM goals WHERE goal = 'learn to code'")
+def remove_goal(goal) :
+    cur.execute(f"DELETE FROM goals_new WHERE goal = '{goal}' AND username = 'codyc'")
 
 def add_gratitude() :
     cur.execute(f"INSERT INTO gratitudes (id, gratitude) VALUES (1, 'Relationships')")
