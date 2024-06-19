@@ -1,9 +1,12 @@
 from email.policy import default
 from pydoc import cli
+from queue import Empty
 import tkinter as tk
 from tkinter import ANCHOR, BOTH, CENTER, NSEW, ttk
 from turtle import bgcolor
 import Main as db
+
+popup_input = Empty
 
 def on_resize(event):
     # Update the size of the root window when resized
@@ -22,7 +25,52 @@ def on_resize(event):
     root.grid_columnconfigure(1, weight=3)
     root.grid_columnconfigure(2, weight=1)
     
+def add_reminder(input_value, text) : 
+    if "Goal" in text :
+        db.add_goal(input_value)
+    elif "Accomplishment" in text :
+        db.add_accomplishment(input_value)
+    elif "Coping Strategy" in text :
+        db.add_coping_strategy(input_value)
+    elif "Gratitude" in text :
+        db.add_gratitude(input_value)
+    elif "Reflection" in text:
+        db.add_reflection(input_value)
+    elif "Self Care Activity" in text : 
+        db.add_self_care_activity(input_value)
+        
+def open_popup_add(text):
+    def handle_ok():
+        input_value = entry.get()
+        add_reminder(input_value, text)
+        refresh()
+        popup.destroy()
 
+    popup = tk.Toplevel(root)
+    popup.title("User Input")
+
+    # Set the size of the popup window
+    popup_width = 300
+    popup_height = 150
+
+    # Calculate position to center the window on the screen
+    screen_width = root.winfo_screenwidth()
+    screen_height = root.winfo_screenheight()
+    x = (screen_width - popup_width) // 2
+    y = (screen_height - popup_height) // 2
+
+    # Set the position of the popup window
+    popup.geometry(f"{popup_width}x{popup_height}+{x}+{y}")
+
+    label = ttk.Label(popup, text=f"{text}")
+    label.pack(padx=10, pady=10)
+
+    entry = ttk.Entry(popup, width=30)
+    entry.pack(padx=10, pady=10)
+
+    ok_button = ttk.Button(popup, text="OK", command=handle_ok)
+    ok_button.pack(padx=10, pady=10)
+   
 def exit_program(event=None):
     root.destroy()
 
@@ -107,7 +155,12 @@ def update_output(output_widgets, all_outputs, default_output):
          elif i == 2:
              output_widgets[i].config(text=default_output, font=("Arial", 12))
     
-
+def popup_manager(addsub, text) :
+    if(addsub == 1) :
+        open_popup_add(text)
+    elif(addsub == 0) :
+        print()
+        
 def refresh() :
     all_goals = db.get_reminders("goal","goals_new")
     default_goal = "Please Add Goal"
@@ -185,7 +238,7 @@ goals_buttons.grid_columnconfigure(1, weight=1)
 
 goals_buttons.grid_rowconfigure(0,weight=1)
 
-add_goal_button = ttk.Button(goals_buttons, text="Add Goal", command=lambda: (db.add_goal("Test"), refresh()))
+add_goal_button = ttk.Button(goals_buttons, text="Add Goal", command=lambda: (popup_manager(1, "Add Goal"), refresh()))
 add_goal_button.grid(row=0, column = 0, sticky='nsew', padx=5, pady=5)
 
 remove_goal_button = ttk.Button(goals_buttons, text = "Remove Goal", command=lambda: (db.remove_goal("Test"), refresh()))
@@ -224,7 +277,7 @@ accomplishments_buttons.grid_columnconfigure(1, weight=1)
 
 accomplishments_buttons.grid_rowconfigure(0,weight=1)
 
-add_accomplishment_button = ttk.Button(accomplishments_buttons, text = "Add Accomplishment", command=lambda: (db.add_accomplishment("Test"), refresh()))
+add_accomplishment_button = ttk.Button(accomplishments_buttons, text = "Add Accomplishment", command=lambda: (popup_manager(1, "Add Accomplishment"), refresh()))
 add_accomplishment_button.grid(row=0, column = 0, sticky='nsew', padx=5, pady=5)
 
 remove_accomplishment_button = ttk.Button(accomplishments_buttons, text = "Remove Accomplishment",  command=lambda: (db.remove_accomplishment("Test"), refresh()))
@@ -254,7 +307,7 @@ coping_strategys_buttons.grid_columnconfigure(1, weight=1)
 
 coping_strategys_buttons.grid_rowconfigure(0,weight=1)
 
-add_coping_strategy_button = ttk.Button(coping_strategys_buttons, text = "Add Coping Strategy",  command=lambda: (db.add_coping_strategy("Test"), refresh()))
+add_coping_strategy_button = ttk.Button(coping_strategys_buttons, text = "Add Coping Strategy",  command=lambda: (popup_manager(1, "Add Coping Strategy"), refresh()))
 add_coping_strategy_button.grid(row=0, column = 0, sticky='nsew', padx=5, pady=5)
 
 remove_coping_strategy_button = ttk.Button(coping_strategys_buttons, text = "Remove Coping Strategy",  command=lambda: (db.remove_coping_strategy("Test"), refresh()))
@@ -289,7 +342,7 @@ gratitudes_buttons.grid_columnconfigure(1, weight=1)
 
 gratitudes_buttons.grid_rowconfigure(0,weight=1)
 
-add_gratitude_button = ttk.Button(gratitudes_buttons, text = "Add Gratitude", command=lambda: (db.add_gratitude("Test"), refresh()))
+add_gratitude_button = ttk.Button(gratitudes_buttons, text = "Add Gratitude", command=lambda: (popup_manager(1, "Add Gratitude"), refresh()))
 add_gratitude_button.grid(row=0, column = 0, sticky='nsew', padx=5, pady=5)
 
 remove_gratitude_button = ttk.Button(gratitudes_buttons, text = "Remove Gratitude",  command=lambda: (db.remove_gratitude("Test"), refresh()))
@@ -324,7 +377,7 @@ reflections_buttons.grid_columnconfigure(1, weight=1)
 
 reflections_buttons.grid_rowconfigure(0,weight=1)
 
-add_reflection_button = ttk.Button(reflections_buttons, text = "Add Reflection", command=lambda: (db.add_reflection("Test"), refresh()))
+add_reflection_button = ttk.Button(reflections_buttons, text = "Add Reflection", command=lambda: (popup_manager(1, "Add Reflection"), refresh()))
 add_reflection_button.grid(row=0, column = 0, sticky='nsew', padx=5, pady=5)
 
 remove_reflection_button = ttk.Button(reflections_buttons, text = "Remove Reflection", command=lambda: (db.remove_reflection("Test"), refresh()))
@@ -359,7 +412,7 @@ self_care_activitys_buttons.grid_columnconfigure(1, weight=1)
 
 self_care_activitys_buttons.grid_rowconfigure(0,weight=1)
 
-add_self_care_activity_button = ttk.Button(self_care_activitys_buttons, text = "Add Self Care Activity", command=lambda: (db.add_self_care_activity("Test"), refresh()))
+add_self_care_activity_button = ttk.Button(self_care_activitys_buttons, text = "Add Self Care Activity", command=lambda: (popup_manager(1, "Add Self Care Activity"), refresh()))
 add_self_care_activity_button.grid(row=0, column = 0, sticky='nsew', padx=5, pady=5)
 
 remove_self_care_activity_button = ttk.Button(self_care_activitys_buttons, text = "Remove Self Care Activity", command=lambda: (db.remove_self_care_activity("Test"), refresh()))
