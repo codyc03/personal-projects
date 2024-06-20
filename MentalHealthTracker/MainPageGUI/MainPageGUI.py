@@ -52,7 +52,24 @@ def remove_reminder(input_value, text) :
         db.remove_reflection(input_value)
     elif "Self Care Activity" in text : 
         db.remove_self_care_activity(input_value)
-        
+
+def open_stats():
+    stats_popup = tk.Toplevel(root)
+    stats_popup.attributes('-fullscreen', True)
+    # stats_popup.configure(bg='red')
+    
+    # Function to close the popup
+    def close_popup():
+        stats_popup.destroy()
+    
+    style = ttk.Style()
+    style.theme_use('default')  # Change to the 'default' theme 
+    style.configure('Close.TButton', background='red')
+    
+    # Create a red X button in the top right corner
+    close_button = ttk.Button(stats_popup, text="X", command=close_popup, style='Close.TButton')
+    close_button.place(relx=1.0, rely=0.0, anchor='ne', width=40, height=40)
+    
 def open_popup(addsub, text):
     def handle_ok():
         input_value = entry.get()
@@ -240,8 +257,18 @@ root.bind("<Escape>", exit_program)
 greeting = ttk.Label(root, text="Hello, welcome to MyHealth!", font=("Arial", 20, "bold"),anchor="center")
 greeting.grid(row=0, column=1, sticky='nsew')
 
-button = ttk.Button(root, text="Add Daily Entry", command = clicked)
-button.grid(row=7, column=1, sticky = 'ns')
+
+two_button_frame = ttk.Frame(root)
+two_button_frame.grid(row=7, column = 1, sticky='nsew')
+
+two_button_frame.grid_columnconfigure(0, weight = 1)
+two_button_frame.grid_columnconfigure(1, weight = 1)
+
+button = ttk.Button(two_button_frame, text="Add Daily Entry", command = clicked)
+button.grid(row= 0, column = 1, sticky = 'ew', padx=5, pady=5)
+
+stats_button = ttk.Button(two_button_frame, text="View Stats", command=open_stats)
+stats_button.grid(row = 0, column = 0, sticky='ew', padx=5, pady=5)
 
 goals_header = ttk.Label(root, text = "Goals", anchor= "center", font=("Arial", 14, "bold"))
 goals_header.grid(row=1, column=0, sticky= NSEW)
