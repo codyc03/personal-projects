@@ -38,11 +38,30 @@ def add_reminder(input_value, text) :
         db.add_reflection(input_value)
     elif "Self Care Activity" in text : 
         db.add_self_care_activity(input_value)
+ 
+def remove_reminder(input_value, text) : 
+    if "Goal" in text :
+        db.remove_goal(input_value)
+    elif "Accomplishment" in text :
+        db.remove_accomplishment(input_value)
+    elif "Coping Strategy" in text :
+        db.remove_coping_strategy(input_value)
+    elif "Gratitude" in text :
+        db.remove_gratitude(input_value)
+    elif "Reflection" in text:
+        db.remove_reflection(input_value)
+    elif "Self Care Activity" in text : 
+        db.remove_self_care_activity(input_value)
         
-def open_popup_add(text):
+def open_popup(addsub, text):
     def handle_ok():
         input_value = entry.get()
-        add_reminder(input_value, text)
+        
+        if addsub == 1 :
+            add_reminder(input_value, text)
+        elif addsub == 0 : 
+            remove_reminder(input_value, text)
+            
         refresh()
         popup.destroy()
 
@@ -157,9 +176,9 @@ def update_output(output_widgets, all_outputs, default_output):
     
 def popup_manager(addsub, text) :
     if(addsub == 1) :
-        open_popup_add(text)
+        open_popup(addsub, text)
     elif(addsub == 0) :
-        print()
+        open_popup(addsub, text)
         
 def refresh() :
     all_goals = db.get_reminders("goal","goals_new")
@@ -241,7 +260,7 @@ goals_buttons.grid_rowconfigure(0,weight=1)
 add_goal_button = ttk.Button(goals_buttons, text="Add Goal", command=lambda: (popup_manager(1, "Add Goal"), refresh()))
 add_goal_button.grid(row=0, column = 0, sticky='nsew', padx=5, pady=5)
 
-remove_goal_button = ttk.Button(goals_buttons, text = "Remove Goal", command=lambda: (db.remove_goal("Test"), refresh()))
+remove_goal_button = ttk.Button(goals_buttons, text = "Remove Goal", command=lambda: (popup_manager(0, "Remove Goal"), refresh()))
 remove_goal_button.grid(row=0, column = 1, sticky='nsew', padx=5, pady=5)
 
 goals_label.grid_columnconfigure(0,weight=1)
@@ -280,7 +299,7 @@ accomplishments_buttons.grid_rowconfigure(0,weight=1)
 add_accomplishment_button = ttk.Button(accomplishments_buttons, text = "Add Accomplishment", command=lambda: (popup_manager(1, "Add Accomplishment"), refresh()))
 add_accomplishment_button.grid(row=0, column = 0, sticky='nsew', padx=5, pady=5)
 
-remove_accomplishment_button = ttk.Button(accomplishments_buttons, text = "Remove Accomplishment",  command=lambda: (db.remove_accomplishment("Test"), refresh()))
+remove_accomplishment_button = ttk.Button(accomplishments_buttons, text = "Remove Accomplishment",  command=lambda: (popup_manager(0, "Remove Accomplishment"), refresh()))
 remove_accomplishment_button.grid(row=0, column = 1, sticky='nsew', padx=5, pady=5)
 
 accomplishments_output_1 = ttk.Label(accomplishments_label, text="First accomplishment", anchor=CENTER)
@@ -310,7 +329,7 @@ coping_strategys_buttons.grid_rowconfigure(0,weight=1)
 add_coping_strategy_button = ttk.Button(coping_strategys_buttons, text = "Add Coping Strategy",  command=lambda: (popup_manager(1, "Add Coping Strategy"), refresh()))
 add_coping_strategy_button.grid(row=0, column = 0, sticky='nsew', padx=5, pady=5)
 
-remove_coping_strategy_button = ttk.Button(coping_strategys_buttons, text = "Remove Coping Strategy",  command=lambda: (db.remove_coping_strategy("Test"), refresh()))
+remove_coping_strategy_button = ttk.Button(coping_strategys_buttons, text = "Remove Coping Strategy",  command=lambda: (popup_manager(0, "Remove Coping Strategy"), refresh()))
 remove_coping_strategy_button.grid(row=0, column = 1, sticky='nsew', padx=5, pady=5)
 
 coping_strategies_label.grid_columnconfigure(0,weight=1)
@@ -345,7 +364,7 @@ gratitudes_buttons.grid_rowconfigure(0,weight=1)
 add_gratitude_button = ttk.Button(gratitudes_buttons, text = "Add Gratitude", command=lambda: (popup_manager(1, "Add Gratitude"), refresh()))
 add_gratitude_button.grid(row=0, column = 0, sticky='nsew', padx=5, pady=5)
 
-remove_gratitude_button = ttk.Button(gratitudes_buttons, text = "Remove Gratitude",  command=lambda: (db.remove_gratitude("Test"), refresh()))
+remove_gratitude_button = ttk.Button(gratitudes_buttons, text = "Remove Gratitude",  command=lambda: (popup_manager(0, "Remove Gratitude"), refresh()))
 remove_gratitude_button.grid(row=0, column = 1, sticky='nsew', padx=5, pady=5)
 
 gratitudes_label.grid_columnconfigure(0,weight=1)
@@ -380,7 +399,7 @@ reflections_buttons.grid_rowconfigure(0,weight=1)
 add_reflection_button = ttk.Button(reflections_buttons, text = "Add Reflection", command=lambda: (popup_manager(1, "Add Reflection"), refresh()))
 add_reflection_button.grid(row=0, column = 0, sticky='nsew', padx=5, pady=5)
 
-remove_reflection_button = ttk.Button(reflections_buttons, text = "Remove Reflection", command=lambda: (db.remove_reflection("Test"), refresh()))
+remove_reflection_button = ttk.Button(reflections_buttons, text = "Remove Reflection", command=lambda: (popup_manager(0, "Remove Reflection"), refresh()))
 remove_reflection_button.grid(row=0, column = 1, sticky='nsew', padx=5, pady=5)
 
 reflections_label.grid_columnconfigure(0,weight=1)
@@ -415,7 +434,7 @@ self_care_activitys_buttons.grid_rowconfigure(0,weight=1)
 add_self_care_activity_button = ttk.Button(self_care_activitys_buttons, text = "Add Self Care Activity", command=lambda: (popup_manager(1, "Add Self Care Activity"), refresh()))
 add_self_care_activity_button.grid(row=0, column = 0, sticky='nsew', padx=5, pady=5)
 
-remove_self_care_activity_button = ttk.Button(self_care_activitys_buttons, text = "Remove Self Care Activity", command=lambda: (db.remove_self_care_activity("Test"), refresh()))
+remove_self_care_activity_button = ttk.Button(self_care_activitys_buttons, text = "Remove Self Care Activity", command=lambda: (popup_manager(0, "Remove Self Care Activity"), refresh()))
 remove_self_care_activity_button.grid(row=0, column = 1, sticky='nsew', padx=5, pady=5)
 
 self_care_activities_label.grid_columnconfigure(0,weight=1)
