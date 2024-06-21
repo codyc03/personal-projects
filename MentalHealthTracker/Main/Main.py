@@ -89,14 +89,30 @@ def add_self_care_activity(self_care_activity) :
 def remove_self_care_activity(self_care_activity) :
     cur.execute(f"DELETE FROM self_care_activities_new WHERE self_care_activity = '{self_care_activity}' AND username = 'codyc'")
 
-def add_stressor() :
-    cur.execute(f"INSERT INTO stressors (id, stressor) VALUES (1, 'Love')")
+# def add_stressor() :
+#     cur.execute(f"INSERT INTO stressors (id, stressor) VALUES (1, 'Love')")
 
-def remove_stressor() :
-    cur.execute(f"DELETE FROM stressors WHERE stressor = 'Love'")
+# def remove_stressor() :
+#     cur.execute(f"DELETE FROM stressors WHERE stressor = 'Love'")
+
+def get_avg(category, days) :
+    if category == 0 : # is mood
+        cur.execute(f"SELECT (mood) FROM user_entries ORDER BY entry_date DESC LIMIT {days}")
+        rows = cur.fetchall()
+        total = 0
+        
+        for entry in rows :
+            total += entry[0]
+        
+        avg = total / days
+        
+        return avg
+
+
 
 def test() : 
     print( "hello")
+    
 
 # conn.commit()
 

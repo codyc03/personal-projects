@@ -1,9 +1,11 @@
 from email.policy import default
+from pstats import Stats
 from pydoc import cli
 from queue import Empty
 import tkinter as tk
 from tkinter import ANCHOR, BOTH, CENTER, NSEW, ttk
 from turtle import bgcolor
+from unicodedata import category
 import Main as db
 
 popup_input = Empty
@@ -52,12 +54,59 @@ def remove_reminder(input_value, text) :
         db.remove_reflection(input_value)
     elif "Self Care Activity" in text : 
         db.remove_self_care_activity(input_value)
+        
+
+def fill_stats(headers, outputs, stats_popup, num) :
+    for i in range(0, len(headers), 2):
+        headers[i] = ttk.Label(stats_popup, text = f"Average {category} Over Past {num} Days", anchor= CENTER)
+        headers[i].grid(row=i, column=0, sticky = 'nsew')
+        
+        outputs[i] = ttk.Label(stats_popup, text = db.get_avg(category_id, num), anchor= CENTER)
+        outputs[i].grid(rows=i + 1 , column=0, sticky = 'nsew')
+        
+        for j in outputs :
+            outputs[j] = ttk.Label(stats_popup, text = db.get_avg(category_id, num), anchor= CENTER)
+            outputs[j].grid(rows=i + j , column=0, sticky = 'nsew')
+   
+            
 
 def open_stats():
     stats_popup = tk.Toplevel(root)
     stats_popup.attributes('-fullscreen', True)
     # stats_popup.configure(bg='red')
     
+    stats_popup.grid_columnconfigure(0, weight = 1)
+    stats_popup.grid_rowconfigure(0, weight = 1)
+    stats_popup.grid_rowconfigure(1, weight = 1)
+    stats_popup.grid_rowconfigure(2, weight = 1)
+    stats_popup.grid_rowconfigure(3, weight = 1)
+    stats_popup.grid_rowconfigure(4, weight = 1)
+    stats_popup.grid_rowconfigure(5, weight = 1)
+
+
+    avg_mood_10_days_header = ttk.Label(stats_popup, text = "Average Mood Over Past 10 Days", anchor= CENTER)
+    avg_mood_10_days_header.grid(row=0, column=0, sticky = 'nsew')
+
+    avg_mood_10_days_output = ttk.Label(stats_popup, text = db.get_avg(0, 10), anchor = CENTER)
+    avg_mood_10_days_output.grid(row = 1, column = 0, sticky = 'nsew')
+    
+    avg_mood_30_days_header = ttk.Label(stats_popup, text = "Average Mood Over Past 30 Days", anchor= CENTER)
+    avg_mood_30_days_header.grid(row=2, column=0, sticky = 'nsew')
+
+    avg_mood_30_days_output = ttk.Label(stats_popup, text = db.get_avg(0, 30), anchor = CENTER)
+    avg_mood_30_days_output.grid(row = 3, column = 0, sticky = 'nsew')
+    
+    avg_mood_90_days_header = ttk.Label(stats_popup, text = "Average Mood Over Past 90 Days", anchor= CENTER)
+    avg_mood_10_days_header.grid(row= 4, column=0, sticky = 'nsew')
+
+    avg_mood_90_days_output = ttk.Label(stats_popup, text = db.get_avg(0, 90), anchor = CENTER)
+    avg_mood_90_days_output.grid(row = 5, column = 0, sticky = 'nsew')
+    
+    # headers = []
+
+    # fill_stats(headers,outputs, stats_popup, num = 0)
+
+        
     # Function to close the popup
     def close_popup():
         stats_popup.destroy()
@@ -103,6 +152,7 @@ def open_popup(addsub, text):
 
     entry = ttk.Entry(popup, width=30)
     entry.pack(padx=10, pady=10)
+    entry.focus()
 
     ok_button = ttk.Button(popup, text="OK", command=handle_ok)
     ok_button.pack(padx=10, pady=10)
