@@ -165,7 +165,7 @@ def get_avg(category) :
     # return f"{ten_day_average}\n{thirty_day_average}\n{ninety_day_average}"
     return [ten_day_average,thirty_day_average,ninety_day_average]        
 
-def get_comparison(category, ten_day_average, thirty_day_average, ninety_day_average) :    
+def get_cmp(category, ten_day_average, thirty_day_average, ninety_day_average) :    
     days = [10,30,90]
     
     def comparison(most_recent, days, previous_avg) :
@@ -181,8 +181,8 @@ def get_comparison(category, ten_day_average, thirty_day_average, ninety_day_ave
         percent_change = ((today_value - average_value) / average_value) * 100
 
         # Display the result
-        print(f"Percent Change: {percent_change:.2f}% compared to {days} days")
-                
+        return percent_change
+    
     for i in range(len(days)) :  
         value = 0
         
@@ -215,7 +215,7 @@ def get_comparison(category, ten_day_average, thirty_day_average, ninety_day_ave
         elif i == 2 : 
             ninety_day_comparison = comparison(value,days[i],ninety_day_average)
 
-    return f"{ten_day_comparison}\n{thirty_day_comparison}\n{ninety_day_comparison}"
+    return [ten_day_comparison,thirty_day_comparison,ninety_day_comparison]
 
 def feed_values():
     for i in range(27):
