@@ -95,23 +95,44 @@ def remove_self_care_activity(self_care_activity) :
 # def remove_stressor() :
 #     cur.execute(f"DELETE FROM stressors WHERE stressor = 'Love'")
 
-def get_avg(category, days) :
-    if category == 0 : # is mood
-        cur.execute(f"SELECT (mood) FROM user_entries ORDER BY entry_date DESC LIMIT {days}")
-        rows = cur.fetchall()
-        total = 0
+def get_avg(category) :
+    days = [10,30,90]
+    ten_day_average = 0
+    thirty_day_average = 0
+    ninety_day_average = 0
+    
+    for i in range(len(days)) :  
+        if category == 0:  # Assuming category 0 represents mood
+            cur.execute(f"SELECT mood FROM user_entries ORDER BY entry_date DESC LIMIT {days[i]}")
+            rows = cur.fetchall()
+            total = 0
+
+            num_entries = len(rows)
+            
+            for entry in rows[:min(days[i], len(rows))]:
+                total += entry[0]
         
-        for entry in rows :
-            total += entry[0]
+        avg = total / min(days[i], len(rows))
         
-        avg = total / days
-        
-        return avg
+        if i == 0 :
+            ten_day_average = avg
+        elif i == 1 :
+            thirty_day_average = avg
+        elif i == 2 : 
+            ninety_day_average = avg
+
+    return f"{ten_day_average}\n{thirty_day_average}\n{ninety_day_average}"
 
 
-
+def feed_values() : 
+    for i in range(27) :
+        cur.execute("""
+        INSERT INTO user_entries (mood, energy_level, sleep_duration, sleep_quality, physical_symptoms, social_interaction, physical_activity, username)
+        VALUES (10, 10, '10 hours', 10, 10, '10 hours', '10 hours', 'codyc')
+        """)
+        
 def test() : 
-    print( "hello")
+     print( "hello")
     
 
 # conn.commit()

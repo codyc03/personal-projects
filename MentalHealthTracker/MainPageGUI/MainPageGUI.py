@@ -71,6 +71,7 @@ def fill_stats(headers, outputs, stats_popup, num) :
             
 
 def open_stats():
+    db.feed_values()
     stats_popup = tk.Toplevel(root)
     stats_popup.attributes('-fullscreen', True)
     # stats_popup.configure(bg='red')
@@ -84,23 +85,26 @@ def open_stats():
     stats_popup.grid_rowconfigure(5, weight = 1)
 
 
-    avg_mood_10_days_header = ttk.Label(stats_popup, text = "Average Mood Over Past 10 Days", anchor= CENTER)
-    avg_mood_10_days_header.grid(row=0, column=0, sticky = 'nsew')
-
-    avg_mood_10_days_output = ttk.Label(stats_popup, text = db.get_avg(0, 10), anchor = CENTER)
-    avg_mood_10_days_output.grid(row = 1, column = 0, sticky = 'nsew')
+    avg_mood_header = ttk.Label(stats_popup, text = "Average Mood", anchor= CENTER)
+    avg_mood_header.grid(row=0, column=0, sticky = 'nsew')
     
-    avg_mood_30_days_header = ttk.Label(stats_popup, text = "Average Mood Over Past 30 Days", anchor= CENTER)
-    avg_mood_30_days_header.grid(row=2, column=0, sticky = 'nsew')
+    avg_mood_output = ttk.Label(stats_popup, text = db.get_avg(0), anchor = CENTER)
+    avg_mood_output.grid(row = 1, column = 0, sticky = 'nsew')
 
-    avg_mood_30_days_output = ttk.Label(stats_popup, text = db.get_avg(0, 30), anchor = CENTER)
-    avg_mood_30_days_output.grid(row = 3, column = 0, sticky = 'nsew')
+    # avg_mood_10_days_output = ttk.Label(stats_popup, text = db.get_avg(0, 10), anchor = CENTER)
+    # avg_mood_10_days_output.grid(row = 1, column = 0, sticky = 'nsew')
     
-    avg_mood_90_days_header = ttk.Label(stats_popup, text = "Average Mood Over Past 90 Days", anchor= CENTER)
-    avg_mood_10_days_header.grid(row= 4, column=0, sticky = 'nsew')
+    # avg_mood_30_days_header = ttk.Label(stats_popup, text = "Average Mood Over Past 30 Days", anchor= CENTER)
+    # avg_mood_30_days_header.grid(row=2, column=0, sticky = 'nsew')
 
-    avg_mood_90_days_output = ttk.Label(stats_popup, text = db.get_avg(0, 90), anchor = CENTER)
-    avg_mood_90_days_output.grid(row = 5, column = 0, sticky = 'nsew')
+    # avg_mood_30_days_output = ttk.Label(stats_popup, text = db.get_avg(0, 30), anchor = CENTER)
+    # avg_mood_30_days_output.grid(row = 3, column = 0, sticky = 'nsew')
+    
+    # avg_mood_90_days_header = ttk.Label(stats_popup, text = "Average Mood Over Past 90 Days", anchor= CENTER)
+    # avg_mood_10_days_header.grid(row= 4, column=0, sticky = 'nsew')
+
+    # avg_mood_90_days_output = ttk.Label(stats_popup, text = db.get_avg(0, 90), anchor = CENTER)
+    # avg_mood_90_days_output.grid(row = 5, column = 0, sticky = 'nsew')
     
     # headers = []
 
