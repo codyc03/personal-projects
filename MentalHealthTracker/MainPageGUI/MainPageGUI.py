@@ -56,17 +56,17 @@ def remove_reminder(input_value, text) :
         db.remove_self_care_activity(input_value)
         
 
-def fill_stats(headers, outputs, stats_popup, num) :
-    for i in range(0, len(headers), 2):
-        headers[i] = ttk.Label(stats_popup, text = f"Average {category} Over Past {num} Days", anchor= CENTER)
-        headers[i].grid(row=i, column=0, sticky = 'nsew')
+# def fill_stats(headers, outputs, stats_popup, num) :
+#     for i in range(0, len(headers), 2):
+#         headers[i] = ttk.Label(stats_popup, text = f"Average {category} Over Past {num} Days", anchor= CENTER)
+#         headers[i].grid(row=i, column=0, sticky = 'nsew')
         
-        outputs[i] = ttk.Label(stats_popup, text = db.get_avg(category_id, num), anchor= CENTER)
-        outputs[i].grid(rows=i + 1 , column=0, sticky = 'nsew')
+#         outputs[i] = ttk.Label(stats_popup, text = db.get_avg(category_id, num), anchor= CENTER)
+#         outputs[i].grid(rows=i + 1 , column=0, sticky = 'nsew')
         
-        for j in outputs :
-            outputs[j] = ttk.Label(stats_popup, text = db.get_avg(category_id, num), anchor= CENTER)
-            outputs[j].grid(rows=i + j , column=0, sticky = 'nsew')
+#         for j in outputs :
+#             outputs[j] = ttk.Label(stats_popup, text = db.get_avg(category_id, num), anchor= CENTER)
+#             outputs[j].grid(rows=i + j , column=0, sticky = 'nsew')
    
             
 
@@ -77,12 +77,19 @@ def open_stats():
     # stats_popup.configure(bg='red')
     
     stats_popup.grid_columnconfigure(0, weight = 1)
+    stats_popup.grid_columnconfigure(1, weight = 1)
+    stats_popup.grid_columnconfigure(2, weight = 1)
+    stats_popup.grid_columnconfigure(3, weight = 1)
+    stats_popup.grid_columnconfigure(4, weight = 1)
+    stats_popup.grid_columnconfigure(5, weight = 1)
+    stats_popup.grid_columnconfigure(6, weight = 1)
+    
     stats_popup.grid_rowconfigure(0, weight = 1)
     stats_popup.grid_rowconfigure(1, weight = 1)
     stats_popup.grid_rowconfigure(2, weight = 1)
     stats_popup.grid_rowconfigure(3, weight = 1)
     stats_popup.grid_rowconfigure(4, weight = 1)
-    stats_popup.grid_rowconfigure(5, weight = 1)
+    # stats_popup.grid_rowconfigure(5, weight = 1)
 
 
     avg_mood_header = ttk.Label(stats_popup, text = "Average Mood", anchor= CENTER)
@@ -90,6 +97,42 @@ def open_stats():
     
     avg_mood_output = ttk.Label(stats_popup, text = db.get_avg(0), anchor = CENTER)
     avg_mood_output.grid(row = 1, column = 0, sticky = 'nsew')
+
+    avg_energy_level_header = ttk.Label(stats_popup, text = "Average Energy Level", anchor= CENTER)
+    avg_energy_level_header.grid(row=0, column=1, sticky = 'nsew')
+    
+    avg_energy_level_output = ttk.Label(stats_popup, text = db.get_avg(1), anchor = CENTER)
+    avg_energy_level_output.grid(row = 1, column = 1, sticky = 'nsew')
+    
+    avg_sleep_duration_header = ttk.Label(stats_popup, text = "Average Sleep Duration", anchor= CENTER)
+    avg_sleep_duration_header.grid(row=0, column=2, sticky = 'nsew')
+    
+    avg_sleep_duration_output = ttk.Label(stats_popup, text = db.get_avg(2), anchor = CENTER)
+    avg_sleep_duration_output.grid(row = 1, column = 2, sticky = 'nsew')
+    
+    avg_sleep_quality_header = ttk.Label(stats_popup, text = "Average Sleep Quality", anchor= CENTER)
+    avg_sleep_quality_header.grid(row=0, column=3, sticky = 'nsew')
+    
+    avg_sleep_quality_output = ttk.Label(stats_popup, text = db.get_avg(3), anchor = CENTER)
+    avg_sleep_quality_output.grid(row = 1, column = 3, sticky = 'nsew')
+    
+    avg_physical_symptoms_header = ttk.Label(stats_popup, text = "Average Physical Symptoms", anchor= CENTER)
+    avg_physical_symptoms_header.grid(row=0, column=4, sticky = 'nsew')
+    
+    avg_physical_symptoms_output = ttk.Label(stats_popup, text = db.get_avg(4), anchor = CENTER)
+    avg_physical_symptoms_output.grid(row = 1, column = 4, sticky = 'nsew')
+    
+    avg_social_interaction_header = ttk.Label(stats_popup, text = "Average Social Interaction", anchor= CENTER)
+    avg_social_interaction_header.grid(row=0, column=5, sticky = 'nsew')
+    
+    avg_social_interaction_output = ttk.Label(stats_popup, text = db.get_avg(5), anchor = CENTER)
+    avg_social_interaction_output.grid(row = 1, column = 5, sticky = 'nsew')
+    
+    avg_physical_activity_header = ttk.Label(stats_popup, text = "Average Physical Activity", anchor= CENTER)
+    avg_physical_activity_header.grid(row=0, column=6, sticky = 'nsew')
+    
+    avg_physical_activity_output = ttk.Label(stats_popup, text = db.get_avg(6), anchor = CENTER)
+    avg_physical_activity_output.grid(row = 1, column = 6, sticky = 'nsew')
 
     # avg_mood_10_days_output = ttk.Label(stats_popup, text = db.get_avg(0, 10), anchor = CENTER)
     # avg_mood_10_days_output.grid(row = 1, column = 0, sticky = 'nsew')

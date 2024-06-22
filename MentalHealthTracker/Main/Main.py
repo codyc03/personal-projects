@@ -1,3 +1,4 @@
+import datetime
 import psycopg2
 from psycopg2.sql import NULL
 from dotenv import load_dotenv
@@ -101,16 +102,56 @@ def get_avg(category) :
     thirty_day_average = 0
     ninety_day_average = 0
     
+    def fetch_helper (rows) :
+        total = 0
+
+        num_entries = len(rows)
+            
+        for entry in rows[:min(days[i], len(rows))]:
+            if isinstance(entry[0], (int, float)):  # Check if entry[0] is an integer or float
+                total += entry[0]
+            elif isinstance(entry[0], datetime.timedelta):
+                total += entry[0].total_seconds() / 3600
+                
+        return total
+                
     for i in range(len(days)) :  
+        total = 0
+        
         if category == 0:  # Assuming category 0 represents mood
             cur.execute(f"SELECT mood FROM user_entries ORDER BY entry_date DESC LIMIT {days[i]}")
             rows = cur.fetchall()
-            total = 0
+            total = fetch_helper(rows)
+         
+        if category == 1 :
+            cur.execute(f"SELECT energy_level FROM user_entries ORDER BY entry_date DESC LIMIT {days[i]}")
+            rows = cur.fetchall()
+            total = fetch_helper(rows)
 
-            num_entries = len(rows)
+        if category == 2 :
+            cur.execute(f"SELECT sleep_duration FROM user_entries ORDER BY entry_date DESC LIMIT {days[i]}")
+            rows = cur.fetchall()
+            total = fetch_helper(rows)
             
-            for entry in rows[:min(days[i], len(rows))]:
-                total += entry[0]
+        if category == 3 :
+            cur.execute(f"SELECT sleep_quality FROM user_entries ORDER BY entry_date DESC LIMIT {days[i]}")
+            rows = cur.fetchall()
+            total = fetch_helper(rows)
+            
+        if category == 4 :
+            cur.execute(f"SELECT physical_symptoms FROM user_entries ORDER BY entry_date DESC LIMIT {days[i]}")
+            rows = cur.fetchall()
+            total = fetch_helper(rows)
+            
+        if category == 5 :
+            cur.execute(f"SELECT social_interaction FROM user_entries ORDER BY entry_date DESC LIMIT {days[i]}")
+            rows = cur.fetchall()
+            total = fetch_helper(rows)
+
+        if category == 6 :
+            cur.execute(f"SELECT physical_activity FROM user_entries ORDER BY entry_date DESC LIMIT {days[i]}")
+            rows = cur.fetchall()
+            total = fetch_helper(rows)
         
         avg = total / min(days[i], len(rows))
         
