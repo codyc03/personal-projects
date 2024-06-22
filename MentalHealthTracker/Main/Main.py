@@ -162,7 +162,8 @@ def get_avg(category) :
         elif i == 2 : 
             ninety_day_average = avg
 
-    return f"{ten_day_average}\n{thirty_day_average}\n{ninety_day_average}"
+    # return f"{ten_day_average}\n{thirty_day_average}\n{ninety_day_average}"
+    return [ten_day_average,thirty_day_average,ninety_day_average]        
 
 def get_comparison(category, ten_day_average, thirty_day_average, ninety_day_average) :    
     days = [10,30,90]
@@ -216,12 +217,16 @@ def get_comparison(category, ten_day_average, thirty_day_average, ninety_day_ave
 
     return f"{ten_day_comparison}\n{thirty_day_comparison}\n{ninety_day_comparison}"
 
-def feed_values() : 
-    for i in range(27) :
+def feed_values():
+    for i in range(27):
+        # Generate a date for each iteration, starting from today and incrementing by 'i' days
+        entry_date = datetime.date.today() - datetime.timedelta(days=i + 1)
+        
+        # Execute the SQL query with dynamically generated date
         cur.execute("""
-        INSERT INTO user_entries (mood, energy_level, sleep_duration, sleep_quality, physical_symptoms, social_interaction, physical_activity, username)
-        VALUES (10, 10, '10 hours', 10, 10, '10 hours', '10 hours', 'codyc')
-        """)
+            INSERT INTO user_entries (entry_date, mood, energy_level, sleep_duration, sleep_quality, physical_symptoms, social_interaction, physical_activity, username)
+            VALUES (%s, 10, 10, '10 hours', 10, 10, '10 hours', '10 hours', 'codyc')
+        """, (entry_date,))
         
 def test() : 
      print( "hello")
