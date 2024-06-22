@@ -71,7 +71,9 @@ def remove_reminder(input_value, text) :
             
 
 def open_stats():
-    db.feed_values()
+    for i in range(7) :
+        db.get_comparison(i, 10, 10, 10)
+        
     stats_popup = tk.Toplevel(root)
     stats_popup.attributes('-fullscreen', True)
     # stats_popup.configure(bg='red')

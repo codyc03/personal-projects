@@ -164,6 +164,57 @@ def get_avg(category) :
 
     return f"{ten_day_average}\n{thirty_day_average}\n{ninety_day_average}"
 
+def get_comparison(category, ten_day_average, thirty_day_average, ninety_day_average) :    
+    days = [10,30,90]
+    
+    def comparison(most_recent, days, previous_avg) :
+        comp = most_recent / previous_avg 
+        # Assuming you have today's value and average value calculated
+        today_value = most_recent # Replace with your actual value for today's entry
+        average_value = previous_avg  # Replace with your actual average value over the past ninety days
+        
+        if isinstance(today_value, datetime.timedelta):
+            today_value = today_value.total_seconds() / 3600
+            
+        # Calculate percent change
+        percent_change = ((today_value - average_value) / average_value) * 100
+
+        # Display the result
+        print(f"Percent Change: {percent_change:.2f}% compared to {days} days")
+                
+    for i in range(len(days)) :  
+        value = 0
+        
+        if category == 0:  # Assuming category 0 represents mood
+            cur.execute("SELECT mood FROM user_entries ORDER BY entry_date DESC LIMIT 1")
+        elif category == 1:
+            cur.execute("SELECT energy_level FROM user_entries ORDER BY entry_date DESC LIMIT 1")
+        elif category == 2:
+            cur.execute("SELECT sleep_duration FROM user_entries ORDER BY entry_date DESC LIMIT 1")
+        elif category == 3:
+            cur.execute("SELECT sleep_quality FROM user_entries ORDER BY entry_date DESC LIMIT 1")
+        elif category == 4:
+            cur.execute("SELECT physical_symptoms FROM user_entries ORDER BY entry_date DESC LIMIT 1")
+        elif category == 5:
+            cur.execute("SELECT social_interaction FROM user_entries ORDER BY entry_date DESC LIMIT 1")
+        elif category == 6:
+            cur.execute("SELECT physical_activity FROM user_entries ORDER BY entry_date DESC LIMIT 1")
+
+        row = cur.fetchone()
+        
+        if row:
+            value = row[0]  # Assuming each query returns exactly one value
+        else:
+            value = 0
+     
+        if i == 0 :
+            ten_day_comparison = comparison(value,days[i],ten_day_average)
+        elif i == 1 :
+            thirty_day_comparison = comparison(value,days[i],thirty_day_average)
+        elif i == 2 : 
+            ninety_day_comparison = comparison(value,days[i],ninety_day_average)
+
+    return f"{ten_day_comparison}\n{thirty_day_comparison}\n{ninety_day_comparison}"
 
 def feed_values() : 
     for i in range(27) :
