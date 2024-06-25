@@ -43,6 +43,15 @@ def get_reminders(attribute,table) :
 
     return result_strings
 
+def get_entries(attribute,table) : 
+    cur.execute(f"SELECT {attribute} FROM {table} WHERE username = 'codyc' ORDER BY entry_date DESC" )
+    rows = cur.fetchall()
+
+    result_strings = []
+    for row in rows:
+        result_strings.append(row[0])
+
+    return result_strings
 
 def add_user() :
     cur.execute(f"INSERT INTO users_table (name) VALUES ('Test User')")

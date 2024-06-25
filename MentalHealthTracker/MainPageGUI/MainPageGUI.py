@@ -256,6 +256,10 @@ def get_all_in_category(category) :
     all_category_string = "\n".join(str(entry) for entry in reversed(all_in_category[-10:]))
     return all_category_string
 
+def get_all_in_category_entries(category) :
+    all_in_category = db.get_entries(category, "user_entries")
+    all_category_string = "\n".join(str(entry) for entry in all_in_category[:10])
+    return all_category_string
 
 def update_previous_entries() :
     date_label = ttk.Label(results_frame,text="DATE", anchor="center")
@@ -284,28 +288,28 @@ def update_previous_entries() :
     
     test = get_all_in_category("entry_date")
 
-    last_10_entries_dates = ttk.Label(results_frame, text = get_all_in_category("entry_date"), anchor='center')
+    last_10_entries_dates = ttk.Label(results_frame, text = get_all_in_category_entries("entry_date"), anchor='center')
     last_10_entries_dates.grid(row=1,column=0, sticky = 'n')
     
-    last_10_entries_moods = ttk.Label(results_frame, text = get_all_in_category("mood"), anchor='center')
+    last_10_entries_moods = ttk.Label(results_frame, text = get_all_in_category_entries("mood"), anchor='center')
     last_10_entries_moods.grid(row=1,column=1, sticky = 'n')
     
-    last_10_entries_energy_levels = ttk.Label(results_frame, text = get_all_in_category("energy_level"), anchor='center')
+    last_10_entries_energy_levels = ttk.Label(results_frame, text = get_all_in_category_entries("energy_level"), anchor='center')
     last_10_entries_energy_levels.grid(row=1,column=2, sticky = 'n')
 
-    last_10_entries_sleep_durations = ttk.Label(results_frame, text = get_all_in_category("sleep_duration"), anchor='center')
+    last_10_entries_sleep_durations = ttk.Label(results_frame, text = get_all_in_category_entries("sleep_duration"), anchor='center')
     last_10_entries_sleep_durations.grid(row=1,column=3, sticky = 'n')
     
-    last_10_entries_sleep_qualities = ttk.Label(results_frame, text = get_all_in_category("sleep_quality"), anchor='center')
+    last_10_entries_sleep_qualities = ttk.Label(results_frame, text = get_all_in_category_entries("sleep_quality"), anchor='center')
     last_10_entries_sleep_qualities.grid(row=1,column=4, sticky = 'n')
     
-    last_10_entries_physical_symptoms = ttk.Label(results_frame, text = get_all_in_category("physical_symptoms"), anchor='center')
+    last_10_entries_physical_symptoms = ttk.Label(results_frame, text = get_all_in_category_entries("physical_symptoms"), anchor='center')
     last_10_entries_physical_symptoms.grid(row=1,column=5, sticky = 'n')
     
-    last_10_entries_social_interactions = ttk.Label(results_frame, text = get_all_in_category("social_interaction"), anchor='center')
+    last_10_entries_social_interactions = ttk.Label(results_frame, text = get_all_in_category_entries("social_interaction"), anchor='center')
     last_10_entries_social_interactions.grid(row=1,column=6, sticky = 'n')
     
-    last_10_entries_physical_activities = ttk.Label(results_frame, text = get_all_in_category("physical_activity"), anchor='center')
+    last_10_entries_physical_activities = ttk.Label(results_frame, text = get_all_in_category_entries("physical_activity"), anchor='center')
     last_10_entries_physical_activities.grid(row=1,column=7, sticky = 'n')
     
     
