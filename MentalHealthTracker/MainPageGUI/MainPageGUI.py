@@ -7,6 +7,10 @@ from tkinter import ANCHOR, BOTH, CENTER, NSEW, ttk
 from turtle import bgcolor
 from unicodedata import category
 import Main as db
+from datetime import date
+from tkinter import messagebox
+
+
 
 popup_input = Empty
 
@@ -374,6 +378,9 @@ def refresh() :
     update_output(self_care_activitys_output_widgets, all_self_care_activities, default_self_care_activity)
 
     update_previous_entries()
+    
+def open_error_alert(message) :
+    messagebox.showinfo("Alert", message)
 
 def clicked() :
     mood = user_entry_mood.get()
@@ -383,9 +390,14 @@ def clicked() :
     physical_symptoms = user_entry_physical_symptoms.get()
     social_interaction = user_entry_social_interaction.get()
     physical_activity = user_entry_physical_activity.get()
-    db.add_entry(mood,energy_level,sleep_duration,sleep_quality,physical_symptoms,social_interaction,physical_activity)
 
-    update_previous_entries()
+    get_latest_entry_date = db.get_latest_entry_date()[0]
+
+    if not get_latest_entry_date == date.today() : 
+        db.add_entry(mood,energy_level,sleep_duration,sleep_quality,physical_symptoms,social_interaction,physical_activity)
+        update_previous_entries()
+    else : 
+        open_error_alert("You have already entered your survery for today!")
  
 root = tk.Tk()
 root.title("Main Window")

@@ -1,4 +1,5 @@
 import datetime
+from unittest import result
 import psycopg2
 from psycopg2.sql import NULL
 from dotenv import load_dotenv
@@ -33,11 +34,25 @@ if(conn == NULL) :
 
 cur = conn.cursor()
 
+def get_latest_entry_date() :
+    cur.execute("SELECT entry_date FROM user_entries WHERE username = 'codyc' ORDER BY entry_date DESC LIMIT 1")
+    rows = cur.fetchall()
+
+    result_strings = []
+    
+    for row in rows:
+        result_strings.append(row[0])
+
+    return result_strings
+
+
+
 def get_reminders(attribute,table) : 
     cur.execute(f"SELECT {attribute} FROM {table} WHERE username = 'codyc'")
     rows = cur.fetchall()
 
     result_strings = []
+    
     for row in rows:
         result_strings.append(row[0])
 
