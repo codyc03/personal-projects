@@ -380,7 +380,13 @@ def refresh() :
     update_previous_entries()
     
 def open_error_alert(message) :
-    messagebox.showinfo("Alert", message)
+    messagebox.showinfo("Alert", message) 
+
+def open_popup_error_alert() :
+    root.geometry("+%d+%d" % ((root.winfo_screenwidth() - 300) // 2, (root.winfo_screenheight() - 200) // 2))
+    
+    # Show error message box
+    messagebox.showerror("Error", "Operation failed. Please double check your work and try again.")
 
 def clicked() :
     mood = user_entry_mood.get()
@@ -394,8 +400,12 @@ def clicked() :
     get_latest_entry_date = db.get_latest_entry_date()[0]
 
     if not get_latest_entry_date == date.today() : 
-        db.add_entry(mood,energy_level,sleep_duration,sleep_quality,physical_symptoms,social_interaction,physical_activity)
-        update_previous_entries()
+        try :
+            db.add_entry(mood,energy_level,sleep_duration,sleep_quality,physical_symptoms,social_interaction,physical_activity)
+            update_previous_entries()
+        except Exception:
+            open_popup_error_alert()
+            
     else : 
         open_error_alert("You have already entered your survery for today!")
  
