@@ -1,4 +1,7 @@
 import datetime
+from gc import callbacks
+from tkinter import EXCEPTION
+from typing import Self
 from unittest import result
 import psycopg2
 from psycopg2.sql import NULL
@@ -7,6 +10,7 @@ import os
 
 conn = NULL
 cur = NULL
+error_callback = 0
 
 # Load environmental variables from .env file
 load_dotenv()
@@ -34,6 +38,11 @@ if(conn == NULL) :
     raise NotImplementedError()
 
 cur = conn.cursor()
+
+def set_error_callback(callback) :
+    global error_callback
+    error_callback = callback
+
 
 def get_latest_entry_date() :
     execute_statement("SELECT entry_date FROM user_entries WHERE username = 'codyc' ORDER BY entry_date DESC LIMIT 1")
@@ -258,7 +267,12 @@ def test() :
     
 
 def execute_statement(statement) :
-    cur.execute(statement)
+    try :
+        cur.execute(statement)
+    except Exception :
+        if not error_callback == 0 :
+            error_callback()
+        
 
 
 

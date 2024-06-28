@@ -412,6 +412,8 @@ def clicked() :
 root = tk.Tk()
 root.title("Main Window")
 
+db.set_error_callback(open_popup_error_alert)
+
 # Set the window attributes to fullscreen
 root.attributes("-fullscreen", True)
 
