@@ -32,32 +32,40 @@ def on_resize(event):
     root.grid_columnconfigure(2, weight=1)
     
 def add_reminder(input_value, text) : 
-    if "Goal" in text :
-        db.add_goal(input_value)
-    elif "Accomplishment" in text :
-        db.add_accomplishment(input_value)
-    elif "Coping Strategy" in text :
-        db.add_coping_strategy(input_value)
-    elif "Gratitude" in text :
-        db.add_gratitude(input_value)
-    elif "Reflection" in text:
-        db.add_reflection(input_value)
-    elif "Self Care Activity" in text : 
-        db.add_self_care_activity(input_value)
+    try :
+        if "Goal" in text :
+            db.add_goal(input_value)
+        elif "Accomplishment" in text :
+            db.add_accomplishment(input_value)
+        elif "Coping Strategy" in text :
+            db.add_coping_strategy(input_value)
+        elif "Gratitude" in text :
+            db.add_gratitude(input_value)
+        elif "Reflection" in text:
+            db.add_reflection(input_value)
+        elif "Self Care Activity" in text : 
+            db.add_self_care_activity(input_value)
+            
+    except Exception:
+        open_popup_error_alert()
  
 def remove_reminder(input_value, text) : 
-    if "Goal" in text :
-        db.remove_goal(input_value)
-    elif "Accomplishment" in text :
-        db.remove_accomplishment(input_value)
-    elif "Coping Strategy" in text :
-        db.remove_coping_strategy(input_value)
-    elif "Gratitude" in text :
-        db.remove_gratitude(input_value)
-    elif "Reflection" in text:
-        db.remove_reflection(input_value)
-    elif "Self Care Activity" in text : 
-        db.remove_self_care_activity(input_value)
+    try :
+        if "Goal" in text :
+            db.remove_goal(input_value)
+        elif "Accomplishment" in text :
+            db.remove_accomplishment(input_value)
+        elif "Coping Strategy" in text :
+            db.remove_coping_strategy(input_value)
+        elif "Gratitude" in text :
+            db.remove_gratitude(input_value)
+        elif "Reflection" in text:
+            db.remove_reflection(input_value)
+        elif "Self Care Activity" in text : 
+            db.remove_self_care_activity(input_value)
+    
+    except Exception:
+        open_popup_error_alert()
         
 
 # def fill_stats(headers, outputs, stats_popup, num) :
@@ -75,247 +83,264 @@ def remove_reminder(input_value, text) :
             
 
 def open_stats():
-  
-    # db.feed_values()
+    try :
+        # db.feed_values()
     
-    stats_popup = tk.Toplevel(root)
-    stats_popup.attributes('-fullscreen', True)
-    # stats_popup.configure(bg='red')
+        stats_popup = tk.Toplevel(root)
+        stats_popup.attributes('-fullscreen', True)
+        # stats_popup.configure(bg='red')
     
-    stats_popup.grid_columnconfigure(0, weight = 1)
-    stats_popup.grid_columnconfigure(1, weight = 1)
-    stats_popup.grid_columnconfigure(2, weight = 1)
-    stats_popup.grid_columnconfigure(3, weight = 1)
-    stats_popup.grid_columnconfigure(4, weight = 1)
-    stats_popup.grid_columnconfigure(5, weight = 1)
-    stats_popup.grid_columnconfigure(6, weight = 1)
+        stats_popup.grid_columnconfigure(0, weight = 1)
+        stats_popup.grid_columnconfigure(1, weight = 1)
+        stats_popup.grid_columnconfigure(2, weight = 1)
+        stats_popup.grid_columnconfigure(3, weight = 1)
+        stats_popup.grid_columnconfigure(4, weight = 1)
+        stats_popup.grid_columnconfigure(5, weight = 1)
+        stats_popup.grid_columnconfigure(6, weight = 1)
     
-    stats_popup.grid_rowconfigure(0, weight = 1)
-    stats_popup.grid_rowconfigure(1, weight = 1)
-    stats_popup.grid_rowconfigure(2, weight = 1)
-    stats_popup.grid_rowconfigure(3, weight = 1)
-    # stats_popup.grid_rowconfigure(4, weight = 1)
-    # stats_popup.grid_rowconfigure(5, weight = 1)
+        stats_popup.grid_rowconfigure(0, weight = 1)
+        stats_popup.grid_rowconfigure(1, weight = 1)
+        stats_popup.grid_rowconfigure(2, weight = 1)
+        stats_popup.grid_rowconfigure(3, weight = 1)
+        # stats_popup.grid_rowconfigure(4, weight = 1)
+        # stats_popup.grid_rowconfigure(5, weight = 1)
 
 
-    avg_mood_header = ttk.Label(stats_popup, text = "Average Mood", anchor= CENTER)
-    avg_mood_header.grid(row=0, column=0, sticky = 'nsew')
+        avg_mood_header = ttk.Label(stats_popup, text = "Average Mood", anchor= CENTER)
+        avg_mood_header.grid(row=0, column=0, sticky = 'nsew')
     
-    avg_mood_output = ttk.Label(stats_popup, text="\n".join(str(entry) for entry in db.get_avg(0)), anchor=CENTER)
-    avg_mood_output.grid(row = 1, column = 0, sticky = 'nsew')
+        avg_mood_output = ttk.Label(stats_popup, text="\n".join(str(round(entry,1)) for entry in db.get_avg(0)), anchor=CENTER)
+        avg_mood_output.grid(row = 1, column = 0, sticky = 'nsew')
 
-    avg_energy_level_header = ttk.Label(stats_popup, text = "Average Energy Level", anchor= CENTER)
-    avg_energy_level_header.grid(row=0, column=1, sticky = 'nsew')
+        avg_energy_level_header = ttk.Label(stats_popup, text = "Average Energy Level", anchor= CENTER)
+        avg_energy_level_header.grid(row=0, column=1, sticky = 'nsew')
     
-    avg_energy_level_output = ttk.Label(stats_popup, text ="\n".join(str(entry) for entry in db.get_avg(1)), anchor = CENTER)
-    avg_energy_level_output.grid(row = 1, column = 1, sticky = 'nsew')
+        avg_energy_level_output = ttk.Label(stats_popup, text ="\n".join(str(round(entry,1)) for entry in db.get_avg(1)), anchor = CENTER)
+        avg_energy_level_output.grid(row = 1, column = 1, sticky = 'nsew')
     
-    avg_sleep_duration_header = ttk.Label(stats_popup, text = "Average Sleep Duration", anchor= CENTER)
-    avg_sleep_duration_header.grid(row=0, column=2, sticky = 'nsew')
+        avg_sleep_duration_header = ttk.Label(stats_popup, text = "Average Sleep Duration", anchor= CENTER)
+        avg_sleep_duration_header.grid(row=0, column=2, sticky = 'nsew')
     
-    avg_sleep_duration_output = ttk.Label(stats_popup, text = "\n".join(str(entry) for entry in db.get_avg(2)), anchor = CENTER)
-    avg_sleep_duration_output.grid(row = 1, column = 2, sticky = 'nsew')
+        avg_sleep_duration_output = ttk.Label(stats_popup, text = "\n".join(str(round(entry,1)) for entry in db.get_avg(2)), anchor = CENTER)
+        avg_sleep_duration_output.grid(row = 1, column = 2, sticky = 'nsew')
     
-    avg_sleep_quality_header = ttk.Label(stats_popup, text = "Average Sleep Quality", anchor= CENTER)
-    avg_sleep_quality_header.grid(row=0, column=3, sticky = 'nsew')
+        avg_sleep_quality_header = ttk.Label(stats_popup, text = "Average Sleep Quality", anchor= CENTER)
+        avg_sleep_quality_header.grid(row=0, column=3, sticky = 'nsew')
     
-    avg_sleep_quality_output = ttk.Label(stats_popup, text = "\n".join(str(entry) for entry in db.get_avg(3)), anchor = CENTER)
-    avg_sleep_quality_output.grid(row = 1, column = 3, sticky = 'nsew')
+        avg_sleep_quality_output = ttk.Label(stats_popup, text = "\n".join(str(round(entry,1)) for entry in db.get_avg(3)), anchor = CENTER)
+        avg_sleep_quality_output.grid(row = 1, column = 3, sticky = 'nsew')
     
-    avg_physical_symptoms_header = ttk.Label(stats_popup, text = "Average Physical Symptoms", anchor= CENTER)
-    avg_physical_symptoms_header.grid(row=0, column=4, sticky = 'nsew')
+        avg_physical_symptoms_header = ttk.Label(stats_popup, text = "Average Physical Symptoms", anchor= CENTER)
+        avg_physical_symptoms_header.grid(row=0, column=4, sticky = 'nsew')
     
-    avg_physical_symptoms_output = ttk.Label(stats_popup, text = "\n".join(str(entry) for entry in db.get_avg(4)), anchor = CENTER)
-    avg_physical_symptoms_output.grid(row = 1, column = 4, sticky = 'nsew')
+        avg_physical_symptoms_output = ttk.Label(stats_popup, text = "\n".join(str(round(entry,1)) for entry in db.get_avg(4)), anchor = CENTER)
+        avg_physical_symptoms_output.grid(row = 1, column = 4, sticky = 'nsew')
     
-    avg_social_interaction_header = ttk.Label(stats_popup, text = "Average Social Interaction", anchor= CENTER)
-    avg_social_interaction_header.grid(row=0, column=5, sticky = 'nsew')
+        avg_social_interaction_header = ttk.Label(stats_popup, text = "Average Social Interaction", anchor= CENTER)
+        avg_social_interaction_header.grid(row=0, column=5, sticky = 'nsew')
     
-    avg_social_interaction_output = ttk.Label(stats_popup, text ="\n".join(str(entry) for entry in db.get_avg(5)), anchor = CENTER)
-    avg_social_interaction_output.grid(row = 1, column = 5, sticky = 'nsew')
+        avg_social_interaction_output = ttk.Label(stats_popup, text ="\n".join(str(round(entry,1)) for entry in db.get_avg(5)), anchor = CENTER)
+        avg_social_interaction_output.grid(row = 1, column = 5, sticky = 'nsew')
     
-    avg_physical_activity_header = ttk.Label(stats_popup, text = "Average Physical Activity", anchor= CENTER)
-    avg_physical_activity_header.grid(row=0, column=6, sticky = 'nsew')
+        avg_physical_activity_header = ttk.Label(stats_popup, text = "Average Physical Activity", anchor= CENTER)
+        avg_physical_activity_header.grid(row=0, column=6, sticky = 'nsew')
     
-    avg_physical_activity_output = ttk.Label(stats_popup, text ="\n".join(str(entry) for entry in db.get_avg(6)), anchor = CENTER)
-    avg_physical_activity_output.grid(row = 1, column = 6, sticky = 'nsew')
+        avg_physical_activity_output = ttk.Label(stats_popup, text ="\n".join(str(round(entry,1)) for entry in db.get_avg(6)), anchor = CENTER)
+        avg_physical_activity_output.grid(row = 1, column = 6, sticky = 'nsew')
     
-    cmp_mood_header = ttk.Label(stats_popup, text = "Comparison Mood", anchor= CENTER)
-    cmp_mood_header.grid(row=2, column=0, sticky = 'nsew')
+        cmp_mood_header = ttk.Label(stats_popup, text = "Comparison Mood", anchor= CENTER)
+        cmp_mood_header.grid(row=2, column=0, sticky = 'nsew')
     
-    cmp_mood_output = ttk.Label(stats_popup, text="\n".join(str(entry) for entry in db.get_cmp(0,db.get_avg(0)[0],db.get_avg(0)[1], db.get_avg(0)[2])), anchor=CENTER)
-    cmp_mood_output.grid(row = 3, column = 0, sticky = 'nsew')
+        cmp_mood_output = ttk.Label(stats_popup, text="\n".join(str(round(entry,1)) for entry in db.get_cmp(0,db.get_avg(0)[0],db.get_avg(0)[1], db.get_avg(0)[2])), anchor=CENTER)
+        cmp_mood_output.grid(row = 3, column = 0, sticky = 'nsew')
 
-    cmp_energy_level_header = ttk.Label(stats_popup, text = "Comparison Energy Level", anchor= CENTER)
-    cmp_energy_level_header.grid(row=2, column=1, sticky = 'nsew')
+        cmp_energy_level_header = ttk.Label(stats_popup, text = "Comparison Energy Level", anchor= CENTER)
+        cmp_energy_level_header.grid(row=2, column=1, sticky = 'nsew')
     
-    cmp_energy_level_output = ttk.Label(stats_popup, text ="\n".join(str(entry) for entry in db.get_cmp(1,db.get_avg(0)[0],db.get_avg(0)[1], db.get_avg(0)[2])), anchor = CENTER)
-    cmp_energy_level_output.grid(row = 3, column = 1, sticky = 'nsew')
+        cmp_energy_level_output = ttk.Label(stats_popup, text ="\n".join(str(round(entry,1)) for entry in db.get_cmp(1,db.get_avg(0)[0],db.get_avg(0)[1], db.get_avg(0)[2])), anchor = CENTER)
+        cmp_energy_level_output.grid(row = 3, column = 1, sticky = 'nsew')
     
-    cmp_sleep_duration_header = ttk.Label(stats_popup, text = "Comparison Sleep Duration", anchor= CENTER)
-    cmp_sleep_duration_header.grid(row=2, column=2, sticky = 'nsew')
+        cmp_sleep_duration_header = ttk.Label(stats_popup, text = "Comparison Sleep Duration", anchor= CENTER)
+        cmp_sleep_duration_header.grid(row=2, column=2, sticky = 'nsew')
     
-    cmp_sleep_duration_output = ttk.Label(stats_popup, text ="\n".join(str(entry) for entry in db.get_cmp(2,db.get_avg(0)[0],db.get_avg(0)[1], db.get_avg(0)[2])), anchor = CENTER)
-    cmp_sleep_duration_output.grid(row = 3, column = 2, sticky = 'nsew')
+        cmp_sleep_duration_output = ttk.Label(stats_popup, text ="\n".join(str(round(entry,1)) for entry in db.get_cmp(2,db.get_avg(0)[0],db.get_avg(0)[1], db.get_avg(0)[2])), anchor = CENTER)
+        cmp_sleep_duration_output.grid(row = 3, column = 2, sticky = 'nsew')
     
-    cmp_sleep_quality_header = ttk.Label(stats_popup, text = "Comparison Sleep Quality", anchor= CENTER)
-    cmp_sleep_quality_header.grid(row=2, column=3, sticky = 'nsew')
+        cmp_sleep_quality_header = ttk.Label(stats_popup, text = "Comparison Sleep Quality", anchor= CENTER)
+        cmp_sleep_quality_header.grid(row=2, column=3, sticky = 'nsew')
     
-    cmp_sleep_quality_output = ttk.Label(stats_popup, text ="\n".join(str(entry) for entry in db.get_cmp(3,db.get_avg(0)[0],db.get_avg(0)[1], db.get_avg(0)[2])), anchor = CENTER)
-    cmp_sleep_quality_output.grid(row = 3, column = 3, sticky = 'nsew')
+        cmp_sleep_quality_output = ttk.Label(stats_popup, text ="\n".join(str(round(entry,1)) for entry in db.get_cmp(3,db.get_avg(0)[0],db.get_avg(0)[1], db.get_avg(0)[2])), anchor = CENTER)
+        cmp_sleep_quality_output.grid(row = 3, column = 3, sticky = 'nsew')
     
-    cmp_physical_symptoms_header = ttk.Label(stats_popup, text = "Comparison Physical Symptoms", anchor= CENTER)
-    cmp_physical_symptoms_header.grid(row=2, column=4, sticky = 'nsew')
+        cmp_physical_symptoms_header = ttk.Label(stats_popup, text = "Comparison Physical Symptoms", anchor= CENTER)
+        cmp_physical_symptoms_header.grid(row=2, column=4, sticky = 'nsew')
     
-    cmp_physical_symptoms_output = ttk.Label(stats_popup, text ="\n".join(str(entry) for entry in db.get_cmp(4,db.get_avg(0)[0],db.get_avg(0)[1], db.get_avg(0)[2])), anchor = CENTER)
-    cmp_physical_symptoms_output.grid(row =3, column = 4, sticky = 'nsew')
+        cmp_physical_symptoms_output = ttk.Label(stats_popup, text ="\n".join(str(round(entry,1)) for entry in db.get_cmp(4,db.get_avg(0)[0],db.get_avg(0)[1], db.get_avg(0)[2])), anchor = CENTER)
+        cmp_physical_symptoms_output.grid(row =3, column = 4, sticky = 'nsew')
     
-    cmp_social_interaction_header = ttk.Label(stats_popup, text = "Comparison Social Interaction", anchor= CENTER)
-    cmp_social_interaction_header.grid(row=2, column=5, sticky = 'nsew')
+        cmp_social_interaction_header = ttk.Label(stats_popup, text = "Comparison Social Interaction", anchor= CENTER)
+        cmp_social_interaction_header.grid(row=2, column=5, sticky = 'nsew')
     
-    cmp_social_interaction_output = ttk.Label(stats_popup, text ="\n".join(str(entry) for entry in db.get_cmp(5,db.get_avg(0)[0],db.get_avg(0)[1], db.get_avg(0)[2])), anchor = CENTER)
-    cmp_social_interaction_output.grid(row =3, column = 5, sticky = 'nsew')
+        cmp_social_interaction_output = ttk.Label(stats_popup, text ="\n".join(str(round(entry,1)) for entry in db.get_cmp(5,db.get_avg(0)[0],db.get_avg(0)[1], db.get_avg(0)[2])), anchor = CENTER)
+        cmp_social_interaction_output.grid(row =3, column = 5, sticky = 'nsew')
     
-    cmp_physical_activity_header = ttk.Label(stats_popup, text = "Comparison Physical Activity", anchor= CENTER)
-    cmp_physical_activity_header.grid(row=2, column=6, sticky = 'nsew')
+        cmp_physical_activity_header = ttk.Label(stats_popup, text = "Comparison Physical Activity", anchor= CENTER)
+        cmp_physical_activity_header.grid(row=2, column=6, sticky = 'nsew')
     
-    cmp_physical_activity_output = ttk.Label(stats_popup, text ="\n".join(str(entry) for entry in db.get_cmp(6,db.get_avg(0)[0],db.get_avg(0)[1], db.get_avg(0)[2])), anchor = CENTER)
-    cmp_physical_activity_output.grid(row =3, column = 6, sticky = 'nsew')
+        cmp_physical_activity_output = ttk.Label(stats_popup, text ="\n".join(str(round(entry,1)) for entry in db.get_cmp(6,db.get_avg(0)[0],db.get_avg(0)[1], db.get_avg(0)[2])), anchor = CENTER)
+        cmp_physical_activity_output.grid(row =3, column = 6, sticky = 'nsew')
 
-    # avg_mood_10_days_output = ttk.Label(stats_popup, text = db.get_avg(0, 10), anchor = CENTER)
-    # avg_mood_10_days_output.grid(row = 1, column = 0, sticky = 'nsew')
+        # avg_mood_10_days_output = ttk.Label(stats_popup, text = db.get_avg(0, 10), anchor = CENTER)
+        # avg_mood_10_days_output.grid(row = 1, column = 0, sticky = 'nsew')
     
-    # avg_mood_30_days_header = ttk.Label(stats_popup, text = "Average Mood Over Past 30 Days", anchor= CENTER)
-    # avg_mood_30_days_header.grid(row=2, column=0, sticky = 'nsew')
+        # avg_mood_30_days_header = ttk.Label(stats_popup, text = "Average Mood Over Past 30 Days", anchor= CENTER)
+        # avg_mood_30_days_header.grid(row=2, column=0, sticky = 'nsew')
 
-    # avg_mood_30_days_output = ttk.Label(stats_popup, text = db.get_avg(0, 30), anchor = CENTER)
-    # avg_mood_30_days_output.grid(row = 3, column = 0, sticky = 'nsew')
+        # avg_mood_30_days_output = ttk.Label(stats_popup, text = db.get_avg(0, 30), anchor = CENTER)
+        # avg_mood_30_days_output.grid(row = 3, column = 0, sticky = 'nsew')
     
-    # avg_mood_90_days_header = ttk.Label(stats_popup, text = "Average Mood Over Past 90 Days", anchor= CENTER)
-    # avg_mood_10_days_header.grid(row= 4, column=0, sticky = 'nsew')
+        # avg_mood_90_days_header = ttk.Label(stats_popup, text = "Average Mood Over Past 90 Days", anchor= CENTER)
+        # avg_mood_10_days_header.grid(row= 4, column=0, sticky = 'nsew')
 
-    # avg_mood_90_days_output = ttk.Label(stats_popup, text = db.get_avg(0, 90), anchor = CENTER)
-    # avg_mood_90_days_output.grid(row = 5, column = 0, sticky = 'nsew')
+        # avg_mood_90_days_output = ttk.Label(stats_popup, text = db.get_avg(0, 90), anchor = CENTER)
+        # avg_mood_90_days_output.grid(row = 5, column = 0, sticky = 'nsew')
     
-    # headers = []
+        # headers = []
 
-    # fill_stats(headers,outputs, stats_popup, num = 0)
+        # fill_stats(headers,outputs, stats_popup, num = 0)
 
         
-    # Function to close the popup
-    def close_popup():
-        stats_popup.destroy()
+        # Function to close the popup
+        def close_popup():
+            stats_popup.destroy()
     
-    style = ttk.Style()
-    style.theme_use('default')  # Change to the 'default' theme 
-    style.configure('Close.TButton', background='red')
+        style = ttk.Style()
+        # style.theme_use('default')  # Change to the 'default' theme 
+        style.configure('Close.TButton', background='red', foreground = 'black')
     
-    # Create a red X button in the top right corner
-    close_button = ttk.Button(stats_popup, text="X", command=close_popup, style='Close.TButton')
-    close_button.place(relx=1.0, rely=0.0, anchor='ne', width=40, height=40)
+        # Create a red X button in the top right corner
+        close_button = ttk.Button(stats_popup, text="X", command=close_popup, style='Close.TButton')
+        close_button.place(relx=1.0, rely=0.0, anchor='ne', width=40, height=40)
+    
+    except Exception:
+        open_popup_error_alert()
     
 def open_popup(addsub, text):
-    def handle_ok():
-        input_value = entry.get()
+    try :
+        def handle_ok():
+            input_value = entry.get()
         
-        if addsub == 1 :
-            add_reminder(input_value, text)
-        elif addsub == 0 : 
-            remove_reminder(input_value, text)
+            if addsub == 1 :
+                add_reminder(input_value, text)
+            elif addsub == 0 : 
+                remove_reminder(input_value, text)
             
-        refresh()
-        popup.destroy()
+            refresh()
+            popup.destroy()
 
-    popup = tk.Toplevel(root)
-    popup.title("User Input")
+        popup = tk.Toplevel(root)
+        popup.title("User Input")
 
-    # Set the size of the popup window
-    popup_width = 300
-    popup_height = 150
+        # Set the size of the popup window
+        popup_width = 300
+        popup_height = 150
 
-    # Calculate position to center the window on the screen
-    screen_width = root.winfo_screenwidth()
-    screen_height = root.winfo_screenheight()
-    x = (screen_width - popup_width) // 2
-    y = (screen_height - popup_height) // 2
+        # Calculate position to center the window on the screen
+        screen_width = root.winfo_screenwidth()
+        screen_height = root.winfo_screenheight()
+        x = (screen_width - popup_width) // 2
+        y = (screen_height - popup_height) // 2
 
-    # Set the position of the popup window
-    popup.geometry(f"{popup_width}x{popup_height}+{x}+{y}")
+        # Set the position of the popup window
+        popup.geometry(f"{popup_width}x{popup_height}+{x}+{y}")
 
-    label = ttk.Label(popup, text=f"{text}")
-    label.pack(padx=10, pady=10)
+        label = ttk.Label(popup, text=f"{text}")
+        label.pack(padx=10, pady=10)
 
-    entry = ttk.Entry(popup, width=30)
-    entry.pack(padx=10, pady=10)
-    entry.focus()
+        entry = ttk.Entry(popup, width=30)
+        entry.pack(padx=10, pady=10)
+        entry.focus()
 
-    ok_button = ttk.Button(popup, text="OK", command=handle_ok)
-    ok_button.pack(padx=10, pady=10)
+        ok_button = ttk.Button(popup, text="OK", command=handle_ok)
+        ok_button.pack(padx=10, pady=10)
+        
+    except Exception:
+        open_popup_error_alert()
    
 def exit_program(event=None):
     root.destroy()
 
 def get_all_in_category(category) :
-    all_in_category = db.get_reminders(category, "user_entries")
-    all_category_string = "\n".join(str(entry) for entry in reversed(all_in_category[-10:]))
-    return all_category_string
+    try :
+        all_in_category = db.get_reminders(category, "user_entries")
+        all_category_string = "\n".join(str(entry) for entry in reversed(all_in_category[-10:]))
+        return all_category_string
+    except Exception:
+        open_popup_error_alert()
+   
 
 def get_all_in_category_entries(category) :
-    all_in_category = db.get_entries(category, "user_entries")
-    all_category_string = "\n".join(str(entry) for entry in all_in_category[:10])
-    return all_category_string
+    try :
+        all_in_category = db.get_entries(category, "user_entries")
+        all_category_string = "\n".join(str(entry) for entry in all_in_category[:10])
+        return all_category_string
+    except Exception:
+        open_popup_error_alert()
 
 def update_previous_entries() :
-    date_label = ttk.Label(results_frame,text="DATE", anchor="center")
-    date_label.grid(row=0,column=0, sticky='nsew')
+    try :
+        date_label = ttk.Label(results_frame,text="DATE", anchor="center")
+        date_label.grid(row=0,column=0, sticky='nsew')
     
-    mood_label = ttk.Label(results_frame,text="MOOD", anchor="center")
-    mood_label.grid(row=0,column=1, sticky='nsew')
+        mood_label = ttk.Label(results_frame,text="MOOD", anchor="center")
+        mood_label.grid(row=0,column=1, sticky='nsew')
     
-    energy_level_label = ttk.Label(results_frame,text="ENERGY LEVEL", anchor="center")
-    energy_level_label.grid(row=0,column=2, sticky='nsew')
+        energy_level_label = ttk.Label(results_frame,text="ENERGY LEVEL", anchor="center")
+        energy_level_label.grid(row=0,column=2, sticky='nsew')
     
-    sleep_duration_label = ttk.Label(results_frame,text="SLEEP DURATION", anchor="center")
-    sleep_duration_label.grid(row=0,column=3, sticky='nsew')
+        sleep_duration_label = ttk.Label(results_frame,text="SLEEP DURATION", anchor="center")
+        sleep_duration_label.grid(row=0,column=3, sticky='nsew')
     
-    sleep_quality_label = ttk.Label(results_frame,text="SLEEP QUALITY", anchor="center")
-    sleep_quality_label.grid(row=0,column=4, sticky='nsew')
+        sleep_quality_label = ttk.Label(results_frame,text="SLEEP QUALITY", anchor="center")
+        sleep_quality_label.grid(row=0,column=4, sticky='nsew')
 
-    physical_symptoms_label = ttk.Label(results_frame,text="PHYSICAL SYMPTOMS", anchor="center")
-    physical_symptoms_label.grid(row=0,column=5, sticky='nsew')
+        physical_symptoms_label = ttk.Label(results_frame,text="PHYSICAL SYMPTOMS", anchor="center")
+        physical_symptoms_label.grid(row=0,column=5, sticky='nsew')
     
-    social_interaction_label = ttk.Label(results_frame,text="SOCIAL INTERACTION", anchor="center")
-    social_interaction_label.grid(row=0,column=6, sticky='nsew')
+        social_interaction_label = ttk.Label(results_frame,text="SOCIAL INTERACTION", anchor="center")
+        social_interaction_label.grid(row=0,column=6, sticky='nsew')
 
-    physical_activity_label = ttk.Label(results_frame,text="PHYSICAL ACTIVITY", anchor="center")
-    physical_activity_label.grid(row=0,column=7, sticky='nsew')
+        physical_activity_label = ttk.Label(results_frame,text="PHYSICAL ACTIVITY", anchor="center")
+        physical_activity_label.grid(row=0,column=7, sticky='nsew')
     
-    test = get_all_in_category("entry_date")
+        test = get_all_in_category("entry_date")
 
-    last_10_entries_dates = ttk.Label(results_frame, text = get_all_in_category_entries("entry_date"), anchor='center')
-    last_10_entries_dates.grid(row=1,column=0, sticky = 'n')
+        last_10_entries_dates = ttk.Label(results_frame, text = get_all_in_category_entries("entry_date"), anchor='center')
+        last_10_entries_dates.grid(row=1,column=0, sticky = 'n')
     
-    last_10_entries_moods = ttk.Label(results_frame, text = get_all_in_category_entries("mood"), anchor='center')
-    last_10_entries_moods.grid(row=1,column=1, sticky = 'n')
+        last_10_entries_moods = ttk.Label(results_frame, text = get_all_in_category_entries("mood"), anchor='center')
+        last_10_entries_moods.grid(row=1,column=1, sticky = 'n')
     
-    last_10_entries_energy_levels = ttk.Label(results_frame, text = get_all_in_category_entries("energy_level"), anchor='center')
-    last_10_entries_energy_levels.grid(row=1,column=2, sticky = 'n')
+        last_10_entries_energy_levels = ttk.Label(results_frame, text = get_all_in_category_entries("energy_level"), anchor='center')
+        last_10_entries_energy_levels.grid(row=1,column=2, sticky = 'n')
 
-    last_10_entries_sleep_durations = ttk.Label(results_frame, text = get_all_in_category_entries("sleep_duration"), anchor='center')
-    last_10_entries_sleep_durations.grid(row=1,column=3, sticky = 'n')
+        last_10_entries_sleep_durations = ttk.Label(results_frame, text = get_all_in_category_entries("sleep_duration"), anchor='center')
+        last_10_entries_sleep_durations.grid(row=1,column=3, sticky = 'n')
     
-    last_10_entries_sleep_qualities = ttk.Label(results_frame, text = get_all_in_category_entries("sleep_quality"), anchor='center')
-    last_10_entries_sleep_qualities.grid(row=1,column=4, sticky = 'n')
+        last_10_entries_sleep_qualities = ttk.Label(results_frame, text = get_all_in_category_entries("sleep_quality"), anchor='center')
+        last_10_entries_sleep_qualities.grid(row=1,column=4, sticky = 'n')
     
-    last_10_entries_physical_symptoms = ttk.Label(results_frame, text = get_all_in_category_entries("physical_symptoms"), anchor='center')
-    last_10_entries_physical_symptoms.grid(row=1,column=5, sticky = 'n')
+        last_10_entries_physical_symptoms = ttk.Label(results_frame, text = get_all_in_category_entries("physical_symptoms"), anchor='center')
+        last_10_entries_physical_symptoms.grid(row=1,column=5, sticky = 'n')
     
-    last_10_entries_social_interactions = ttk.Label(results_frame, text = get_all_in_category_entries("social_interaction"), anchor='center')
-    last_10_entries_social_interactions.grid(row=1,column=6, sticky = 'n')
+        last_10_entries_social_interactions = ttk.Label(results_frame, text = get_all_in_category_entries("social_interaction"), anchor='center')
+        last_10_entries_social_interactions.grid(row=1,column=6, sticky = 'n')
     
-    last_10_entries_physical_activities = ttk.Label(results_frame, text = get_all_in_category_entries("physical_activity"), anchor='center')
-    last_10_entries_physical_activities.grid(row=1,column=7, sticky = 'n')
+        last_10_entries_physical_activities = ttk.Label(results_frame, text = get_all_in_category_entries("physical_activity"), anchor='center')
+        last_10_entries_physical_activities.grid(row=1,column=7, sticky = 'n')
     
+    except Exception:
+        open_popup_error_alert()
     
 def update_output(output_widgets, all_outputs, default_output):
     num_outputs = len(all_outputs)
@@ -340,44 +365,48 @@ def update_output(output_widgets, all_outputs, default_output):
          elif i == 2:
              output_widgets[i].config(text=default_output, font=("Arial", 12))
     
-def popup_manager(addsub, text) :
-    if(addsub == 1) :
-        open_popup(addsub, text)
-    elif(addsub == 0) :
-        open_popup(addsub, text)
+# def open_popup(addsub, text) :
+#     if(addsub == 1) :
+#         open_popup(addsub, text)
+#     elif(addsub == 0) :
+#         open_popup(addsub, text)
         
 def refresh() :
-    all_goals = db.get_reminders("goal","goals_new")
-    default_goal = "Please Add Goal"
-    goals_output_widgets = [goals_output_1, goals_output_2, goals_output_3]
-    update_output(goals_output_widgets, all_goals, default_goal)
+    try :
+        all_goals = db.get_reminders("goal","goals_new")
+        default_goal = "Please Add Goal"
+        goals_output_widgets = [goals_output_1, goals_output_2, goals_output_3]
+        update_output(goals_output_widgets, all_goals, default_goal)
 
-    all_accomplishments = db.get_reminders("accomplishment", "accomplishments_new")
-    default_accomplishment = "Please Add Accomplishment"
-    accomplishments_output_widgets = [accomplishments_output_1, accomplishments_output_2, accomplishments_output_3]
-    update_output(accomplishments_output_widgets, all_accomplishments, default_accomplishment)
+        all_accomplishments = db.get_reminders("accomplishment", "accomplishments_new")
+        default_accomplishment = "Please Add Accomplishment"
+        accomplishments_output_widgets = [accomplishments_output_1, accomplishments_output_2, accomplishments_output_3]
+        update_output(accomplishments_output_widgets, all_accomplishments, default_accomplishment)
 
-    all_coping_strategies = db.get_reminders("coping_strategy", "coping_strategies_new")
-    default_coping_strategy = "Please Add Coping Strategy"
-    coping_strategys_output_widgets = [coping_strategies_output_1, coping_strategies_output_2, coping_strategies_output_3]
-    update_output(coping_strategys_output_widgets, all_coping_strategies, default_coping_strategy)
+        all_coping_strategies = db.get_reminders("coping_strategy", "coping_strategies_new")
+        default_coping_strategy = "Please Add Coping Strategy"
+        coping_strategys_output_widgets = [coping_strategies_output_1, coping_strategies_output_2, coping_strategies_output_3]
+        update_output(coping_strategys_output_widgets, all_coping_strategies, default_coping_strategy)
     
-    all_gratitudes = db.get_reminders("gratitude", "gratitudes_new")
-    default_gratitude = "Please Add Gratitude"
-    gratitudes_output_widgets = [gratitudes_output_1, gratitudes_output_2, gratitudes_output_3]
-    update_output(gratitudes_output_widgets, all_gratitudes, default_gratitude)
+        all_gratitudes = db.get_reminders("gratitude", "gratitudes_new")
+        default_gratitude = "Please Add Gratitude"
+        gratitudes_output_widgets = [gratitudes_output_1, gratitudes_output_2, gratitudes_output_3]
+        update_output(gratitudes_output_widgets, all_gratitudes, default_gratitude)
 
-    all_reflections = db.get_reminders("reflection", "reflections_new")
-    default_reflection = "Please Add reflection"
-    reflections_output_widgets = [reflections_output_1, reflections_output_2, reflections_output_3]
-    update_output(reflections_output_widgets, all_reflections, default_reflection)
+        all_reflections = db.get_reminders("reflection", "reflections_new")
+        default_reflection = "Please Add reflection"
+        reflections_output_widgets = [reflections_output_1, reflections_output_2, reflections_output_3]
+        update_output(reflections_output_widgets, all_reflections, default_reflection)
 
-    all_self_care_activities = db.get_reminders("self_care_activity", "self_care_activities_new")
-    default_self_care_activity = "Please Add Self Care Activity"
-    self_care_activitys_output_widgets = [self_care_activities_output_1, self_care_activities_output_2, self_care_activities_output_3]
-    update_output(self_care_activitys_output_widgets, all_self_care_activities, default_self_care_activity)
+        all_self_care_activities = db.get_reminders("self_care_activity", "self_care_activities_new")
+        default_self_care_activity = "Please Add Self Care Activity"
+        self_care_activitys_output_widgets = [self_care_activities_output_1, self_care_activities_output_2, self_care_activities_output_3]
+        update_output(self_care_activitys_output_widgets, all_self_care_activities, default_self_care_activity)
 
-    update_previous_entries()
+        update_previous_entries()
+    
+    except Exception:
+        open_popup_error_alert()
     
 def open_error_alert(message) :
     messagebox.showinfo("Alert", message) 
@@ -389,30 +418,32 @@ def open_popup_error_alert() :
     messagebox.showerror("Error", "Operation failed. Please double check your work and try again.")
 
 def clicked() :
-    mood = user_entry_mood.get()
-    energy_level = user_entry_energy.get()
-    sleep_duration = user_entry_sleep.get()
-    sleep_quality = user_entry_sleep_quality.get()
-    physical_symptoms = user_entry_physical_symptoms.get()
-    social_interaction = user_entry_social_interaction.get()
-    physical_activity = user_entry_physical_activity.get()
+    try :
+        mood = user_entry_mood.get()
+        energy_level = user_entry_energy.get()
+        sleep_duration = user_entry_sleep.get()
+        sleep_quality = user_entry_sleep_quality.get()
+        physical_symptoms = user_entry_physical_symptoms.get()
+        social_interaction = user_entry_social_interaction.get()
+        physical_activity = user_entry_physical_activity.get()
 
-    get_latest_entry_date = db.get_latest_entry_date()[0]
+        get_latest_entry_date = db.get_latest_entry_date()[0]
 
-    if not get_latest_entry_date == date.today() : 
-        try :
+        if not get_latest_entry_date == date.today() :        
             db.add_entry(mood,energy_level,sleep_duration,sleep_quality,physical_symptoms,social_interaction,physical_activity)
             update_previous_entries()
-        except Exception:
-            open_popup_error_alert()
+
+        else : 
+            open_error_alert("You have already entered your survery for today!")      
             
-    else : 
-        open_error_alert("You have already entered your survery for today!")
+    except Exception:
+        open_popup_error_alert()
+            
  
 root = tk.Tk()
 root.title("Main Window")
 
-db.set_error_callback(open_popup_error_alert)
+# db.set_error_callback(open_popup_error_alert)
 
 # Set the window attributes to fullscreen
 root.attributes("-fullscreen", True)
@@ -453,10 +484,10 @@ goals_buttons.grid_columnconfigure(1, weight=1)
 
 goals_buttons.grid_rowconfigure(0,weight=1)
 
-add_goal_button = ttk.Button(goals_buttons, text="Add Goal", command=lambda: (popup_manager(1, "Add Goal"), refresh()))
+add_goal_button = ttk.Button(goals_buttons, text="Add Goal", command=lambda: (open_popup(1, "Add Goal"), refresh()))
 add_goal_button.grid(row=0, column = 0, sticky='nsew', padx=5, pady=5)
 
-remove_goal_button = ttk.Button(goals_buttons, text = "Remove Goal", command=lambda: (popup_manager(0, "Remove Goal"), refresh()))
+remove_goal_button = ttk.Button(goals_buttons, text = "Remove Goal", command=lambda: (open_popup(0, "Remove Goal"), refresh()))
 remove_goal_button.grid(row=0, column = 1, sticky='nsew', padx=5, pady=5)
 
 goals_label.grid_columnconfigure(0,weight=1)
@@ -492,10 +523,10 @@ accomplishments_buttons.grid_columnconfigure(1, weight=1)
 
 accomplishments_buttons.grid_rowconfigure(0,weight=1)
 
-add_accomplishment_button = ttk.Button(accomplishments_buttons, text = "Add Accomplishment", command=lambda: (popup_manager(1, "Add Accomplishment"), refresh()))
+add_accomplishment_button = ttk.Button(accomplishments_buttons, text = "Add Accomplishment", command=lambda: (open_popup(1, "Add Accomplishment"), refresh()))
 add_accomplishment_button.grid(row=0, column = 0, sticky='nsew', padx=5, pady=5)
 
-remove_accomplishment_button = ttk.Button(accomplishments_buttons, text = "Remove Accomplishment",  command=lambda: (popup_manager(0, "Remove Accomplishment"), refresh()))
+remove_accomplishment_button = ttk.Button(accomplishments_buttons, text = "Remove Accomplishment",  command=lambda: (open_popup(0, "Remove Accomplishment"), refresh()))
 remove_accomplishment_button.grid(row=0, column = 1, sticky='nsew', padx=5, pady=5)
 
 accomplishments_output_1 = ttk.Label(accomplishments_label, text="First accomplishment", anchor=CENTER)
@@ -522,10 +553,10 @@ coping_strategys_buttons.grid_columnconfigure(1, weight=1)
 
 coping_strategys_buttons.grid_rowconfigure(0,weight=1)
 
-add_coping_strategy_button = ttk.Button(coping_strategys_buttons, text = "Add Coping Strategy",  command=lambda: (popup_manager(1, "Add Coping Strategy"), refresh()))
+add_coping_strategy_button = ttk.Button(coping_strategys_buttons, text = "Add Coping Strategy",  command=lambda: (open_popup(1, "Add Coping Strategy"), refresh()))
 add_coping_strategy_button.grid(row=0, column = 0, sticky='nsew', padx=5, pady=5)
 
-remove_coping_strategy_button = ttk.Button(coping_strategys_buttons, text = "Remove Coping Strategy",  command=lambda: (popup_manager(0, "Remove Coping Strategy"), refresh()))
+remove_coping_strategy_button = ttk.Button(coping_strategys_buttons, text = "Remove Coping Strategy",  command=lambda: (open_popup(0, "Remove Coping Strategy"), refresh()))
 remove_coping_strategy_button.grid(row=0, column = 1, sticky='nsew', padx=5, pady=5)
 
 coping_strategies_label.grid_columnconfigure(0,weight=1)
@@ -557,10 +588,10 @@ gratitudes_buttons.grid_columnconfigure(1, weight=1)
 
 gratitudes_buttons.grid_rowconfigure(0,weight=1)
 
-add_gratitude_button = ttk.Button(gratitudes_buttons, text = "Add Gratitude", command=lambda: (popup_manager(1, "Add Gratitude"), refresh()))
+add_gratitude_button = ttk.Button(gratitudes_buttons, text = "Add Gratitude", command=lambda: (open_popup(1, "Add Gratitude"), refresh()))
 add_gratitude_button.grid(row=0, column = 0, sticky='nsew', padx=5, pady=5)
 
-remove_gratitude_button = ttk.Button(gratitudes_buttons, text = "Remove Gratitude",  command=lambda: (popup_manager(0, "Remove Gratitude"), refresh()))
+remove_gratitude_button = ttk.Button(gratitudes_buttons, text = "Remove Gratitude",  command=lambda: (open_popup(0, "Remove Gratitude"), refresh()))
 remove_gratitude_button.grid(row=0, column = 1, sticky='nsew', padx=5, pady=5)
 
 gratitudes_label.grid_columnconfigure(0,weight=1)
@@ -592,10 +623,10 @@ reflections_buttons.grid_columnconfigure(1, weight=1)
 
 reflections_buttons.grid_rowconfigure(0,weight=1)
 
-add_reflection_button = ttk.Button(reflections_buttons, text = "Add Reflection", command=lambda: (popup_manager(1, "Add Reflection"), refresh()))
+add_reflection_button = ttk.Button(reflections_buttons, text = "Add Reflection", command=lambda: (open_popup(1, "Add Reflection"), refresh()))
 add_reflection_button.grid(row=0, column = 0, sticky='nsew', padx=5, pady=5)
 
-remove_reflection_button = ttk.Button(reflections_buttons, text = "Remove Reflection", command=lambda: (popup_manager(0, "Remove Reflection"), refresh()))
+remove_reflection_button = ttk.Button(reflections_buttons, text = "Remove Reflection", command=lambda: (open_popup(0, "Remove Reflection"), refresh()))
 remove_reflection_button.grid(row=0, column = 1, sticky='nsew', padx=5, pady=5)
 
 reflections_label.grid_columnconfigure(0,weight=1)
@@ -627,10 +658,10 @@ self_care_activitys_buttons.grid_columnconfigure(1, weight=1)
 
 self_care_activitys_buttons.grid_rowconfigure(0,weight=1)
 
-add_self_care_activity_button = ttk.Button(self_care_activitys_buttons, text = "Add Self Care Activity", command=lambda: (popup_manager(1, "Add Self Care Activity"), refresh()))
+add_self_care_activity_button = ttk.Button(self_care_activitys_buttons, text = "Add Self Care Activity", command=lambda: (open_popup(1, "Add Self Care Activity"), refresh()))
 add_self_care_activity_button.grid(row=0, column = 0, sticky='nsew', padx=5, pady=5)
 
-remove_self_care_activity_button = ttk.Button(self_care_activitys_buttons, text = "Remove Self Care Activity", command=lambda: (popup_manager(0, "Remove Self Care Activity"), refresh()))
+remove_self_care_activity_button = ttk.Button(self_care_activitys_buttons, text = "Remove Self Care Activity", command=lambda: (open_popup(0, "Remove Self Care Activity"), refresh()))
 remove_self_care_activity_button.grid(row=0, column = 1, sticky='nsew', padx=5, pady=5)
 
 self_care_activities_label.grid_columnconfigure(0,weight=1)

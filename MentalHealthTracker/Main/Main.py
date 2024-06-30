@@ -7,6 +7,8 @@ import psycopg2
 from psycopg2.sql import NULL
 from dotenv import load_dotenv
 import os
+import sys
+from tkinter import messagebox
 
 conn = NULL
 cur = NULL
@@ -21,7 +23,9 @@ db_user = os.getenv("USER_NAME")
 db_password = os.getenv("DB_PASSWORD")
 db_host = os.getenv("HOST_NAME")
 
-
+def failed_connection() :
+    messagebox.showerror("Error", "Failed to connect to database.")
+    sys.exit()
 
 try :
     conn = psycopg2.connect(
@@ -32,16 +36,17 @@ try :
                             )
     conn.autocommit = True
 except Exception as e:
-    raise NotImplementedError(e)
+    failed_connection()
 
 if(conn == NULL) :
-    raise NotImplementedError()
+    failed_connection()
+    
 
 cur = conn.cursor()
 
-def set_error_callback(callback) :
-    global error_callback
-    error_callback = callback
+# def set_error_callback(callback) :
+#     global error_callback
+#     error_callback = callback
 
 
 def get_latest_entry_date() :
