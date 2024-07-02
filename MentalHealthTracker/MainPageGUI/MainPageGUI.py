@@ -16,16 +16,19 @@ popup_input = Empty
 
 def on_resize(event):
     # Update the size of the root window when resized
-    root.grid_rowconfigure(0, weight=6)
-    root.grid_rowconfigure(1, weight=1)
+    root.grid_rowconfigure(0, weight=1)
+    root.grid_rowconfigure(1, weight=4)
     root.grid_rowconfigure(2, weight=12)
-    root.grid_rowconfigure(3, weight=1)
-    root.grid_rowconfigure(4, weight=12)
+    root.grid_rowconfigure(3, weight=2)
+    root.grid_rowconfigure(4, weight=4)
     root.grid_rowconfigure(5, weight=12)
-    root.grid_rowconfigure(6, weight=1)
-    root.grid_rowconfigure(7, weight=12)
+    root.grid_rowconfigure(6, weight=2)
+    root.grid_rowconfigure(7, weight=4)
     root.grid_rowconfigure(8, weight=12)
-    root.grid_rowconfigure(9, weight=1)
+    root.grid_rowconfigure(9, weight=2)
+    root.grid_rowconfigure(10, weight=1)
+
+    
 
     root.grid_columnconfigure(0, weight=1)
     root.grid_columnconfigure(1, weight=3)
@@ -290,28 +293,28 @@ def get_all_in_category_entries(category) :
 def update_previous_entries() :
     try :
         date_label = ttk.Label(results_frame,text="DATE", anchor="center")
-        date_label.grid(row=0,column=0, sticky='nsew')
+        date_label.grid(row=0,column=0, sticky='new')
     
         mood_label = ttk.Label(results_frame,text="MOOD", anchor="center")
-        mood_label.grid(row=0,column=1, sticky='nsew')
+        mood_label.grid(row=0,column=1, sticky='new')
     
         energy_level_label = ttk.Label(results_frame,text="ENERGY LEVEL", anchor="center")
-        energy_level_label.grid(row=0,column=2, sticky='nsew')
+        energy_level_label.grid(row=0,column=2, sticky='new')
     
         sleep_duration_label = ttk.Label(results_frame,text="SLEEP DURATION", anchor="center")
-        sleep_duration_label.grid(row=0,column=3, sticky='nsew')
+        sleep_duration_label.grid(row=0,column=3, sticky='new')
     
         sleep_quality_label = ttk.Label(results_frame,text="SLEEP QUALITY", anchor="center")
-        sleep_quality_label.grid(row=0,column=4, sticky='nsew')
+        sleep_quality_label.grid(row=0,column=4, sticky='new')
 
         physical_symptoms_label = ttk.Label(results_frame,text="PHYSICAL SYMPTOMS", anchor="center")
-        physical_symptoms_label.grid(row=0,column=5, sticky='nsew')
+        physical_symptoms_label.grid(row=0,column=5, sticky='new')
     
         social_interaction_label = ttk.Label(results_frame,text="SOCIAL INTERACTION", anchor="center")
-        social_interaction_label.grid(row=0,column=6, sticky='nsew')
+        social_interaction_label.grid(row=0,column=6, sticky='new')
 
         physical_activity_label = ttk.Label(results_frame,text="PHYSICAL ACTIVITY", anchor="center")
-        physical_activity_label.grid(row=0,column=7, sticky='nsew')
+        physical_activity_label.grid(row=0,column=7, sticky='new')
     
         test = get_all_in_category("entry_date")
 
@@ -455,8 +458,10 @@ root.bind("<Configure>", on_resize)
 root.bind("<Escape>", exit_program)
 
 greeting = ttk.Label(root, text="Hello, welcome to MyHealth!", font=("Arial", 20, "bold"),anchor="center")
-greeting.grid(row=0, column=1, sticky='nsew')
+greeting.grid(row=0, column=1, rowspan=2, sticky='nsew')
 
+tan_background = ttk.Style()
+tan_background.configure('Tan.TFrame', background='#D2B48C')  
 
 two_button_frame = ttk.Frame(root)
 two_button_frame.grid(row=7, column = 1, sticky='nsew')
@@ -470,10 +475,10 @@ button.grid(row= 0, column = 1, sticky = 'ew', padx=5, pady=5)
 stats_button = ttk.Button(two_button_frame, text="View Stats", command=open_stats)
 stats_button.grid(row = 0, column = 0, sticky='ew', padx=5, pady=5)
 
-goals_header = ttk.Label(root, text = "Goals", anchor= "center", font=("Arial", 14, "bold"))
+goals_header = ttk.Label(root, text = "Goals", anchor= "center", font=("Arial", 14, "bold"), relief='ridge', background='dark green')
 goals_header.grid(row=1, column=0, sticky= NSEW)
 
-goals_label = ttk.Labelframe(root)
+goals_label = ttk.Frame(root, style='Tan.TFrame')
 goals_label.grid(row=2, column=0, sticky='nsew')
 
 goals_buttons = ttk.Frame(root)
@@ -504,10 +509,10 @@ goals_output_2.grid(row=1, column=0,sticky='nsew')
 goals_output_3 = ttk.Label(goals_label, text="Third goal", anchor=CENTER)
 goals_output_3.grid(row=2, column=0, sticky='nsew')
 
-accomplishments_header = ttk.Label(root, text = "Accomplishments", anchor= "center", font=("Arial", 14, "bold"))
+accomplishments_header = ttk.Label(root, text = "Accomplishments", anchor= "center", font=("Arial", 14, "bold"), relief='ridge', background='dark green')
 accomplishments_header.grid(row=4, column=0, sticky= NSEW)
 
-accomplishments_label = ttk.Labelframe(root)
+accomplishments_label = ttk.Frame(root, style='Tan.TFrame')
 accomplishments_label.grid(row=5, column=0, sticky='nsew')
 
 accomplishments_label.grid_columnconfigure(0,weight=1)
@@ -538,10 +543,10 @@ accomplishments_output_2.grid(row=1, column=0)
 accomplishments_output_3 = ttk.Label(accomplishments_label, text="Third accomplishment", anchor=CENTER)
 accomplishments_output_3.grid(row=2, column=0)
 
-coping_strategies_header = ttk.Label(root, text = "Coping Strategies", anchor= "center", font=("Arial", 14, "bold"))
+coping_strategies_header = ttk.Label(root, text = "Coping Strategies", anchor= "center", font=("Arial", 14, "bold"), relief='ridge', background='dark green')
 coping_strategies_header.grid(row=7, column=0, sticky= NSEW)
 
-coping_strategies_label = ttk.Labelframe(root)
+coping_strategies_label = ttk.Frame(root, style='Tan.TFrame')
 coping_strategies_label.grid(row=8, column=0, sticky='nsew')
 
 
@@ -573,10 +578,10 @@ coping_strategies_output_2.grid(row=1, column=0)
 coping_strategies_output_3 = ttk.Label(coping_strategies_label, text="Third coping strategy", anchor=CENTER)
 coping_strategies_output_3.grid(row=2, column=0)
 
-gratitudes_header = ttk.Label(root, text = "Gratitudes", anchor= "center", font=("Arial", 14, "bold"))
+gratitudes_header = ttk.Label(root, text = "Gratitudes", anchor= "center", font=("Arial", 14, "bold"), relief='ridge', background='dark green')
 gratitudes_header.grid(row=1, column=2, sticky= NSEW)
 
-gratitudes_label = ttk.Labelframe(root)
+gratitudes_label = ttk.Frame(root, style='Tan.TFrame')
 gratitudes_label.grid(row=2, column=2, sticky='nsew')
 
 
@@ -608,10 +613,10 @@ gratitudes_output_2.grid(row=1, column=0)
 gratitudes_output_3 = ttk.Label(gratitudes_label, text="Third gratitude", anchor=CENTER)
 gratitudes_output_3.grid(row=2, column=0)
 
-reflections_header = ttk.Label(root, text = "Reflections", anchor= "center", font=("Arial", 14, "bold"))
-reflections_header.grid(row=4, column=2)
+reflections_header = ttk.Label(root, text = "Reflections", anchor= "center", font=("Arial", 14, "bold"), relief='ridge', background='dark green')
+reflections_header.grid(row=4, column=2, sticky= NSEW)
 
-reflections_label = ttk.Labelframe(root)
+reflections_label = ttk.Frame(root, style='Tan.TFrame')
 reflections_label.grid(row=5, column=2, sticky='nsew')
 
 
@@ -643,10 +648,10 @@ reflections_output_2.grid(row=1, column=0)
 reflections_output_3 = ttk.Label(reflections_label, text="Third reflection", anchor=CENTER)
 reflections_output_3.grid(row=2, column=0)
 
-self_care_activities_header = ttk.Label(root, text = "Self Care Activities", anchor= "center", font=("Arial", 14, "bold"))
+self_care_activities_header = ttk.Label(root, text = "Self Care Activities", anchor= "center", font=("Arial", 14, "bold"), relief='ridge', background='dark green')
 self_care_activities_header.grid(row=7, column=2, sticky= NSEW)
 
-self_care_activities_label = ttk.Labelframe(root)
+self_care_activities_label = ttk.Frame(root, style='Tan.TFrame')
 self_care_activities_label.grid(row=8, column=2, sticky='nsew')
 
 
