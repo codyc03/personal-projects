@@ -258,14 +258,20 @@ def get_cmp(category, ten_day_average, thirty_day_average, ninety_day_average) :
 
 def feed_values():
     for i in range(27):
-        # Generate a date for each iteration, starting from today and incrementing by 'i' days
-        entry_date = datetime.date.today() - datetime.timedelta(days=i + 1)
-        
-        # Execute the SQL query with dynamically generated date
-        execute_statement("""
+        # Generate a date for each iteration, starting from today and decrementing by 'i' days
+        entry_date = datetime.date.today() - datetime.timedelta(days=i)
+    
+        # SQL query with embedded parameter using string formatting
+        sql = f"""
             INSERT INTO user_entries (entry_date, mood, energy_level, sleep_duration, sleep_quality, physical_symptoms, social_interaction, physical_activity, username)
-            VALUES (%s, 10, 10, '10 hours', 10, 10, '10 hours', '10 hours', 'codyc')
-        """, (entry_date,))
+            VALUES ('{entry_date}', 10, 10, '10 hours', 10, 10, '10 hours', '10 hours', 'codyc')
+        """
+    
+        # Execute the SQL query with dynamically generated date
+        execute_statement(sql)
+
+# Close the database connection
+    conn.close()
         
 def test() : 
      print( "hello")

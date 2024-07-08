@@ -3,7 +3,7 @@ from pstats import Stats
 from pydoc import cli
 from queue import Empty
 import tkinter as tk
-from tkinter import ANCHOR, BOTH, CENTER, NSEW, ttk
+from tkinter import ANCHOR, BOTH, CENTER, NSEW, RAISED, ttk
 from turtle import bgcolor
 from unicodedata import category
 import Main as db
@@ -11,7 +11,7 @@ from datetime import date
 from tkinter import messagebox
 
 
-
+# db.feed_values()
 popup_input = Empty
 
 def on_resize(event):
@@ -354,19 +354,20 @@ def update_output(output_widgets, all_outputs, default_output):
          output_text = f"{i+1}. {all_outputs[i]}"
         
          if i == 0:
-             output_widgets[i].config(text=output_text, font=("Arial", 12))
+             output_widgets[i].config(text=output_text, font=("Arial", 12), background = "")
          elif i == 1:
-             output_widgets[i].config(text=output_text, font=("Arial", 12))
+             output_widgets[i].config(text=output_text, font=("Arial", 12), background = "")
          elif i == 2:
-             output_widgets[i].config(text=output_text, font=("Arial", 12))
+             output_widgets[i].config(text=output_text, font=("Arial", 12), background = "")
        
+
     for i in range(progress,3) :
          if i == 0:
-             output_widgets[i].config(text=default_output, font=("Arial", 12))
+             output_widgets[i].config(text=default_output, font=("Arial", 12), background = "")
          elif i == 1:
-             output_widgets[i].config(text=default_output, font=("Arial", 12))
+             output_widgets[i].config(text=default_output, font=("Arial", 12), background = "")
          elif i == 2:
-             output_widgets[i].config(text=default_output, font=("Arial", 12))
+             output_widgets[i].config(text=default_output, font=("Arial", 12), background = "")
     
 # def open_popup(addsub, text) :
 #     if(addsub == 1) :
@@ -457,8 +458,8 @@ root.bind("<Configure>", on_resize)
 # Bind the Escape key to exit the program
 root.bind("<Escape>", exit_program)
 
-greeting = ttk.Label(root, text="Hello, welcome to MyHealth!", font=("Arial", 20, "bold"),anchor="center")
-greeting.grid(row=0, column=1, rowspan=2, sticky='nsew')
+greeting = ttk.Label(root, text="Hello, welcome to MyHealth!", font=("Arial", 20, "bold"),anchor="center", background='dark green', relief=RAISED)
+greeting.grid(row=1, column=1, sticky='nsew', padx=2)
 
 tan_background = ttk.Style()
 tan_background.configure('Tan.TFrame', background='#D2B48C')  
@@ -470,16 +471,16 @@ two_button_frame.grid_columnconfigure(0, weight = 1)
 two_button_frame.grid_columnconfigure(1, weight = 1)
 
 button = ttk.Button(two_button_frame, text="Add Daily Entry", command = clicked)
-button.grid(row= 0, column = 1, sticky = 'ew', padx=5, pady=5)
+button.grid(row= 0, column = 1, sticky = 'ew', padx=8, pady=2)
 
 stats_button = ttk.Button(two_button_frame, text="View Stats", command=open_stats)
-stats_button.grid(row = 0, column = 0, sticky='ew', padx=5, pady=5)
+stats_button.grid(row = 0, column = 0, sticky='ew', padx=8, pady=2)
 
 goals_header = ttk.Label(root, text = "Goals", anchor= "center", font=("Arial", 14, "bold"), relief='ridge', background='dark green')
 goals_header.grid(row=1, column=0, sticky= NSEW)
 
 goals_label = ttk.Frame(root, style='Tan.TFrame')
-goals_label.grid(row=2, column=0, sticky='nsew')
+goals_label.grid(row=2, column=0, sticky='nsew', padx=2, pady=2)
 
 goals_buttons = ttk.Frame(root)
 goals_buttons.grid(row=3, column = 0, sticky='nsew')
@@ -513,7 +514,7 @@ accomplishments_header = ttk.Label(root, text = "Accomplishments", anchor= "cent
 accomplishments_header.grid(row=4, column=0, sticky= NSEW)
 
 accomplishments_label = ttk.Frame(root, style='Tan.TFrame')
-accomplishments_label.grid(row=5, column=0, sticky='nsew')
+accomplishments_label.grid(row=5, column=0, sticky='nsew', padx=2, pady=2)
 
 accomplishments_label.grid_columnconfigure(0,weight=1)
 accomplishments_label.grid_rowconfigure(0,weight=1)
@@ -547,7 +548,7 @@ coping_strategies_header = ttk.Label(root, text = "Coping Strategies", anchor= "
 coping_strategies_header.grid(row=7, column=0, sticky= NSEW)
 
 coping_strategies_label = ttk.Frame(root, style='Tan.TFrame')
-coping_strategies_label.grid(row=8, column=0, sticky='nsew')
+coping_strategies_label.grid(row=8, column=0, sticky='nsew', padx=2, pady=2)
 
 
 coping_strategys_buttons = ttk.Frame(root)
@@ -582,7 +583,7 @@ gratitudes_header = ttk.Label(root, text = "Gratitudes", anchor= "center", font=
 gratitudes_header.grid(row=1, column=2, sticky= NSEW)
 
 gratitudes_label = ttk.Frame(root, style='Tan.TFrame')
-gratitudes_label.grid(row=2, column=2, sticky='nsew')
+gratitudes_label.grid(row=2, column=2, sticky='nsew', padx=2, pady=2)
 
 
 gratitudes_buttons = ttk.Frame(root)
@@ -617,7 +618,7 @@ reflections_header = ttk.Label(root, text = "Reflections", anchor= "center", fon
 reflections_header.grid(row=4, column=2, sticky= NSEW)
 
 reflections_label = ttk.Frame(root, style='Tan.TFrame')
-reflections_label.grid(row=5, column=2, sticky='nsew')
+reflections_label.grid(row=5, column=2, sticky='nsew', padx=2, pady=2)
 
 
 reflections_buttons = ttk.Frame(root)
@@ -652,7 +653,7 @@ self_care_activities_header = ttk.Label(root, text = "Self Care Activities", anc
 self_care_activities_header.grid(row=7, column=2, sticky= NSEW)
 
 self_care_activities_label = ttk.Frame(root, style='Tan.TFrame')
-self_care_activities_label.grid(row=8, column=2, sticky='nsew')
+self_care_activities_label.grid(row=8, column=2, sticky='nsew', padx=2, pady=2)
 
 
 self_care_activitys_buttons = ttk.Frame(root)
@@ -685,7 +686,7 @@ self_care_activities_output_3.grid(row=2, column=0)
 
 # Create a frame
 user_entry_frame = ttk.Frame(root)
-user_entry_frame.grid(row=2, column=1, rowspan=5, sticky="nsew")
+user_entry_frame.grid(row=2, column=1, rowspan=5, sticky="nsew", pady=2, padx=8)
 
 # Configure grid weights for the frame
 user_entry_frame.grid_columnconfigure(0, weight=1)
@@ -702,13 +703,13 @@ user_entry_frame.grid_rowconfigure(7, weight=1)
 
 
 # Create a label inside the frame
-user_entry_label1 = ttk.Label(user_entry_frame, text="On a scale of 1-10, how was your mood today?", anchor="center", background="blue", foreground="white")
-user_entry_label2 = ttk.Label(user_entry_frame, text="On a scale of 1-10, how was your energy level today?", anchor="center", background="yellow", foreground="white")
-user_entry_label3 = ttk.Label(user_entry_frame, text="How long did you sleep for?", anchor="center", background="green", foreground="white")
-user_entry_label4 = ttk.Label(user_entry_frame, text="On a scale of 1-10, how was your sleep quality?", anchor="center", background="red", foreground="white")
-user_entry_label5 = ttk.Label(user_entry_frame, text="On a scale of 1-10, how would you rate your physical symptoms today?", anchor="center", background="black", foreground="white")
-user_entry_label6 = ttk.Label(user_entry_frame, text="How many hours of social interaction did you have today?", anchor="center", background="yellow", foreground="white")
-user_entry_label7 = ttk.Label(user_entry_frame, text="How many hours of physical activity did you have today?", anchor="center", background="blue", foreground="white")
+user_entry_label1 = ttk.Label(user_entry_frame, text="On a scale of 1-10, how was your mood today?", anchor="center", background="tan", foreground="white", relief=RAISED)
+user_entry_label2 = ttk.Label(user_entry_frame, text="On a scale of 1-10, how was your energy level today?", anchor="center", background="tan", foreground="white", relief=RAISED)
+user_entry_label3 = ttk.Label(user_entry_frame, text="How long did you sleep for?", anchor="center", background="tan", foreground="white", relief=RAISED)
+user_entry_label4 = ttk.Label(user_entry_frame, text="On a scale of 1-10, how was your sleep quality?", anchor="center", background="tan", foreground="white", relief=RAISED)
+user_entry_label5 = ttk.Label(user_entry_frame, text="On a scale of 1-10, how would you rate your physical symptoms today?", anchor="center", background="tan", foreground="white", relief=RAISED)
+user_entry_label6 = ttk.Label(user_entry_frame, text="How many hours of social interaction did you have today?", anchor="center", background="tan", foreground="white", relief=RAISED)
+user_entry_label7 = ttk.Label(user_entry_frame, text="How many hours of physical activity did you have today?", anchor="center", background="tan", foreground="white", relief=RAISED)
 
 user_entry_mood = ttk.Entry(user_entry_frame, background="blue")
 user_entry_energy = ttk.Entry(user_entry_frame, background="blue")
