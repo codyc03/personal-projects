@@ -100,6 +100,8 @@ def open_stats():
         stats_popup.grid_columnconfigure(4, weight = 1)
         stats_popup.grid_columnconfigure(5, weight = 1)
         stats_popup.grid_columnconfigure(6, weight = 1)
+        stats_popup.grid_columnconfigure(7, weight = 1)
+
     
         stats_popup.grid_rowconfigure(0, weight = 1)
         stats_popup.grid_rowconfigure(1, weight = 1)
@@ -108,90 +110,102 @@ def open_stats():
         # stats_popup.grid_rowconfigure(4, weight = 1)
         # stats_popup.grid_rowconfigure(5, weight = 1)
 
+        avg_header = ttk.Label(stats_popup, text = "Average over past...", anchor = CENTER)
+        avg_header.grid(row=0,column=0, sticky = 'nsew')
+
+        days_label = ttk.Label(stats_popup, text = "10 days\n20 days\n30 days", anchor = CENTER)
+        days_label.grid(row=1,column=0,sticky='nsew')
+
+        
+        avg_header = ttk.Label(stats_popup, text = "Percent change of today\n    compared to past...", anchor = CENTER)
+        avg_header.grid(row=2,column=0, sticky = 'nsew')
+
+        days_label = ttk.Label(stats_popup, text = "10 days\n20 days\n30 days", anchor = CENTER)
+        days_label.grid(row=3,column=0,sticky='nsew')
 
         avg_mood_header = ttk.Label(stats_popup, text = "Average Mood", anchor= CENTER)
-        avg_mood_header.grid(row=0, column=0, sticky = 'nsew')
+        avg_mood_header.grid(row=0, column=1, sticky = 'nsew')
     
         avg_mood_output = ttk.Label(stats_popup, text="\n".join(str(round(entry,1)) for entry in db.get_avg(0)), anchor=CENTER)
-        avg_mood_output.grid(row = 1, column = 0, sticky = 'nsew')
+        avg_mood_output.grid(row = 1, column = 1, sticky = 'nsew')
 
         avg_energy_level_header = ttk.Label(stats_popup, text = "Average Energy Level", anchor= CENTER)
-        avg_energy_level_header.grid(row=0, column=1, sticky = 'nsew')
+        avg_energy_level_header.grid(row=0, column=2, sticky = 'nsew')
     
         avg_energy_level_output = ttk.Label(stats_popup, text ="\n".join(str(round(entry,1)) for entry in db.get_avg(1)), anchor = CENTER)
-        avg_energy_level_output.grid(row = 1, column = 1, sticky = 'nsew')
+        avg_energy_level_output.grid(row = 1, column = 2, sticky = 'nsew')
     
         avg_sleep_duration_header = ttk.Label(stats_popup, text = "Average Sleep Duration", anchor= CENTER)
-        avg_sleep_duration_header.grid(row=0, column=2, sticky = 'nsew')
+        avg_sleep_duration_header.grid(row=0, column=3, sticky = 'nsew')
     
         avg_sleep_duration_output = ttk.Label(stats_popup, text = "\n".join(str(round(entry,1)) for entry in db.get_avg(2)), anchor = CENTER)
-        avg_sleep_duration_output.grid(row = 1, column = 2, sticky = 'nsew')
+        avg_sleep_duration_output.grid(row = 1, column = 3, sticky = 'nsew')
     
         avg_sleep_quality_header = ttk.Label(stats_popup, text = "Average Sleep Quality", anchor= CENTER)
-        avg_sleep_quality_header.grid(row=0, column=3, sticky = 'nsew')
+        avg_sleep_quality_header.grid(row=0, column=4, sticky = 'nsew')
     
         avg_sleep_quality_output = ttk.Label(stats_popup, text = "\n".join(str(round(entry,1)) for entry in db.get_avg(3)), anchor = CENTER)
-        avg_sleep_quality_output.grid(row = 1, column = 3, sticky = 'nsew')
+        avg_sleep_quality_output.grid(row = 1, column = 4, sticky = 'nsew')
     
         avg_physical_symptoms_header = ttk.Label(stats_popup, text = "Average Physical Symptoms", anchor= CENTER)
-        avg_physical_symptoms_header.grid(row=0, column=4, sticky = 'nsew')
+        avg_physical_symptoms_header.grid(row=0, column=5, sticky = 'nsew')
     
         avg_physical_symptoms_output = ttk.Label(stats_popup, text = "\n".join(str(round(entry,1)) for entry in db.get_avg(4)), anchor = CENTER)
-        avg_physical_symptoms_output.grid(row = 1, column = 4, sticky = 'nsew')
+        avg_physical_symptoms_output.grid(row = 1, column = 5, sticky = 'nsew')
     
         avg_social_interaction_header = ttk.Label(stats_popup, text = "Average Social Interaction", anchor= CENTER)
-        avg_social_interaction_header.grid(row=0, column=5, sticky = 'nsew')
+        avg_social_interaction_header.grid(row=0, column=6, sticky = 'nsew')
     
         avg_social_interaction_output = ttk.Label(stats_popup, text ="\n".join(str(round(entry,1)) for entry in db.get_avg(5)), anchor = CENTER)
-        avg_social_interaction_output.grid(row = 1, column = 5, sticky = 'nsew')
+        avg_social_interaction_output.grid(row = 1, column = 6, sticky = 'nsew')
     
         avg_physical_activity_header = ttk.Label(stats_popup, text = "Average Physical Activity", anchor= CENTER)
-        avg_physical_activity_header.grid(row=0, column=6, sticky = 'nsew')
+        avg_physical_activity_header.grid(row=0, column=7, sticky = 'nsew')
     
         avg_physical_activity_output = ttk.Label(stats_popup, text ="\n".join(str(round(entry,1)) for entry in db.get_avg(6)), anchor = CENTER)
-        avg_physical_activity_output.grid(row = 1, column = 6, sticky = 'nsew')
+        avg_physical_activity_output.grid(row = 1, column = 7, sticky = 'nsew')
     
-        cmp_mood_header = ttk.Label(stats_popup, text = "Comparison Mood", anchor= CENTER)
-        cmp_mood_header.grid(row=2, column=0, sticky = 'nsew')
+        cmp_mood_header = ttk.Label(stats_popup, text = "Percent Change Mood", anchor= CENTER)
+        cmp_mood_header.grid(row=2, column=1, sticky = 'nsew')
     
-        cmp_mood_output = ttk.Label(stats_popup, text="\n".join(str(round(entry,1)) for entry in db.get_cmp(0,db.get_avg(0)[0],db.get_avg(0)[1], db.get_avg(0)[2])), anchor=CENTER)
-        cmp_mood_output.grid(row = 3, column = 0, sticky = 'nsew')
+        cmp_mood_output = ttk.Label(stats_popup, text="\n".join(f"{str(round(entry,1))}%" for entry in db.get_cmp(0,db.get_avg(0)[0],db.get_avg(0)[1], db.get_avg(0)[2])), anchor=CENTER)
+        cmp_mood_output.grid(row = 3, column = 1, sticky = 'nsew')
 
-        cmp_energy_level_header = ttk.Label(stats_popup, text = "Comparison Energy Level", anchor= CENTER)
-        cmp_energy_level_header.grid(row=2, column=1, sticky = 'nsew')
+        cmp_energy_level_header = ttk.Label(stats_popup, text = "Percent Change Energy Level", anchor= CENTER)
+        cmp_energy_level_header.grid(row=2, column=2, sticky = 'nsew')
     
-        cmp_energy_level_output = ttk.Label(stats_popup, text ="\n".join(str(round(entry,1)) for entry in db.get_cmp(1,db.get_avg(0)[0],db.get_avg(0)[1], db.get_avg(0)[2])), anchor = CENTER)
-        cmp_energy_level_output.grid(row = 3, column = 1, sticky = 'nsew')
+        cmp_energy_level_output = ttk.Label(stats_popup, text ="\n".join(f"{str(round(entry,1))}%" for entry in db.get_cmp(1,db.get_avg(0)[0],db.get_avg(0)[1], db.get_avg(0)[2])), anchor = CENTER)
+        cmp_energy_level_output.grid(row = 3, column = 2, sticky = 'nsew')
     
-        cmp_sleep_duration_header = ttk.Label(stats_popup, text = "Comparison Sleep Duration", anchor= CENTER)
-        cmp_sleep_duration_header.grid(row=2, column=2, sticky = 'nsew')
+        cmp_sleep_duration_header = ttk.Label(stats_popup, text = "Percent Change Sleep Duration", anchor= CENTER)
+        cmp_sleep_duration_header.grid(row=2, column=3, sticky = 'nsew')
     
-        cmp_sleep_duration_output = ttk.Label(stats_popup, text ="\n".join(str(round(entry,1)) for entry in db.get_cmp(2,db.get_avg(0)[0],db.get_avg(0)[1], db.get_avg(0)[2])), anchor = CENTER)
-        cmp_sleep_duration_output.grid(row = 3, column = 2, sticky = 'nsew')
+        cmp_sleep_duration_output = ttk.Label(stats_popup, text ="\n".join(f"{str(round(entry,1))}%" for entry in db.get_cmp(2,db.get_avg(0)[0],db.get_avg(0)[1], db.get_avg(0)[2])), anchor = CENTER)
+        cmp_sleep_duration_output.grid(row = 3, column = 3, sticky = 'nsew')
     
-        cmp_sleep_quality_header = ttk.Label(stats_popup, text = "Comparison Sleep Quality", anchor= CENTER)
-        cmp_sleep_quality_header.grid(row=2, column=3, sticky = 'nsew')
+        cmp_sleep_quality_header = ttk.Label(stats_popup, text = "Percent Change Sleep Quality", anchor= CENTER)
+        cmp_sleep_quality_header.grid(row=2, column=4, sticky = 'nsew')
     
-        cmp_sleep_quality_output = ttk.Label(stats_popup, text ="\n".join(str(round(entry,1)) for entry in db.get_cmp(3,db.get_avg(0)[0],db.get_avg(0)[1], db.get_avg(0)[2])), anchor = CENTER)
-        cmp_sleep_quality_output.grid(row = 3, column = 3, sticky = 'nsew')
+        cmp_sleep_quality_output = ttk.Label(stats_popup, text ="\n".join(f"{str(round(entry,1))}%" for entry in db.get_cmp(3,db.get_avg(0)[0],db.get_avg(0)[1], db.get_avg(0)[2])), anchor = CENTER)
+        cmp_sleep_quality_output.grid(row = 3, column = 4, sticky = 'nsew')
     
-        cmp_physical_symptoms_header = ttk.Label(stats_popup, text = "Comparison Physical Symptoms", anchor= CENTER)
-        cmp_physical_symptoms_header.grid(row=2, column=4, sticky = 'nsew')
+        cmp_physical_symptoms_header = ttk.Label(stats_popup, text = "Percent Change Physical Symptoms", anchor= CENTER)
+        cmp_physical_symptoms_header.grid(row=2, column=5, sticky = 'nsew')
     
-        cmp_physical_symptoms_output = ttk.Label(stats_popup, text ="\n".join(str(round(entry,1)) for entry in db.get_cmp(4,db.get_avg(0)[0],db.get_avg(0)[1], db.get_avg(0)[2])), anchor = CENTER)
-        cmp_physical_symptoms_output.grid(row =3, column = 4, sticky = 'nsew')
+        cmp_physical_symptoms_output = ttk.Label(stats_popup, text ="\n".join(f"{str(round(entry,1))}%" for entry in db.get_cmp(4,db.get_avg(0)[0],db.get_avg(0)[1], db.get_avg(0)[2])), anchor = CENTER)
+        cmp_physical_symptoms_output.grid(row =3, column = 5, sticky = 'nsew')
     
-        cmp_social_interaction_header = ttk.Label(stats_popup, text = "Comparison Social Interaction", anchor= CENTER)
-        cmp_social_interaction_header.grid(row=2, column=5, sticky = 'nsew')
+        cmp_social_interaction_header = ttk.Label(stats_popup, text = "Percent Change Social Interaction", anchor= CENTER)
+        cmp_social_interaction_header.grid(row=2, column=6, sticky = 'nsew')
     
-        cmp_social_interaction_output = ttk.Label(stats_popup, text ="\n".join(str(round(entry,1)) for entry in db.get_cmp(5,db.get_avg(0)[0],db.get_avg(0)[1], db.get_avg(0)[2])), anchor = CENTER)
-        cmp_social_interaction_output.grid(row =3, column = 5, sticky = 'nsew')
+        cmp_social_interaction_output = ttk.Label(stats_popup, text ="\n".join(f"{str(round(entry,1))}%" for entry in db.get_cmp(5,db.get_avg(0)[0],db.get_avg(0)[1], db.get_avg(0)[2])), anchor = CENTER)
+        cmp_social_interaction_output.grid(row =3, column = 6, sticky = 'nsew')
     
-        cmp_physical_activity_header = ttk.Label(stats_popup, text = "Comparison Physical Activity", anchor= CENTER)
-        cmp_physical_activity_header.grid(row=2, column=6, sticky = 'nsew')
+        cmp_physical_activity_header = ttk.Label(stats_popup, text = "Percent Change Physical Activity", anchor= CENTER)
+        cmp_physical_activity_header.grid(row=2, column=7, sticky = 'nsew')
     
-        cmp_physical_activity_output = ttk.Label(stats_popup, text ="\n".join(str(round(entry,1)) for entry in db.get_cmp(6,db.get_avg(0)[0],db.get_avg(0)[1], db.get_avg(0)[2])), anchor = CENTER)
-        cmp_physical_activity_output.grid(row =3, column = 6, sticky = 'nsew')
+        cmp_physical_activity_output = ttk.Label(stats_popup, text ="\n".join(f"{str(round(entry,1))}%" for entry in db.get_cmp(6,db.get_avg(0)[0],db.get_avg(0)[1], db.get_avg(0)[2])), anchor = CENTER)
+        cmp_physical_activity_output.grid(row =3, column = 7, sticky = 'nsew')
 
         # avg_mood_10_days_output = ttk.Label(stats_popup, text = db.get_avg(0, 10), anchor = CENTER)
         # avg_mood_10_days_output.grid(row = 1, column = 0, sticky = 'nsew')
