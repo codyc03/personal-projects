@@ -1,5 +1,6 @@
 import datetime
 from gc import callbacks
+from random import Random, random
 from tkinter import EXCEPTION
 from typing import Self
 from unittest import result
@@ -15,7 +16,7 @@ cur = NULL
 error_callback = 0
 
 # Load environmental variables from .env file
-load_dotenv()
+load_dotenv(r"C:\Users\codyc\source\repos\personal-projects\MentalHealthTracker\Main\Test.env")
 
 # Access environmental variables
 db_name = os.getenv("DB_NAME")
@@ -257,14 +258,16 @@ def get_cmp(category, ten_day_average, thirty_day_average, ninety_day_average) :
     return [ten_day_comparison,thirty_day_comparison,ninety_day_comparison]
 
 def feed_values():
-    for i in range(27):
+    for i in range(100):
         # Generate a date for each iteration, starting from today and decrementing by 'i' days
         entry_date = datetime.date.today() - datetime.timedelta(days=i)
     
+        rand = i % 10
+        
         # SQL query with embedded parameter using string formatting
         sql = f"""
             INSERT INTO user_entries (entry_date, mood, energy_level, sleep_duration, sleep_quality, physical_symptoms, social_interaction, physical_activity, username)
-            VALUES ('{entry_date}', 10, 10, '10 hours', 10, 10, '10 hours', '10 hours', 'codyc')
+            VALUES ('{entry_date}', {rand}, {rand}, '{rand} hours', {rand}, {rand}, '{rand} hours', '{rand} hours', 'codyc')
         """
     
         # Execute the SQL query with dynamically generated date

@@ -10,7 +10,6 @@ import Main as db
 from datetime import date
 from tkinter import messagebox
 
-
 # db.feed_values()
 popup_input = Empty
 
