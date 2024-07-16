@@ -3,6 +3,35 @@ header {
     width: 50%;
 }
 
+body {
+    background-color: #7e688b;
+}
+
 .title {
     text-align: center;
+}
+
+/* Style the game board */
+.board {
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+/* Style the table cells */
+.board table {
+    border-collapse: collapse;
+    margin: auto;
+    box-shadow:  0 0 30px #a697ae;
+    width: 480px; /* Set the width of the table */
+    height: 480px; /* Set the height of the table */
+}
+
+/* Style the table cells */
+.board td {
+    width: 160px; /* Set the width of each cell */
+    height: 160px; /* Set the height of each cell */
+    text-align: center;
+    font-size: 36px; /* Increase font size for larger cells */
+    border: 2px solid #ccc; /* Increase border size for larger cells */
 }
