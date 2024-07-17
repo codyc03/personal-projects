@@ -3,7 +3,8 @@ header {
     width: 50%;
     color: #7e688b;
     font-size: x-large;
-    text-shadow: 2px 2px 4px #ffffff;
+    text-shadow: 3px 3px 3px #ffffff;
+
 }
 
 body {
@@ -37,4 +38,9 @@ body {
     text-align: center;
     font-size: 36px; /* Increase font size for larger cells */
     border: 2px solid #ccc; /* Increase border size for larger cells */
+}
+
+.reset-button {
+    text-align: center;
+    background-color: #7e688b;
 }
