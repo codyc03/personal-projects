@@ -1,6 +1,9 @@
 header {
     margin: 0 auto;
     width: 50%;
+    color: #7e688b;
+    font-size: x-large;
+    text-shadow: 2px 2px 4px #ffffff;
 }
 
 body {
