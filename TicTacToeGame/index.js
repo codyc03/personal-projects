@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
         cell.addEventListener('click', () => {
             cell.textContent = 'X'; // Placeholder, you can implement your game logic here
             marked.pop(cell.getAttribute('id'));
-            oppTurn();
+            oppTurn(marked);
         });
     });
 
@@ -26,11 +26,27 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-function oppTurn() {
-    marked = false
+function oppTurn(marked) {
+    console.log('oppTurn hit');
+
     max = marked.length
     min = 0
-    let rand = Math.floor(Math.random() * (max - min + 1)) + min;
-    let temp = document.getElementById(marked[rand]);
-    temp.textContent = 'O';
+    let element = findEmpty();
+    element.textContent = 'O';
+    let fullCheck = 0;
+
+    function findEmpty() {
+        fullCheck++;
+
+        if(fullCheck == 9)
+            return null
+
+        let rand = Math.floor(Math.random() * (max - min + 1)) + min;
+        let element = document.getElementById(marked[rand]);
+
+        if(element.textContent == '')
+            return element;
+        else
+            findEmpty()
+    }
 }
