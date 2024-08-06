@@ -11,8 +11,16 @@ document.addEventListener('DOMContentLoaded', () => {
         unmarked.push(cell);
 
         cell.addEventListener('click', () => {
+            console.log('Player turn');
             cell.textContent = 'X'; // Placeholder, you can implement your game logic here
-            unmarked.pop(cell);
+            // unmarked.pop(cell);
+            
+            let index = unmarked.indexOf(cell);
+            if (index !== -1) {
+                unmarked.splice(index, 1); // Remove 1 element at index `index`
+            }
+
+            console.log(unmarked.length);
             oppTurn(unmarked);
         });
     });
@@ -30,11 +38,15 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function oppTurn(unmarked) {
-    console.log('OPP HIT');
+    console.log('Bot turn');
 
-    let element = unmarked.pop()
-    element.textContent = 'O';
+    if (unmarked.length != 0) {
+        let element = unmarked.pop()
+        console.log(unmarked.length);   
+        element.textContent = 'O';
+    }   
 
+    
 
     // let fullCheck = 0;
     // max = marked.length
