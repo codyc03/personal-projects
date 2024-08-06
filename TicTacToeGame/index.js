@@ -1,6 +1,7 @@
 let cells = {};
 // let marked = ['cell-0','cell-1','cell-2','cell-3','cell-4','cell-5','cell-6','cell-7','cell-8'];
 let unmarked = [];
+let playerMarked = [];
 
 document.addEventListener('DOMContentLoaded', () => {
     cells = document.querySelectorAll('.cell');
@@ -20,8 +21,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 unmarked.splice(index, 1); // Remove 1 element at index `index`
             }
 
+            playerMarked.push(cell);
+
             console.log(unmarked.length);
-            oppTurn(unmarked);
+
+            if(unmarked.length != 0)
+                oppTurn(unmarked);
         });
     });
 
@@ -40,13 +45,11 @@ document.addEventListener('DOMContentLoaded', () => {
 function oppTurn(unmarked) {
     console.log('Bot turn');
 
-    if (unmarked.length != 0) {
-        let element = unmarked.pop()
-        console.log(unmarked.length);   
-        element.textContent = 'O';
-    }   
+    const randomIndex = Math.floor(Math.random() * unmarked.length);
+    let element = unmarked[randomIndex];
+    console.log(unmarked.length);   
+    element.textContent = 'O';
 
-    
 
     // let fullCheck = 0;
     // max = marked.length
