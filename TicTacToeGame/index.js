@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 unmarked.splice(index, 1); // Remove 1 element at index `index`
             }
 
-            playerMarked.push(cell);
+            playerMarked.push(cell.id);
 
             console.log(unmarked.length);
 
