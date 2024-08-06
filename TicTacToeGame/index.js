@@ -1,5 +1,6 @@
 let cells = {};
-let marked = ['cell-0','cell-1','cell-2','cell-3','cell-4','cell-5','cell-6','cell-7','cell-8'];
+// let marked = ['cell-0','cell-1','cell-2','cell-3','cell-4','cell-5','cell-6','cell-7','cell-8'];
+let unmarked = [];
 
 document.addEventListener('DOMContentLoaded', () => {
     cells = document.querySelectorAll('.cell');
@@ -7,10 +8,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Add click event listeners to each cell
     cells.forEach(cell => {
+        unmarked.push(cell);
+
         cell.addEventListener('click', () => {
             cell.textContent = 'X'; // Placeholder, you can implement your game logic here
-            marked.pop(cell.getAttribute('id'));
-            oppTurn(marked);
+            unmarked.pop(cell);
+            oppTurn(unmarked);
         });
     });
 
@@ -26,27 +29,38 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-function oppTurn(marked) {
-    console.log('oppTurn hit');
+function oppTurn(unmarked) {
+    console.log('OPP HIT');
 
-    max = marked.length
-    min = 0
-    let element = findEmpty();
+    let element = unmarked.pop()
     element.textContent = 'O';
-    let fullCheck = 0;
 
-    function findEmpty() {
-        fullCheck++;
 
-        if(fullCheck == 9)
-            return null
+    // let fullCheck = 0;
+    // max = marked.length
 
-        let rand = Math.floor(Math.random() * (max - min + 1)) + min;
-        let element = document.getElementById(marked[rand]);
+    // console.log(max)
 
-        if(element.textContent == '')
-            return element;
-        else
-            findEmpty()
-    }
+    // min = 0
+    // // let element = findEmpty();
+    // element.textContent = 'O';
+    // marked.pop(element.getAttribute('id'));
+
+    // function findEmpty() {
+    //     fullCheck++;
+
+    //     if(fullCheck == 9)
+    //         console.log('game over')
+
+    //     let rand = Math.floor(Math.random() * (max - min + 1)) + min;
+    //     let element = document.getElementById(marked[rand]);
+
+    //     console.log('pre-null');
+    //     if(element.textContent === '') {
+    //         console.log('post-null');
+    //         return element;
+    //     }
+    //     else
+    //         findEmpty()
+    // }
 }
