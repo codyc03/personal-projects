@@ -34,16 +34,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Add click event listener to resetButton
-    resetButton.addEventListener('click', clear);
+    resetButton.addEventListener('click', clearBoard);
 
-    // Define the clear function
-    function clear() {
-        cells.forEach(cell => {
-            cell.textContent = ''; // Clear the content of each cell
-            gameLoop = false;
-        });
-    }
+
 });
+
+// Define the clear function
+function clearBoard() {
+    cells.forEach(cell => {
+        cell.textContent = ''; // Clear the content of each cell
+        gameLoop = false;
+    });
+}
 
 function oppTurn(unmarked) {
     console.log('Bot turn');
@@ -85,19 +87,25 @@ function oppTurn(unmarked) {
 
 function checkWin(player) {
     if(cells[0].textContent === player && cells[1].textContent === player && cells[2].textContent === player )
-        console.log('win');
+        endGame(player)
     else if(cells[3].textContent === player && cells[4].textContent === player && cells[5].textContent === player )
-        console.log('win');
+        endGame(player)
     else if(cells[6].textContent === player && cells[7].textContent === player && cells[8].textContent === player )
-        console.log('win');
+        endGame(player)
     else if(cells[0].textContent === player && cells[3].textContent === player && cells[6].textContent === player )
-        console.log('win');
+        endGame(player)
     else if(cells[1].textContent === player && cells[4].textContent === player && cells[7].textContent === player )
-        console.log('win');
+        endGame(player)
     else if(cells[2].textContent === player && cells[5].textContent === player && cells[8].textContent === player )
-        console.log('win');
+        endGame(player)
     else if(cells[0].textContent === player && cells[4].textContent === player && cells[8].textContent === player )
-        console.log('win');
+        endGame(player)
     else if(cells[2].textContent === player && cells[4].textContent === player && cells[6].textContent === player )
-        console.log('win');
+        endGame(player)
 }
+
+function endGame(winner) {
+    console.log(winner + ' won!'); 
+    clearBoard();
+}
+
