@@ -12,21 +12,24 @@ document.addEventListener('DOMContentLoaded', () => {
         unmarked.push(cell);
 
         cell.addEventListener('click', () => {
-            console.log('Player turn');
-            cell.textContent = 'X'; // Placeholder, you can implement your game logic here
-            // unmarked.pop(cell);
-            
-            let index = unmarked.indexOf(cell);
-            if (index !== -1) {
-                unmarked.splice(index, 1); // Remove 1 element at index `index`
+            if(unmarked.length != 0) {
+                console.log('Player turn');
+                cell.textContent = 'X'; // Placeholder, you can implement your game logic here
+                // unmarked.pop(cell);
+                
+                let index = unmarked.indexOf(cell);
+                if (index !== -1) {
+                    unmarked.splice(index, 1); // Remove 1 element at index `index`
+                }
+
+                playerMarked.push(cell.id);
+
+                console.log(unmarked.length);
+                checkWin('X');
             }
-
-            playerMarked.push(cell.id);
-
-            console.log(unmarked.length);
-
-            if(unmarked.length != 0)
+            if(unmarked.length != 0) 
                 oppTurn(unmarked);
+                checkWin('O');       
         });
     });
 
@@ -78,4 +81,23 @@ function oppTurn(unmarked) {
     //     else
     //         findEmpty()
     // }
+}
+
+function checkWin(player) {
+    if(cells[0].textContent === player && cells[1].textContent === player && cells[2].textContent === player )
+        console.log('win');
+    else if(cells[3].textContent === player && cells[4].textContent === player && cells[5].textContent === player )
+        console.log('win');
+    else if(cells[6].textContent === player && cells[7].textContent === player && cells[8].textContent === player )
+        console.log('win');
+    else if(cells[0].textContent === player && cells[3].textContent === player && cells[6].textContent === player )
+        console.log('win');
+    else if(cells[1].textContent === player && cells[4].textContent === player && cells[7].textContent === player )
+        console.log('win');
+    else if(cells[2].textContent === player && cells[5].textContent === player && cells[8].textContent === player )
+        console.log('win');
+    else if(cells[0].textContent === player && cells[4].textContent === player && cells[8].textContent === player )
+        console.log('win');
+    else if(cells[2].textContent === player && cells[4].textContent === player && cells[6].textContent === player )
+        console.log('win');
 }
