@@ -2,7 +2,9 @@ let cells = {};
 // let marked = ['cell-0','cell-1','cell-2','cell-3','cell-4','cell-5','cell-6','cell-7','cell-8'];
 let unmarked = [];
 let playerMarked = [];
+let botMarked = [];
 let gameRunning = true;
+
 
 document.addEventListener('DOMContentLoaded', () => {
     cells = document.querySelectorAll('.cell');
@@ -37,15 +39,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Add click event listener to resetButton
     resetButton.addEventListener('click', clearBoard);
-
-
 });
 
 // Define the clear function
 function clearBoard() {
     unmarked.length = 0;
     playerMarked.length = 0;
-    
+    botMarked.length = 0;
+
     cells.forEach(cell => {
         cell.textContent = ''; // Clear the content of each cell
         gameLoop = false;
@@ -57,6 +58,7 @@ function oppTurn(unmarked) {
     console.log('Bot turn');
 
     const randomIndex = Math.floor(Math.random() * unmarked.length);
+
     let element = unmarked[randomIndex];
     console.log(unmarked.length);   
     element.textContent = 'O';
