@@ -2,7 +2,6 @@ let cells = {};
 // let marked = ['cell-0','cell-1','cell-2','cell-3','cell-4','cell-5','cell-6','cell-7','cell-8'];
 let unmarked = [];
 let playerMarked = [];
-let botMarked = [];
 let gameRunning = true;
 
 
@@ -45,7 +44,6 @@ document.addEventListener('DOMContentLoaded', () => {
 function clearBoard() {
     unmarked.length = 0;
     playerMarked.length = 0;
-    botMarked.length = 0;
 
     cells.forEach(cell => {
         cell.textContent = ''; // Clear the content of each cell
@@ -63,7 +61,11 @@ function oppTurn(unmarked) {
     console.log(unmarked.length);   
     element.textContent = 'O';
 
-
+    let index = unmarked.indexOf(element);
+        if (index !== -1) {
+            unmarked.splice(index, 1); // Remove 1 element at index `index`
+        }
+        
     // let fullCheck = 0;
     // max = marked.length
 
