@@ -46,6 +46,8 @@ function clearBoard() {
     cells.forEach(cell => {
         cell.textContent = ''; // Clear the content of each cell
         gameLoop = false;
+        unmarked.length = 0;
+        unmarked.push(cell);
     });
 }
 
