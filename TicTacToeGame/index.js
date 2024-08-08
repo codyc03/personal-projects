@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         cell.addEventListener('click', () => {
             if(unmarked.length != 0) {
+                gameRunning = true;
                 console.log('Player turn');
                 cell.textContent = 'X'; // Placeholder, you can implement your game logic here
                 // unmarked.pop(cell);
