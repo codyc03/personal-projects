@@ -43,10 +43,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Define the clear function
 function clearBoard() {
+    unmarked.length = 0;
+
     cells.forEach(cell => {
         cell.textContent = ''; // Clear the content of each cell
         gameLoop = false;
-        unmarked.length = 0;
         unmarked.push(cell);
     });
 }
