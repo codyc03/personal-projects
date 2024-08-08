@@ -108,7 +108,7 @@ function checkWin(player) {
 
 function endGame(winner) {
     gameRunning = false;
-    console.log(winner + ' won!'); 
+    alert(winner + ' won! Click OK to play another game.');
     clearBoard();
 }
 
