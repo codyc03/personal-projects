@@ -1,9 +1,7 @@
 let cells = {};
-// let marked = ['cell-0','cell-1','cell-2','cell-3','cell-4','cell-5','cell-6','cell-7','cell-8'];
 let unmarked = [];
 let playerMarked = [];
 let gameRunning = true;
-
 
 document.addEventListener('DOMContentLoaded', () => {
     cells = document.querySelectorAll('.cell');
@@ -16,8 +14,10 @@ document.addEventListener('DOMContentLoaded', () => {
         cell.addEventListener('click', () => {
             if(unmarked.length != 0) {
                 gameRunning = true;
-                console.log('Player turn');
+                
+                console.log('premarkX');
                 cell.textContent = 'X'; // Placeholder, you can implement your game logic here
+                console.log('postmarkX');
                 // unmarked.pop(cell);
                 
                 let index = unmarked.indexOf(cell);
@@ -28,7 +28,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 playerMarked.push(cell.id);
 
                 console.log(unmarked.length);
+
+                console.log('precw');
                 checkWin('X');
+                console.log('postcw');
             }
             if(unmarked.length != 0 && gameRunning) 
                 oppTurn(unmarked);
@@ -65,7 +68,7 @@ function oppTurn(unmarked) {
         if (index !== -1) {
             unmarked.splice(index, 1); // Remove 1 element at index `index`
         }
-        
+
     // let fullCheck = 0;
     // max = marked.length
 
@@ -116,6 +119,7 @@ function checkWin(player) {
 
 function endGame(winner) {
     gameRunning = false;
+    console.log('alert');
     alert(winner + ' won! Click OK to play another game.');
     clearBoard();
 }
