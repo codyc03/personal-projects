@@ -24,7 +24,7 @@ Python application, then you can copy and paste the contents of the HangmanMain 
 and run it.
 
 # Use
-Using the prorgram is fairly simple. Simply run the application and follow the in-game prompts. To guess a letter,
+Using the program is fairly simple. Simply run the application and follow the in-game prompts. To guess a letter,
 type a single character and then press enter. When prompted with the question asking if you want to play another game,
 type yes or no (casing does not matter) and then press enter.
 
