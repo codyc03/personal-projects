@@ -26,7 +26,10 @@ average over the past x number of days, and shows them the percent change in eac
 
 # Comments
 This project isn't fully polished. It was used to learn new languages and concepts and put them into practice. I didn't
-focus too much on the UX/UI because I was more concerned about the backing of the code.
+focus too much on the UX/UI because I was more concerned about the backing of the code. Additionally, I would like to note 
+that the naming convention Main and MainPageGUI is not proper software practice. However, I am choosing not to go through the
+process of renaming the project and risk errors. I have learned to better plan out my personal projects ahead of time, 
+including drawing more thoughtful UML class diagrams.
 
 # Consulted Peers
 *None

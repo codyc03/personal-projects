@@ -1,9 +1,22 @@
+""" 
+File:      Main.py 
+Author:    Cody Christensen 
+Date:      8/29/24 
+Copyright: Cody Christensen - This work may not be copied for use in Academic Coursework. 
+  
+I, Cody Christensen, certify that I wrote this code  
+from scratch and did not copy it in part or whole from another source. 
+All references used in the completion of the assignments are cited  
+in my README file. 
+
+File Contents 
+    This file contains the code for the database 
+    access portion of the project. It is used as a
+    file to hold functions to fetch important data
+    for my other GUI file, MainPageGUI.
+"""
+
 import datetime
-from gc import callbacks
-from random import Random, random
-from tkinter import EXCEPTION
-from typing import Self
-from unittest import result
 import psycopg2
 from psycopg2.sql import NULL
 from dotenv import load_dotenv
@@ -11,44 +24,13 @@ import os
 import sys
 from tkinter import messagebox
 
-conn = NULL
-cur = NULL
-error_callback = 0
-
-# Load environmental variables from .env file
-load_dotenv(r"C:\Users\codyc\source\repos\personal-projects\MentalHealthTracker\Main\Test.env")
-
-# Access environmental variables
-db_name = os.getenv("DB_NAME")
-db_user = os.getenv("USER_NAME")
-db_password = os.getenv("DB_PASSWORD")
-db_host = os.getenv("HOST_NAME")
-
 def failed_connection() :
-    messagebox.showerror("Error", "Failed to connect to database.")
-    sys.exit()
-
-try :
-    conn = psycopg2.connect(
-                                    dbname = db_name,
-                                    user = db_user,
-                                    password = db_password,
-                                    host = db_host
-                            )
-    conn.autocommit = True
-except Exception as e:
-    failed_connection()
-
-if(conn == NULL) :
-    failed_connection()
-    
-
-cur = conn.cursor()
-
-# def set_error_callback(callback) :
-#     global error_callback
-#     error_callback = callback
-
+     """
+       Handles case of a failed connection to database.
+     """
+     
+     messagebox.showerror("Error", "Failed to connect to database.")
+     sys.exit()
 
 def get_latest_entry_date() :
     execute_statement("SELECT entry_date FROM user_entries WHERE username = 'codyc' ORDER BY entry_date DESC LIMIT 1")
@@ -60,8 +42,6 @@ def get_latest_entry_date() :
         result_strings.append(row[0])
 
     return result_strings
-
-
 
 def get_reminders(attribute,table) : 
     execute_statement(f"SELECT {attribute} FROM {table} WHERE username = 'codyc'")
@@ -129,12 +109,6 @@ def add_self_care_activity(self_care_activity) :
 
 def remove_self_care_activity(self_care_activity) :
     execute_statement(f"DELETE FROM self_care_activities_new WHERE self_care_activity = '{self_care_activity}' AND username = 'codyc'")
-
-# def add_stressor() :
-#     execute_statement(f"INSERT INTO stressors (id, stressor) VALUES (1, 'Love')")
-
-# def remove_stressor() :
-#     execute_statement(f"DELETE FROM stressors WHERE stressor = 'Love'")
 
 def get_avg(category) :
     days = [10,30,90]
@@ -277,8 +251,7 @@ def feed_values():
     conn.close()
         
 def test() : 
-     print( "hello")
-    
+     print( "hello") 
 
 def execute_statement(statement) :
     try :
@@ -288,11 +261,33 @@ def execute_statement(statement) :
             error_callback()
         
 
+conn = NULL
+cur = NULL
+error_callback = 0
 
+# Load environmental variables from .env file
+load_dotenv(r"C:\Users\codyc\source\repos\personal-projects\MentalHealthTracker\Main\Test.env")
 
+# Access environmental variables
+db_name = os.getenv("DB_NAME")
+db_user = os.getenv("USER_NAME")
+db_password = os.getenv("DB_PASSWORD")
+db_host = os.getenv("HOST_NAME")
 
-# conn.commit()
+try :
+    conn = psycopg2.connect(
+                                    dbname = db_name,
+                                    user = db_user,
+                                    password = db_password,
+                                    host = db_host
+                            )
+    conn.autocommit = True
+except Exception as e:
+    failed_connection()
 
-# cur.close()
-# conn.close()
+if(conn == NULL) :
+    failed_connection()
+    
+
+cur = conn.cursor()
 
