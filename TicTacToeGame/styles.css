@@ -1,10 +1,26 @@
+/*
+File: styles.css
+Author: Cody Christensen
+Date: 9/10/24
+Copyright: Cody Christensen - This work may not be copied for use in Academic Coursework.
+
+I, Cody Christensen, certify that I wrote this code
+from scratch and did not copy it in part or whole from another source.
+All references used in the completion of the assignments are cited
+in my README file.
+
+File Contents
+    This file contains the css code responsible for styling
+    the various elements of the Tic-Tac-Toe board and 
+    its surrounding attributes.
+*/
+
 header {
     margin: 0 auto;
     width: 50%;
     color: #7e688b;
     font-size: x-large;
     text-shadow: 3px 3px 3px #ffffff;
-
 }
 
 body {
@@ -22,24 +38,25 @@ body {
     text-align: center;
 }
 
-/* Style the table cells */
+/* Style the table in the board */
 .board table {
     border-collapse: collapse;
     margin: auto;
     box-shadow:  0 0 30px #a697ae;
-    width: 480px; /* Set the width of the table */
-    height: 480px; /* Set the height of the table */
+    width: 480px; 
+    height: 480px; 
 }
 
 /* Style the table cells */
 .board td {
-    width: 160px; /* Set the width of each cell */
-    height: 160px; /* Set the height of each cell */
+    width: 160px; 
+    height: 160px; 
     text-align: center;
-    font-size: 36px; /* Increase font size for larger cells */
-    border: 2px solid #ccc; /* Increase border size for larger cells */
+    font-size: 36px; 
+    border: 2px solid #ccc;
 }
 
+/* Style the reset button */
 .reset-button {
     text-align: center;
     background-color: #7e688b;

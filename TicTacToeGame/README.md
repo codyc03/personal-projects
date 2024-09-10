@@ -3,12 +3,13 @@ Author:     Cody Christensen
 Partner:    None
 GitHub ID:  codyc03
 Repo:       https://github.com/codyc03/personal-projects
-Date:       8/29/2024
+Date:       9/10/2024
 Solution:   TicTacToeGame
 Copyright:  Cody Christensen - This work may not be copied for use in Academic Coursework.
 ```
 
 # Overview of Contents
+This project holds the contents to make a fully functioning AI tic-tac-toe game.
 
 # Prerequisites
 There are currently no prerequisites.

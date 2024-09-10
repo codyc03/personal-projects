@@ -1,8 +1,25 @@
+/*
+File: index.js
+Author: Cody Christensen
+Date: 9/10/24
+Copyright: Cody Christensen - This work may not be copied for use in Academic Coursework.
+
+I, Cody Christensen, certify that I wrote this code
+from scratch and did not copy it in part or whole from another source.
+All references used in the completion of the assignments are cited
+in my README file.
+
+File Contents
+    This file contains the JavaScript code responsible for the backend 
+    operations of the project.
+*/
+
 let cells = {};
 let unmarked = [];
 let playerMarked = [];
 let gameRunning = true;
 
+//Upon document loaded, add click event listeners to each cell
 document.addEventListener('DOMContentLoaded', () => {
     cells = document.querySelectorAll('.cell');
     const resetButton = document.getElementById('reset-button');
@@ -14,28 +31,21 @@ document.addEventListener('DOMContentLoaded', () => {
         cell.addEventListener('click', () => {
             if(unmarked.length != 0) {
                 gameRunning = true;
-                
-                console.log('premarkX');
-                cell.textContent = 'X'; // Placeholder, you can implement your game logic here
-                console.log('postmarkX');
-                // unmarked.pop(cell);
-                
+                cell.textContent = 'X';                 
                 let index = unmarked.indexOf(cell);
+
                 if (index !== -1) {
-                    unmarked.splice(index, 1); // Remove 1 element at index `index`
+                    unmarked.splice(index, 1); 
                 }
 
                 playerMarked.push(cell.id);
 
-                console.log(unmarked.length);
-
-                console.log('precw');
                 checkWin('X');
-                console.log('postcw');
             }
-            if(unmarked.length != 0 && gameRunning) 
+            if (unmarked.length != 0 && gameRunning) {
                 oppTurn(unmarked);
-                checkWin('O');       
+                checkWin('O');
+            }
         });
     });
 
@@ -43,61 +53,40 @@ document.addEventListener('DOMContentLoaded', () => {
     resetButton.addEventListener('click', clearBoard);
 });
 
-// Define the clear function
+/*
+Used to clear all the entries on the board and 
+reset the board to its initial state.
+*/
 function clearBoard() {
     unmarked.length = 0;
     playerMarked.length = 0;
 
     cells.forEach(cell => {
-        cell.textContent = ''; // Clear the content of each cell
+        cell.textContent = ''; 
         gameLoop = false;
         unmarked.push(cell);
     });
 }
 
+/*
+Used to simulate AI opponents turn, takes its turn and marks
+a spot
+*/
 function oppTurn(unmarked) {
-    console.log('Bot turn');
-
     const randomIndex = Math.floor(Math.random() * unmarked.length);
-
     let element = unmarked[randomIndex];
-    console.log(unmarked.length);   
     element.textContent = 'O';
-
     let index = unmarked.indexOf(element);
-        if (index !== -1) {
-            unmarked.splice(index, 1); // Remove 1 element at index `index`
-        }
 
-    // let fullCheck = 0;
-    // max = marked.length
-
-    // console.log(max)
-
-    // min = 0
-    // // let element = findEmpty();
-    // element.textContent = 'O';
-    // marked.pop(element.getAttribute('id'));
-
-    // function findEmpty() {
-    //     fullCheck++;
-
-    //     if(fullCheck == 9)
-    //         console.log('game over')
-
-    //     let rand = Math.floor(Math.random() * (max - min + 1)) + min;
-    //     let element = document.getElementById(marked[rand]);
-
-    //     console.log('pre-null');
-    //     if(element.textContent === '') {
-    //         console.log('post-null');
-    //         return element;
-    //     }
-    //     else
-    //         findEmpty()
-    // }
+    if (index !== -1) {
+        unmarked.splice(index, 1); 
+    }
 }
 
+/*
+Used to check the game board for a win. AKA, has someone got 
+three markings in a row?
+*/
 function checkWin(player) {
     if(cells[0].textContent === player && cells[1].textContent === player && cells[2].textContent === player )
         endGame(player)
@@ -117,6 +106,9 @@ function checkWin(player) {
         endGame(player)
 }
 
+/*
+Handles actions necessary to end the game and display winner.
+*/
 function endGame(winner) {
     gameRunning = false;
     console.log('alert');
