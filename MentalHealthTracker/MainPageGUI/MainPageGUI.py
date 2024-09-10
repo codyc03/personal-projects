@@ -1,20 +1,34 @@
-from email.policy import default
-from pstats import Stats
-from pydoc import cli
-from queue import Empty
+""" 
+File:      MainPageGUI.py 
+Author:    Cody Christensen 
+Date:      9/10/24 
+Copyright: Cody Christensen - This work may not be copied for use in Academic Coursework. 
+  
+I, Cody Christensen, certify that I wrote this code  
+from scratch and did not copy it in part or whole from another source. 
+All references used in the completion of the assignments are cited  
+in my README file. 
+
+File Contents 
+    This file contains the code for the model and
+    control portion of the project. It creates a 
+    user interface and handles controlling that interface, 
+    and outsources its database operations to Main.py
+"""
+
 import tkinter as tk
 from tkinter import ANCHOR, BOTH, CENTER, NSEW, RAISED, ttk
-from turtle import bgcolor
-from unicodedata import category
 import Main as db
 from datetime import date
 from tkinter import messagebox
 
+# Test line used to feed values when uncommented
 # db.feed_values()
-popup_input = Empty
 
 def on_resize(event):
-    # Update the size of the root window when resized
+    """
+    Update the grid row and column configuration of root upon resizing.
+    """
     root.grid_rowconfigure(0, weight=1)
     root.grid_rowconfigure(1, weight=4)
     root.grid_rowconfigure(2, weight=12)
@@ -26,14 +40,16 @@ def on_resize(event):
     root.grid_rowconfigure(8, weight=12)
     root.grid_rowconfigure(9, weight=2)
     root.grid_rowconfigure(10, weight=1)
-
     
-
     root.grid_columnconfigure(0, weight=1)
     root.grid_columnconfigure(1, weight=3)
     root.grid_columnconfigure(2, weight=1)
     
 def add_reminder(input_value, text) : 
+    """
+    Determines which reminder to add to and adds the given text to the corresponding
+    reminder's table.
+    """
     try :
         if "Goal" in text :
             db.add_goal(input_value)
@@ -52,6 +68,10 @@ def add_reminder(input_value, text) :
         open_popup_error_alert()
  
 def remove_reminder(input_value, text) : 
+    """
+    Determines which reminder to remove from and removes the given text from the corresponding
+    reminder's table.
+    """
     try :
         if "Goal" in text :
             db.remove_goal(input_value)
@@ -67,30 +87,19 @@ def remove_reminder(input_value, text) :
             db.remove_self_care_activity(input_value)
     
     except Exception:
-        open_popup_error_alert()
-        
-
-# def fill_stats(headers, outputs, stats_popup, num) :
-#     for i in range(0, len(headers), 2):
-#         headers[i] = ttk.Label(stats_popup, text = f"Average {category} Over Past {num} Days", anchor= CENTER)
-#         headers[i].grid(row=i, column=0, sticky = 'nsew')
-        
-#         outputs[i] = ttk.Label(stats_popup, text = db.get_avg(category_id, num), anchor= CENTER)
-#         outputs[i].grid(rows=i + 1 , column=0, sticky = 'nsew')
-        
-#         for j in outputs :
-#             outputs[j] = ttk.Label(stats_popup, text = db.get_avg(category_id, num), anchor= CENTER)
-#             outputs[j].grid(rows=i + j , column=0, sticky = 'nsew')
-   
-            
+        open_popup_error_alert()    
 
 def open_stats():
-    try :
-        # db.feed_values()
-    
+    """
+    Opens the stats popup and calculates/displays the output.
+    """
+    try :    
         stats_popup = tk.Toplevel(root)
-        stats_popup.attributes('-fullscreen', True)
-        # stats_popup.configure(bg='red')
+        stats_popup.attributes('-fullscreen', True)   
+        
+        # Function to close the popup
+        def close_popup():
+            stats_popup.destroy()
     
         stats_popup.grid_columnconfigure(0, weight = 1)
         stats_popup.grid_columnconfigure(1, weight = 1)
@@ -106,8 +115,6 @@ def open_stats():
         stats_popup.grid_rowconfigure(1, weight = 1)
         stats_popup.grid_rowconfigure(2, weight = 1)
         stats_popup.grid_rowconfigure(3, weight = 1)
-        # stats_popup.grid_rowconfigure(4, weight = 1)
-        # stats_popup.grid_rowconfigure(5, weight = 1)
 
         avg_header = ttk.Label(stats_popup, text = "Average over past...", anchor = CENTER)
         avg_header.grid(row=0,column=0, sticky = 'nsew')
@@ -205,33 +212,8 @@ def open_stats():
     
         cmp_physical_activity_output = ttk.Label(stats_popup, text ="\n".join(f"{str(round(entry,1))}%" for entry in db.get_cmp(6,db.get_avg(0)[0],db.get_avg(0)[1], db.get_avg(0)[2])), anchor = CENTER)
         cmp_physical_activity_output.grid(row =3, column = 7, sticky = 'nsew')
-
-        # avg_mood_10_days_output = ttk.Label(stats_popup, text = db.get_avg(0, 10), anchor = CENTER)
-        # avg_mood_10_days_output.grid(row = 1, column = 0, sticky = 'nsew')
-    
-        # avg_mood_30_days_header = ttk.Label(stats_popup, text = "Average Mood Over Past 30 Days", anchor= CENTER)
-        # avg_mood_30_days_header.grid(row=2, column=0, sticky = 'nsew')
-
-        # avg_mood_30_days_output = ttk.Label(stats_popup, text = db.get_avg(0, 30), anchor = CENTER)
-        # avg_mood_30_days_output.grid(row = 3, column = 0, sticky = 'nsew')
-    
-        # avg_mood_90_days_header = ttk.Label(stats_popup, text = "Average Mood Over Past 90 Days", anchor= CENTER)
-        # avg_mood_10_days_header.grid(row= 4, column=0, sticky = 'nsew')
-
-        # avg_mood_90_days_output = ttk.Label(stats_popup, text = db.get_avg(0, 90), anchor = CENTER)
-        # avg_mood_90_days_output.grid(row = 5, column = 0, sticky = 'nsew')
-    
-        # headers = []
-
-        # fill_stats(headers,outputs, stats_popup, num = 0)
-
-        
-        # Function to close the popup
-        def close_popup():
-            stats_popup.destroy()
-    
+   
         style = ttk.Style()
-        # style.theme_use('default')  # Change to the 'default' theme 
         style.configure('Close.TButton', background='red', foreground = 'black')
     
         # Create a red X button in the top right corner
@@ -242,6 +224,9 @@ def open_stats():
         open_popup_error_alert()
     
 def open_popup(addsub, text):
+    """
+    Opens a popup that retrieves user input to add or remove reminders.
+    """
     try :
         def handle_ok():
             input_value = entry.get()
@@ -284,9 +269,15 @@ def open_popup(addsub, text):
         open_popup_error_alert()
    
 def exit_program(event=None):
+    """
+    Destroy root.
+    """
     root.destroy()
 
 def get_all_in_category(category) :
+    """
+    Gets the ten latest entries for the given category.
+    """
     try :
         all_in_category = db.get_reminders(category, "user_entries")
         all_category_string = "\n".join(str(entry) for entry in reversed(all_in_category[-10:]))
@@ -294,8 +285,10 @@ def get_all_in_category(category) :
     except Exception:
         open_popup_error_alert()
    
-
 def get_all_in_category_entries(category) :
+    """
+    Gets the ten latest entries for the given category.
+    """
     try :
         all_in_category = db.get_entries(category, "user_entries")
         all_category_string = "\n".join(str(entry) for entry in all_in_category[:10])
@@ -304,6 +297,9 @@ def get_all_in_category_entries(category) :
         open_popup_error_alert()
 
 def update_previous_entries() :
+    """
+    Update the output box which shows stats for the last 10 daily user entries.
+    """
     try :
         date_label = ttk.Label(results_frame,text="DATE", anchor="center")
         date_label.grid(row=0,column=0, sticky='new')
@@ -359,6 +355,10 @@ def update_previous_entries() :
         open_popup_error_alert()
     
 def update_output(output_widgets, all_outputs, default_output):
+    """
+    Update the output of all the reminder widgets and fill the remaining spaces with 
+    default options.
+    """
     num_outputs = len(all_outputs)
     progress = 0
     
@@ -373,7 +373,6 @@ def update_output(output_widgets, all_outputs, default_output):
          elif i == 2:
              output_widgets[i].config(text=output_text, font=("Arial", 12), background = "")
        
-
     for i in range(progress,3) :
          if i == 0:
              output_widgets[i].config(text=default_output, font=("Arial", 12), background = "")
@@ -382,13 +381,11 @@ def update_output(output_widgets, all_outputs, default_output):
          elif i == 2:
              output_widgets[i].config(text=default_output, font=("Arial", 12), background = "")
     
-# def open_popup(addsub, text) :
-#     if(addsub == 1) :
-#         open_popup(addsub, text)
-#     elif(addsub == 0) :
-#         open_popup(addsub, text)
         
 def refresh() :
+    """
+    Refresh the display of all the reminders.
+    """
     try :
         all_goals = db.get_reminders("goal","goals_new")
         default_goal = "Please Add Goal"
@@ -426,15 +423,25 @@ def refresh() :
         open_popup_error_alert()
     
 def open_error_alert(message) :
+    """
+    Show message box alert.
+    """
     messagebox.showinfo("Alert", message) 
 
 def open_popup_error_alert() :
+    """
+    Show error popup.
+    """
     root.geometry("+%d+%d" % ((root.winfo_screenwidth() - 300) // 2, (root.winfo_screenheight() - 200) // 2))
     
     # Show error message box
     messagebox.showerror("Error", "Operation failed. Please double check your work and try again.")
 
 def clicked() :
+    """
+    Event handler that handles inputting the user's daily entry into the table
+    if the user has already not made an entry today.s
+    """
     try :
         mood = user_entry_mood.get()
         energy_level = user_entry_energy.get()
@@ -456,11 +463,9 @@ def clicked() :
     except Exception:
         open_popup_error_alert()
             
- 
+# Declare root
 root = tk.Tk()
 root.title("Main Window")
-
-# db.set_error_callback(open_popup_error_alert)
 
 # Set the window attributes to fullscreen
 root.attributes("-fullscreen", True)
@@ -471,8 +476,11 @@ root.bind("<Configure>", on_resize)
 # Bind the Escape key to exit the program
 root.bind("<Escape>", exit_program)
 
+# Output greeting message at top of window
 greeting = ttk.Label(root, text="Hello, welcome to MyHealth!", font=("Arial", 20, "bold"),anchor="center", background='dark green', relief=RAISED)
 greeting.grid(row=1, column=1, sticky='nsew', padx=2)
+
+# Initialize all our ttk elements
 
 two_button_frame = ttk.Frame(root)
 two_button_frame.grid(row=7, column = 1, sticky='nsew')
@@ -560,7 +568,6 @@ coping_strategies_header.grid(row=7, column=0, sticky= NSEW)
 coping_strategies_label = ttk.Frame(root)
 coping_strategies_label.grid(row=8, column=0, sticky='nsew', padx=2, pady=2)
 
-
 coping_strategys_buttons = ttk.Frame(root)
 coping_strategys_buttons.grid(row=9, column = 0, sticky='nsew')
 
@@ -594,7 +601,6 @@ gratitudes_header.grid(row=1, column=2, sticky= NSEW)
 
 gratitudes_label = ttk.Frame(root)
 gratitudes_label.grid(row=2, column=2, sticky='nsew', padx=2, pady=2)
-
 
 gratitudes_buttons = ttk.Frame(root)
 gratitudes_buttons.grid(row=3, column = 2, sticky='nsew')
@@ -630,7 +636,6 @@ reflections_header.grid(row=4, column=2, sticky= NSEW)
 reflections_label = ttk.Frame(root)
 reflections_label.grid(row=5, column=2, sticky='nsew', padx=2, pady=2)
 
-
 reflections_buttons = ttk.Frame(root)
 reflections_buttons.grid(row=6, column = 2, sticky='nsew')
 
@@ -664,7 +669,6 @@ self_care_activities_header.grid(row=7, column=2, sticky= NSEW)
 
 self_care_activities_label = ttk.Frame(root)
 self_care_activities_label.grid(row=8, column=2, sticky='nsew', padx=2, pady=2)
-
 
 self_care_activitys_buttons = ttk.Frame(root)
 self_care_activitys_buttons.grid(row=9, column = 2, sticky='nsew')
@@ -710,7 +714,6 @@ user_entry_frame.grid_rowconfigure(4, weight=1)
 user_entry_frame.grid_rowconfigure(5, weight=1)
 user_entry_frame.grid_rowconfigure(6, weight=1)
 user_entry_frame.grid_rowconfigure(7, weight=1)
-
 
 # Create a label inside the frame
 user_entry_label1 = ttk.Label(user_entry_frame, text="On a scale of 1-10, how was your mood today?", anchor="center", background="tan", foreground="white", relief=RAISED)
@@ -764,11 +767,9 @@ results_frame.grid_rowconfigure(0, weight=1)
 results_frame.grid_rowconfigure(1, weight=1)
 
 
-# # Create a label inside the frame
-# test_label = ttk.Label(results_frame, text="hello", background="green", foreground="white")
-
-# # Configure grid weights for the label
-# test_label.grid(row=0, column=0, sticky="nsew")
+# Now that we have created all our ttk elements for the page, 
+# we will now refresh our display calling our own refresh method
+# and then call the mainloop of the root
 
 refresh()
 
