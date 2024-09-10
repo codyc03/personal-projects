@@ -22,7 +22,7 @@ There are currently no prerequisites.
 There are currently no installation instructions.
 
 # Use
-Using of the program is demonstrated in the example video.
+Use of the program is demonstrated in the example video.
 
 # Comments
 This is not my most polished project, and there are a lot of things that I would go back and do 
