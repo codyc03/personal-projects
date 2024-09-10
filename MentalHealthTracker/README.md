@@ -3,13 +3,17 @@ Author:     Cody Christensen
 Partner:    None
 GitHub ID:  codyc03
 Repo:       https://github.com/codyc03/personal-projects
-Date:       8/29/2024
+Date:       9/10/2024
 Solution:   MentalHealthTracker
 Copyright:  Cody Christensen - This work may not be copied for use in Academic Coursework.
 ```
 
 # Overview of Contents
-
+This solution has two projects that encompass my mental health tracker. The point of the tracker
+is to input a daily entry, recording statistics related to your mental health. The project keeps
+track of daily entries,among other things, using a database, and displays reminders of things
+like your goals and things you are grateful of. The project also uses data analysis to provide
+users with insight into their mental health trends.
 
 # Prerequisites
 There are currently no prerequisites.
@@ -18,21 +22,16 @@ There are currently no prerequisites.
 There are currently no installation instructions.
 
 # Use
-The main idea behind the mental health tracker is to track your mental health over time, and help provide
-insights into improving your mental health. The tracker has a daily entry input widget for user interaction.
-There are also reminders around the screen to constantly remind the user of their goals, ambitions, and other
-things to improve their headspace. Users can also view stats that compare their most recent entry to the rolling
-average over the past x number of days, and shows them the percent change in each aspect of their daily entries.
+Using of the program is demonstrated in the example video.
 
 # Comments
-This project isn't fully polished. It was used to learn new languages and concepts and put them into practice. I didn't
-focus too much on the UX/UI because I was more concerned about the backing of the code. Additionally, I would like to note 
-that the naming convention Main and MainPageGUI is not proper software practice. However, I am choosing not to go through the
-process of renaming the project and risk errors. I have learned to better plan out my personal projects ahead of time, 
-including drawing more thoughtful UML class diagrams.
+This is not my most polished project, and there are a lot of things that I would go back and do 
+differently. With that said, I found that this project was a really good learning experience for 
+me. I got hands on experience building a project from scratch, as well as introduced myself to a 
+lot of new concepts and languages.
 
 # Consulted Peers
-*None
+* None
 
 # References
 * **ChatGPT** - https://chatgpt.com/
