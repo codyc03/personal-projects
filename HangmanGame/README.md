@@ -8,7 +8,7 @@ Solution:   HangmanGame
 Copyright:  Cody Christensen - This work may not be copied for use in Academic Coursework.
 ```
 # Video Demonstration
-** WILL BE UPLOADED BY END OF SEPTEMBER **
+https://youtu.be/f0fQt0LKr_Q
 
 # Overview of Contents
 This solution has a single project that houses all of the code necessary to create a working hangman
