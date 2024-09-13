@@ -1,18 +1,14 @@
-# personal-projects
-
-# References
-https://realpython.com/python-gui-tkinter/
-
 # Collection of Personal Projects
 
 ## Description
 
-This repository contains a collection of personal projects, each focusing on [brief description of the main topics or technologies used]. The purpose of this collection is to [briefly describe the goals or objectives of the collection].
+This repository contains a collection of personal projects, each focusing on learning new languages/tools and developing my 
+project planning abilities.
 
 ## Table of Contents
 
-1. [Getting Started](#getting-started)
-2. [Usage](#usage)
+1. [Prerequisites](#prerequisites)
+2. [Installation](#installation)
 3. [Project Structure](#project-structure)
 4. [Contributing](#contributing)
 5. [Testing](#testing)
@@ -24,62 +20,23 @@ This repository contains a collection of personal projects, each focusing on [br
 11. [Future Plans](#future-plans)
 12. [Known Issues](#known-issues)
 
-## Getting Started
-
 ### Prerequisites
 
-- [List any software, tools, or libraries required]
+- There are currently no prerequisites, as I have not made any of the projects directly usable/downloadable.
 
 ### Installation
 
-1. [Step-by-step instructions for installation]
-2. [Additional configuration steps]
-
-### Configuration
-
-- [Any necessary configuration details]
-
-## Usage
-
-### How to Run
-
-- [Instructions for running the projects]
-  
-### Examples
-
-- [Sample commands or scripts]
-- [Example inputs and outputs]
+- There are currently no installation instructions, as I have not made any of the projects directly usable/downloadable.
 
 ## Project Structure
-
-### Overview
-
-- [Brief description of the overall structure]
-
-### Details
-
-- **Project 1:** [Brief description of the project and its purpose]
-- **Project 2:** [Brief description of the project and its purpose]
-- [Add descriptions for additional projects as needed]
+- This overall solution contains 3 individual projects, each with their own README.
 
 ## Contributing
 
-- [Guidelines for contributing to the projects, including coding standards and how to submit changes]
+- There are currently no options/guidelines for contributing to the projects.
 
 ## Testing
-
-### How to Run Tests
-
-- [Instructions for running tests]
-
-### Test Coverage
-
-- [Information about test coverage or types of tests]
-
-## Documentation
-
-- [Links to each project's documentation, if applicable]
-- [In-line documentation locations]
+- All code has been hand tested for normal functionality of the programs.
 
 ## License
 
@@ -87,26 +44,23 @@ This repository contains a collection of personal projects, each focusing on [br
 
 ## Credits and Acknowledgments
 
-- **Contributors:** [List any contributors]
-- **References:** [Any relevant references or resources]
+- **Contributors:** Cody Christensen
+- **References:** Please see individual project README's for references. 
 
 ## Contact Information
 
-- **Author:** [Your Name]
-- **Email:** [Your Email]
-- **Support:** [How to get support or report issues]
+- **Author:** Cody Christensen
+- **Email:** cody.christensensc17@gmail.com
 
 ## Changelog
 
-- [Version 1.0.0] - [Summary of changes]
-- [Version 1.1.0] - [Summary of changes]
-- [Add entries as needed]
-
+- [Version 1.0.0] - Initial versions of all projects.
+  
 ## Future Plans
 
-- [Planned features or improvements]
+- I plan to add more projects to this solution and build my skills.
 
 ## Known Issues
 
-- [List any known issues or limitations]
+- Each individual projects has its list of known issues.
 
