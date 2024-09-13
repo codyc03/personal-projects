@@ -7,6 +7,8 @@ Date:       5/23/2024
 Solution:   HangmanGame
 Copyright:  Cody Christensen - This work may not be copied for use in Academic Coursework.
 ```
+# Video Demonstration
+** WILL BE UPLOADED BY END OF SEPTEMBER **
 
 # Overview of Contents
 This solution has a single project that houses all of the code necessary to create a working hangman
@@ -35,4 +37,5 @@ idea for the project in multiple Instagram Reels.
 * None
 
 # References
+* **W3 Schools Python** - https://www.w3schools.com/python/
 * **ChatGPT** - https://chatgpt.com/
