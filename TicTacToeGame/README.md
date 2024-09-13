@@ -8,7 +8,7 @@ Solution:   TicTacToeGame
 Copyright:  Cody Christensen - This work may not be copied for use in Academic Coursework.
 ```
 # Video Demonstration
-** WILL BE UPLOADED BY END OF SEPTEMBER **
+https://youtu.be/K8L80k6aEoY
 
 # Overview of Contents
 This project holds the contents to make a fully functioning AI tic-tac-toe game.
