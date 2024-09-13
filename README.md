@@ -3,7 +3,8 @@
 ## Description
 
 This repository contains a collection of personal projects, each focusing on learning new languages/tools and developing my 
-project planning abilities.
+project planning abilities. These projects are not all extremely polished, as the main goal of creating the projects was
+to expose myself to these new concepts and learn without the need for perfection.
 
 ## Table of Contents
 
