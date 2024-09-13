@@ -7,6 +7,8 @@ Date:       9/10/2024
 Solution:   MentalHealthTracker
 Copyright:  Cody Christensen - This work may not be copied for use in Academic Coursework.
 ```
+# Video Demonstration
+** WILL BE UPLOADED BY END OF SEPTEMBER **
 
 # Overview of Contents
 This solution has two projects that encompass my mental health tracker. The point of the tracker
@@ -34,4 +36,8 @@ lot of new concepts and languages.
 * None
 
 # References
+* **W3 Schools SQL** - https://www.w3schools.com/sql/
+* **PostgreSQL** - https://www.postgresql.org/docs/online-resources/
+* **Learn Python** - https://www.learnpython.org/
+* **Real Python** - https://realpython.com/python-gui-tkinter/
 * **ChatGPT** - https://chatgpt.com/
