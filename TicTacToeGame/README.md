@@ -7,6 +7,8 @@ Date:       9/10/2024
 Solution:   TicTacToeGame
 Copyright:  Cody Christensen - This work may not be copied for use in Academic Coursework.
 ```
+# Video Demonstration
+** WILL BE UPLOADED BY END OF SEPTEMBER **
 
 # Overview of Contents
 This project holds the contents to make a fully functioning AI tic-tac-toe game.
@@ -30,4 +32,7 @@ on to more important things.
 * None
 
 # References
+* **W3 Schools JavaScript** - https://www.w3schools.com/js/
+* **W3 Schools HTML** - https://www.w3schools.com/html/
+* **W3 Schools CSS** - https://www.w3schools.com/css/
 * **ChatGPT** - https://chatgpt.com/
