@@ -23,11 +23,11 @@ There are currently no installation instructions.
 Using the program is simple. It follows normal TicTacToe rules and the desired gameplay is obvious.
 
 # Comments
-The project doesn't output the final X or O, which isn't a huge problem when the user win's but isn't
+The project doesn't output the final X or O, which isn't a huge problem when the user wins but isn't
 always obvious when the computer wins. I tried debugging and fixing this, however after a significant
 amount of time invested I decided it wasn't worth it trying to fix this one thing so I decided to move
 on to more important things. Also, I started exploring Node.js and hosting my website on a Node server,
-however I have had to stop progress for now on this part of the project as I have "bigger fish to fry."
+however I have had to stop progress for now on this part of the project as I had "bigger fish to fry."
 
 # Consulted Peers
 * None
