@@ -13,7 +13,7 @@ https://youtu.be/4n0il2EiEAs
 # Overview of Contents
 This solution has two projects that encompass my mental health tracker. The point of the tracker
 is to input a daily entry, recording statistics related to your mental health. The project keeps
-track of daily entries,among other things, using a database, and displays reminders of things
+track of daily entries, amongst other things, by using a database. It then displays reminders of things
 like your goals and things you are grateful of. The project also uses data analysis to provide
 users with insight into their mental health trends.
 
