@@ -41,7 +41,7 @@ to expose myself to these new concepts and learn without the need for perfection
 
 ## License
 
-- This project is licensed under the [License Name]. See the [LICENSE](LICENSE) file for details.
+- This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ## Credits and Acknowledgments
 
