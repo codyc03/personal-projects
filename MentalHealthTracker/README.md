@@ -8,7 +8,7 @@ Solution:   MentalHealthTracker
 Copyright:  Cody Christensen - This work may not be copied for use in Academic Coursework.
 ```
 # Video Demonstration
-** WILL BE UPLOADED BY END OF SEPTEMBER **
+https://youtu.be/4n0il2EiEAs
 
 # Overview of Contents
 This solution has two projects that encompass my mental health tracker. The point of the tracker
