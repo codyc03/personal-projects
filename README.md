@@ -8,7 +8,7 @@ to expose myself to these new concepts and learn without the need for perfection
 
 ## Table of Contents
 
-1. [Prerequisites](#prerequisites)
+1. [Video Demonstrations](#video-demonstrations)
 2. [Installation](#installation)
 3. [Project Structure](#project-structure)
 4. [Contributing](#contributing)
@@ -21,9 +21,9 @@ to expose myself to these new concepts and learn without the need for perfection
 11. [Future Plans](#future-plans)
 12. [Known Issues](#known-issues)
 
-### Prerequisites
+### Video Demonstrations
 
-- There are currently no prerequisites, as I have not made any of the projects directly usable/downloadable.
+- There are video demonstrations of all personal projects in their individual project READMEs.
 
 ### Installation
 
