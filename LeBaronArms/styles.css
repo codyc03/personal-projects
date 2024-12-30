@@ -1,4 +1,5 @@
 body {
+    background-color: blanchedalmond;
     font-family: Arial, sans-serif;
     text-align: center;
     margin: 0;
@@ -38,12 +39,53 @@ body {
 }
 
 h1 {
-    margin-top: 80px; /* Prevent header from overlapping the navbar */
+    margin-top: 60px; /* Prevent header from overlapping the navbar */
+    margin-bottom: 20px;
     text-align: center;
     font-size: 60px;
     color: rgb(97, 82, 6);
-    text-decoration: underline;
-    text-decoration-thickness:6px; 
-    text-decoration-color:rgb(97, 82, 6); 
-    text-underline-offset: 12px;
+}
+
+h2 {
+    color: rgb(97, 82, 6);
+}
+
+p {
+    font-family: 'Roboto', Arial, sans-serif; /* Clean, modern font */
+    font-size: 16px; /* Readable font size */
+    line-height: 1.6; /* Add spacing between lines for readability */
+    color: rgb(85, 75, 24); /* Dark gray for softer contrast compared to black */
+    padding: 10px; /* Add inner spacing */
+    background-color: rgb(216, 189, 149);
+    border-left: 4px solid rgb(97, 82, 6); /* Add a colored border for style */
+    border-radius: 5px; /* Slightly rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    max-width: 1000px; /* Limit width for better readability */
+    margin-left: auto; /* Center-align horizontally */
+    margin-right: auto; /* Center-align horizontally */
+    text-align: justify; /* Even spacing between words */
+}
+
+.contact-section {
+    background-color: #f9f9f9;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 0 auto;
+    transition: transform 0.3s ease;
+}
+
+.contact-section:hover {
+    transform: scale(1.05); /* Slight zoom-in effect */
+}
+
+.submit-btn {
+    background-color: #007BFF;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color
 }
